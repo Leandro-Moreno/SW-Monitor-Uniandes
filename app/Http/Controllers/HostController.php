@@ -11,6 +11,8 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Kevinrob\GuzzleCache\Storage\FlysystemStorage;
 use Illuminate\Support\Collecion;
 
+use App\Model\Host;
+
 class HostController extends Controller
 {
     /**
@@ -36,9 +38,29 @@ class HostController extends Controller
                                                   return $value;
                                               }
                                           })
-                                          ->sortByDesc('current_state');
-                                          // dd($hosts->first());
-    return view('hosts.index', ['hosts'=> $hosts]);
+                                          ->sortByDesc('last_time_down');
+                                          dd($hosts->first());
+                                          //
+                                          //
+                                          //
+                                          $api  = $this->llamarApi();
+                                          foreach ($api as $servicio ) {
+                                            $hostAlmacenar = Host::where('id_nagios',$servicio["@attributes"]["id"])->first();
+
+                                            if(is_null($hostAlmacenar)){
+                                              $hostAlmacenar = new Host;
+                                              $hostAlmacenar->id_nagios  = $servicio["@attributes"]["id"];
+                                              $hostAlmacenar->address  = $servicio["address"];
+                                              $hostAlmacenar->name  = $servicio["name"];
+                                              $hostAlmacenar->check_command = $servicio["check_command"];
+                                            }
+
+                                            $hostAlmacenar->current_state = $servicio["current_state"];
+                                            $hostAlmacenar->last_time_up = $servicio["last_time_up"];
+                                            $hostAlmacenar->last_time_down = $servicio["last_time_down"];
+                                            $hostAlmacenar->save();
+                                          }
+                                          return view('hosts.index', ['hosts'=> $hosts]);
     }
     public function llamarApi()
     {

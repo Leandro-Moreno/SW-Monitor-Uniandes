@@ -15,10 +15,14 @@ class CreateHostsTable extends Migration
     {
         Schema::create('hosts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->longText('nombre');
-            $table->string('url');
-            $table->string('tag');
-            $table->integer('estado')->default(0)->nullable();
+            $table->integer('id_nagios');
+            $table->longText('name');
+            $table->string('address');
+            $table->string('tag')->nullable();
+            $table->integer('current_state')->default(0);
+            $table->dateTime("last_time_up");
+            $table->dateTime("last_time_down");
+            $table->string("check_command");
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreateHostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('correos');
+        Schema::dropIfExists('hosts');
     }
 }
