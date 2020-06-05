@@ -3,6 +3,7 @@ name: Laravel
 on:
   push:
     branches: [ master ]
+    branches: [ develop ]
   pull_request:
     branches: [ master ]
 
@@ -10,7 +11,7 @@ jobs:
   laravel-tests:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
     - name: Copy .env
