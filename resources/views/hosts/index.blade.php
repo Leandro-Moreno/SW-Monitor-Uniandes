@@ -20,6 +20,9 @@
       @foreach($hosts as $host)
         <div class="col-lg-6 order-lg-2" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
           <h3>{{$host["address"] }}</h3>
+          <span class="material-icons">
+          {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
+          </span>
         </div>
       @endforeach
   </div>
