@@ -31,14 +31,13 @@ class HostController extends Controller
     {
         // $hosts  = $this->llamarApi();
 
-      $hosts =  collect(
-                        $this->llamarApi())
-                                          ->filter(function ($value) {
+      $hosts =  collect( $this->llamarApi())->filter(function ($value) {
                                               if (preg_match("/^([0-9]{1,3}\.){3}[0-9]{1,3}$/", $value["address"])==0) {
                                                   return $value;
                                               }
                                           })
                                           ->sortByDesc('current_state');
+                                          // dd($hosts->first());
     return view('hosts.index', ['hosts'=> $hosts]);
     }
     public function llamarApi()

@@ -19,10 +19,17 @@
   <div class="row justify-content-center">
       @foreach($hosts as $host)
         <div class="col-lg-6 order-lg-2" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
+          <a href="https://{{$host["address"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}" target="_blank" >
           <h3>{{$host["address"] }}</h3>
           <span class="material-icons">
           {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
           </span>
+          @if (($host["current_state"])==0)
+            <p>Funcionando correctamente desde {{$host["last_time_down"]}}</p>
+          @else
+            <p>Host caido desde {{$host["last_time_up"]}}</p>
+          @endif
+
         </div>
       @endforeach
   </div>
