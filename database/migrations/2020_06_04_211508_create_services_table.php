@@ -19,7 +19,6 @@ class CreateServicesTable extends Migration
             $table->string('tipo');
             $table->string('ruta');
             $table->integer('estado')->default(0);
-            $table->integer('estado')->default(0);
             $table->timestamps();
         });
     }
