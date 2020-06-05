@@ -39,7 +39,7 @@ class HostController extends Controller
                                               }
                                           })
                                           ->sortByDesc('last_time_down');
-                                          dd($hosts->first());
+                                          // dd($hosts->first());
                                           //
                                           //
                                           //
