@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 /public/tmp/*
+public/tmp/*
 .env
 .env.backup
 .phpunit.result.cache
@@ -11,3 +12,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+public/tmp/e620148dfcdb3d3a4d91b8ea6e1732276349c96d7ad9334cee9a2e582cc84745
+public/tmp/e620148dfcdb3d3a4d91b8ea6e1732276349c96d7ad9334cee9a2e582cc84745
