@@ -23,6 +23,10 @@ Auth::routes();
 Route::get('/host', 'HostController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
+
+Route::get('host/{host}', 'HostController@indexUnico');
+
+
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {
 		return view('pages.table_list');

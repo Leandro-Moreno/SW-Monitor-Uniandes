@@ -23,6 +23,8 @@ class CreateHostsTable extends Migration
             $table->dateTime("last_time_up");
             $table->dateTime("last_time_down");
             $table->string("check_command");
+            $table->integer("mostrar")->default(0);
+            $table->integer("tipo")->default(1);
             $table->timestamps();
         });
     }

@@ -31,47 +31,19 @@ class HostController extends Controller
      */
     public function index(Host $host)
     {
-        // $hosts  = $this->llamarApi();
+          $host =  $host->all()->filter(function ($value) {
+            if (preg_match("/^([0-9]{1,3}\.){3}[0-9]{1,3}$/", $value["address"])==0) {
+              return $value;
+            }
+          })
+          ->sortByDesc('last_time_down');
 
-      $hosts =  $host->all()->filter(function ($value) {
-                                              if (preg_match("/^([0-9]{1,3}\.){3}[0-9]{1,3}$/", $value["address"])==0) {
-                                                  return $value;
-                                              }
-                                          })
-                                          ->sortByDesc('last_time_down');
-
-      return view('hosts.index', ['hosts' => $hosts]);
+      return view('hosts.index', ['hosts' => $host]);
     }
-    public function llamarApi()
-    {
-        $stack = HandlerStack::create();
-
-        // Choose a cache strategy: the PrivateCacheStrategy is good to start with
-        $cache_strategy_class = 'vendor\\Kevinrob\\GuzzleCache\\Strategy\\GreedyCacheStrategy';
-
-        // Instantiate the cache storage: a PSR-6 file system cache with
-        // a default lifetime of 1 minute (60 seconds).
-        $stack->push(
-          new CacheMiddleware(
-                new GreedyCacheStrategy(
-                  new FlysystemStorage(
-                    new Local($_SERVER["DOCUMENT_ROOT"]."/tmp")
-                ),
-                  120
-              )
-            ),
-          "cache"
-          );
-
-        $client = new \GuzzleHttp\Client();
-        // Initialize the client with the handler option
-        $client = new Client(['handler' => $stack]);
-
-        $response = $client->request('GET', 'http://trini.uniandes.edu.co/nagiosxi/api/v1/objects/hoststatus?apikey=pm6pu99iemo6qqhignmkiupkmr984qnseqla2updihhcb2tqmic9e6q4u4c2r0r7&pretty=1');
-
-        $resp=$response->getBody();
-        $respuesta=json_decode($resp, true);
-        $respuesta=$respuesta["hoststatuslist"]["hoststatus"];
-        return $respuesta;
+    public function indexUnico(Host $host){
+      $host = Host::find($host);
+      // dd($host[0]["last_time_up"]->format('M-D-Y '));
+      // dd($host);
+      return view('hosts.indexUnico', ['hosts' => $host]);
     }
 }

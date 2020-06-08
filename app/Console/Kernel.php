@@ -39,7 +39,9 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
           $this->almacenarApiNagios();
             //
-        })->everyMinute();
+        })
+        ->everyMinute()
+        ->appendOutputTo(storage_path('logs/examplecommand.log'));
     }
 
     /**
@@ -69,7 +71,7 @@ class Kernel extends ConsoleKernel
             }
 
             $hostAlmacenar->current_state = $servicio["current_state"];
-            $hostAlmacenar->last_time_up = $servicio["last_time_up"];
+            $hostAlmacenar->last_time_up = Carbon::createFromDate($servicio["last_time_up"]->add(1,'day'));
             $hostAlmacenar->last_time_down = $servicio["last_time_down"];
             $hostAlmacenar->save();
         }
