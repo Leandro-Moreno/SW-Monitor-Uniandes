@@ -25,9 +25,9 @@
           {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
           </span>
           @if (($host["current_state"])==0)
-            <p>Funcionando correctamente desde {{$host["last_time_down"]}}</p>
+            <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($host["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @else
-            <p>Host caido desde {{$host["last_time_up"]}}</p>
+            <p>Host caido hace {{ Carbon\Carbon::parse($host["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @endif
 
         </div>

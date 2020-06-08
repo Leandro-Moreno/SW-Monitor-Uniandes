@@ -27,6 +27,7 @@
           @if (($host["current_state"])==0)
             <p>Funcionando correctamente desde <span id="last_time_down">{{$host["last_time_down"]}}</span></p>
             <p>La ultima vez que se cayo fue {{$host["last_time_up"]}}</p>
+            <p>{{ Carbon\Carbon::parse($host["last_time_down"])->diff(Carbon\Carbon::now())->format('%D día(s), %I minuto(s)') }}</p>
           @else
             <p>Host caido desde {{$host["last_time_up"]}}</p>
           @endif
@@ -34,7 +35,7 @@
           <p>Actualizado el {{$host["updated_at"]}}</p>
           <p></p>
 
-          
+
         </div>
         <script>
         const md5 = require ("md5");

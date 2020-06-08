@@ -39,9 +39,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
           $this->almacenarApiNagios();
             //
-        })
-        ->everyMinute()
-        ->appendOutputTo(storage_path('logs/examplecommand.log'));
+        })->everyMinute();
     }
 
     /**

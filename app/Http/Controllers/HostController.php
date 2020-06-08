@@ -12,6 +12,7 @@ use Kevinrob\GuzzleCache\Storage\FlysystemStorage;
 use Illuminate\Support\Collecion;
 
 use App\Model\Host;
+use Carbon\Carbon;
 
 class HostController extends Controller
 {
@@ -44,6 +45,7 @@ class HostController extends Controller
       $host = Host::find($host);
       // dd($host[0]["last_time_up"]->format('M-D-Y '));
       // dd($host);
+
       return view('hosts.indexUnico', ['hosts' => $host]);
     }
 }
