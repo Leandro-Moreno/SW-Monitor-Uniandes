@@ -25,7 +25,7 @@ class CreateHostsTable extends Migration
             $table->string("check_command");
             $table->integer("mostrar")->default(0);
             $table->integer("tipo")->default(1);
-            $table->integer("is_flapping");
+            $table->integer("is_flapping")->default(0);
             $table->timestamps();
         });
     }
