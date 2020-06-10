@@ -14,7 +14,7 @@ class Host extends Model
      * @var array
      */
     protected $fillable = [
-        'id_nagios', 'name', 'address', 'tag', 'current_state', 'last_time_up','last_time_down', 'check_command'
+        'id_nagios', 'name', 'address', 'tag', 'current_state', 'last_time_up','last_time_down', 'check_command', 'is_flapping'
     ];
 
 
