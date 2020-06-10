@@ -19,7 +19,7 @@
   <div class="row justify-content-center">
         <div class="col-lg-6 order-lg-2" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
           <a href="https://{{$host["address"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}" target="_blank" >
-          <h3>{{$host["address"] }}</h3>
+          <h3>{{$host["name"] }}</h3>
           <span class="material-icons">
           {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
           </span>
@@ -28,7 +28,7 @@
           @else
             <p>Host caido hace {{ Carbon\Carbon::parse($host["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @endif
-          
+
           <p></p>
 
 

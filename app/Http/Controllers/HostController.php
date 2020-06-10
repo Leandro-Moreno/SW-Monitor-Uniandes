@@ -32,11 +32,7 @@ class HostController extends Controller
      */
     public function index(Host $host)
     {
-          $host =  $host->all()->filter(function ($value) {
-            if (preg_match("/^([0-9]{1,3}\.){3}[0-9]{1,3}$/", $value["address"])==0) {
-              return $value;
-            }
-          })
+          $host =  $host->all()
           ->sortByDesc('last_time_down');
 
       return view('hosts.index', ['hosts' => $host]);
