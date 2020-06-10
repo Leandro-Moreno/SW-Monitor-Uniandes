@@ -17,9 +17,10 @@
   <section>
 <div class="container" style="height: auto;">
   <div class="row justify-content-center">
-        <div class="col-lg-6 order-lg-2" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
+        <div class="col-lg-4" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
           <a href="https://{{$host["address"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}" target="_blank" >
           <h3>{{$host["name"] }}</h3>
+          <h4>{{$host["address"] }}</h4>
           <span class="material-icons">
           {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
           </span>
@@ -30,8 +31,11 @@
           @endif
 
           <p></p>
+        </a>
 
-
+        </div>
+        <div class="col-lg-8">
+          <p>.</p>
         </div>
   </div>
 </div>
