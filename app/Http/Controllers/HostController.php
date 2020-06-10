@@ -42,10 +42,12 @@ class HostController extends Controller
       return view('hosts.index', ['hosts' => $host]);
     }
     public function indexUnico(Host $host){
-      $host = Host::find($host);
+      // $host = Host::firstWhere('id', $host["id"]);
+      // dd($host);
+
       // dd($host[0]["last_time_up"]->format('M-D-Y '));
       // dd($host);
 
-      return view('hosts.indexUnico', ['hosts' => $host]);
+      return view('hosts.indexUnico', ['host' => $host]);
     }
 }

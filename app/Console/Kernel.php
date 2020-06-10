@@ -58,7 +58,7 @@ class Kernel extends ConsoleKernel
     {
         $api  = $this->llamarApi();
         foreach ($api as $servicio) {
-            $hostAlmacenar = Host::where('id_nagios', $servicio["@attributes"]["id"])->first();
+            $hostAlmacenar = Host::where('name', $servicio["name"])->first();
 
             if (is_null($hostAlmacenar)) {
                 $hostAlmacenar = new Host;

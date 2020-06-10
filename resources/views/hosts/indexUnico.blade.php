@@ -17,7 +17,6 @@
   <section>
 <div class="container" style="height: auto;">
   <div class="row justify-content-center">
-      @foreach($hosts as $host)
         <div class="col-lg-6 order-lg-2" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
           <a href="https://{{$host["address"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}" target="_blank" >
           <h3>{{$host["address"] }}</h3>
@@ -25,25 +24,15 @@
           {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
           </span>
           @if (($host["current_state"])==0)
-            <p>Funcionando correctamente desde <span id="last_time_down">{{$host["last_time_down"]}}</span></p>
-            <p>La ultima vez que se cayo fue {{$host["last_time_up"]}}</p>
-            <p>{{ Carbon\Carbon::parse($host["last_time_down"])->diff(Carbon\Carbon::now())->format('%D día(s), %I minuto(s)') }}</p>
+            <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($host["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @else
-            <p>Host caido desde {{$host["last_time_up"]}}</p>
+            <p>Host caido hace {{ Carbon\Carbon::parse($host["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @endif
-          <p>Creado el {{$host["created_at"]}}</p>
-          <p>Actualizado el {{$host["updated_at"]}}</p>
+          
           <p></p>
 
 
         </div>
-        <script>
-        const md5 = require ("md5");
-const moment = require ("moment");
-        // var moment = require('moment');
-          var last_time_down = moment(document.getElementById('last_time_down').value, 'YYYY/MM/DD');
-        </script>
-      @endforeach
   </div>
 </div>
 </section>
