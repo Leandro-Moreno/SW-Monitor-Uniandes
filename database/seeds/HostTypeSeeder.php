@@ -13,7 +13,7 @@ class HostTypeSeeder extends Seeder
     public function run()
     {
       DB::table('host_type')->insert([
-          'nombre' => 'Sitio Web',
+          'nombre' => 'Sitio Web', 
           'description' => 'Sitio Web',
           'created_at' => now(),
           'updated_at' => now()
