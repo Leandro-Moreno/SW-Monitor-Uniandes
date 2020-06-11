@@ -14,18 +14,33 @@ class CreateHostsTable extends Migration
     public function up()
     {
         Schema::create('hosts', function (Blueprint $table) {
+          // nagiosxi
             $table->bigIncrements('id');
-            $table->integer('id_nagios');
-            $table->longText('name');
-            $table->string('address');
+            $table->integer('id_nagios')->nullable();
+            $table->longText('name')->nullable();
+            $table->string('address')->nullable();
             $table->string('tag')->nullable();
-            $table->integer('current_state')->default(0);
-            $table->dateTime("last_time_up");
-            $table->dateTime("last_time_down");
-            $table->string("check_command");
-            $table->integer("mostrar")->default(0);
-            $table->integer("tipo")->default(1);
-            $table->integer("is_flapping")->default(0);
+            $table->integer('current_state')->default(0)->nullable();
+            $table->dateTime("last_time_up")->nullable();
+            $table->dateTime("last_time_down")->nullable();
+            $table->string("check_command")->nullable();
+            $table->integer("mostrar")->default(0)->nullable();
+            $table->integer("is_flapping")->default(0)->nullable();
+            //
+            $table->biginteger('tipo_id')->unsigned()->default(1)->nullable();
+            $table->biginteger('servidor')->unsigned()->nullable();
+            $table->biginteger('servidor_bd')->unsigned()->nullable();
+            $table->biginteger('responsable1')->unsigned()->nullable();
+            $table->biginteger('responsable2')->unsigned()->nullable();
+            $table->foreign('tipo_id')->references('id')->on('host_type');
+            $table->foreign('servidor')->references('id')->on('hosts');
+            $table->foreign('servidor_bd')->references('id')->on('hosts');
+            $table->foreign('responsable1')->references('id')->on('users');
+            $table->foreign('responsable2')->references('id')->on('users');
+            $table->string("analytics")->nullable();
+            $table->longText('description')->nullable();
+            $table->dateTime("creacion")->nullable();
+
             $table->timestamps();
         });
     }
