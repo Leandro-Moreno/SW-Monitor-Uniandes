@@ -15,6 +15,13 @@ class CreateDecisionesTable extends Migration
     {
         Schema::create('decisiones', function (Blueprint $table) {
             $table->id();
+            $table->biginteger('sitioWeb')->unsigned();
+            $table->foreign('sitioWeb')->references('id')->on('hosts');
+            $table->biginteger('responsable')->unsigned();
+            $table->foreign('responsable')->references('id')->on('users');
+            $table->string('descripcion')->nullable();
+            $table->dateTime("fechaTomada")->default(now());
+            $table->string("decision");
             $table->timestamps();
         });
     }

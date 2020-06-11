@@ -17,6 +17,7 @@
   <section>
 <div class="container" style="height: auto;">
   <div class="row justify-content-center">
+
       @foreach($hosts as $host)
         <div class="col-lg-6" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
           <a href="{{ route('hosts') }}/host/{{$host["id"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}" target="_blank" >
@@ -33,6 +34,7 @@
         </div>
       @endforeach
   </div>
+  {{ $hosts->links() }}
 </div>
 </section>
 @endsection
