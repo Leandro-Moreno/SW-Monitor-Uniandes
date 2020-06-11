@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class hostType extends Seeder
+class HostTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
