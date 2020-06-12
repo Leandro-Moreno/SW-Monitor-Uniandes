@@ -41,9 +41,22 @@ class HostController extends Controller
      * @param  \App\Model\Host  $host
      * @return \Illuminate\View\hosts\edit
      */
-    public function edit(Host $host)
+    public function edit($name)
     {
-      dd($host);
+      // dd($host);
+      $host = Host::where('name','=', $name)->firstOrFail();
         return view('hosts.edit', ['host' => $host]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\Host  $hostType
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Host $hostType)
+    {
+        //
     }
 }

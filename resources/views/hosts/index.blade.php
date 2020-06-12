@@ -20,17 +20,25 @@
 
       @foreach($hosts as $host)
         <div class="col-lg-6" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
+          <div class="card">
+            <div class="card-header card-header-{{ ($host["current_state"]==0)? 'success' : 'danger'}}">
+              <h3 class="card-title">{{$host["name"] }} <span class="material-icons">
+              {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
+              </span></h3>
+
+              <p class="card-category"></p>
+            </div>
+            <div class="card-body ">
           <a href="{{ route('hosts') }}/host/{{$host["name"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
-          <h3>{{$host["name"] }}</h3>
-          <span class="material-icons">
-          {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
-          </span>
+
+
           @if (($host["current_state"])==0)
             <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($host["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @else
             <p>Host caido hace {{ Carbon\Carbon::parse($host["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @endif
-
+          </div>
+        </div>
         </div>
       @endforeach
   </div>
@@ -38,3 +46,9 @@
 </div>
 </section>
 @endsection
+<!-- <div class="card ">
+  <div class="card-header card-header-primary">
+    <h4 class="card-title">{{ __('Añadir firma') }}</h4>
+    <p class="card-category"></p>
+  </div>
+  <div class="card-body "> -->

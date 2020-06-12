@@ -20,7 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/host', 'HostController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
@@ -30,7 +29,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::resource('host', 'HostController')->names([
       'index' => 'index',
 			'show' => 'host.show',
-      'editar' => 'host.edit'
+      'edit' => 'host.edit',
+			'update' =>'host.update'
   ]);
 
 
