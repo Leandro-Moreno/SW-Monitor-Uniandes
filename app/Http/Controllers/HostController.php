@@ -31,8 +31,19 @@ class HostController extends Controller
 
       return view('hosts.index', ['hosts' => $host]);
     }
-    public function indexUnico(Host $host){
-
-      return view('hosts.indexUnico', ['host' => $host]);
+    public function show($name){
+      $host = Host::where('name','=', $name)->firstOrFail();
+      return view('hosts.show', ['host' => $host]);
+    }
+    /**
+     * Muestra el formulario para editar el host.
+     *
+     * @param  \App\Model\Host  $host
+     * @return \Illuminate\View\hosts\edit
+     */
+    public function edit(Host $host)
+    {
+      dd($host);
+        return view('hosts.edit', ['host' => $host]);
     }
 }

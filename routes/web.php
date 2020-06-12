@@ -24,7 +24,14 @@ Route::get('/host', 'HostController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
-Route::get('host/{host}', 'HostController@indexUnico')->name('host');
+// Route::get('host/{host}', 'HostController@indexUnico')->name('host');
+
+
+Route::resource('host', 'HostController')->names([
+      'index' => 'index',
+			'show' => 'host.show',
+      'editar' => 'host.edit'
+  ]);
 
 
 Route::group(['middleware' => 'auth'], function () {

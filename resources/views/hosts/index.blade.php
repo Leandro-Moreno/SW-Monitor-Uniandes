@@ -20,7 +20,7 @@
 
       @foreach($hosts as $host)
         <div class="col-lg-6" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
-          <a href="{{ route('hosts') }}/host/{{$host["id"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}" target="_blank" >
+          <a href="{{ route('hosts') }}/host/{{$host["name"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
           <h3>{{$host["name"] }}</h3>
           <span class="material-icons">
           {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
