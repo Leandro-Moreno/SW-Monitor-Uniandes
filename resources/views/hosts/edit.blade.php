@@ -97,7 +97,7 @@ $table->dateTime("creacion")->nullable(); -->
               <label class="col-sm-2 col-form-label">{{ __('Google Analytics') }}</label>
               <div class="col-sm-7">
                 <div class="form-group{{ $errors->has('analytics') ? ' has-danger' : '' }}">
-                  <input class="form-control{{ $errors->has('analytics') ? ' is-invalid' : '' }}" name="analytics" id="input-nombre" type="text" placeholder="{{ __('analytics') }}" value="{{ old('nombre', $host->analytics) }}" required="false" aria-required="false"/>
+                  <input class="form-control{{ $errors->has('analytics') ? ' is-invalid' : '' }}" name="analytics" id="input-nombre" type="text" placeholder="{{ __('analytics') }}" value="{{ old('nombre', $host->analytics) }}" />
                   @if ($errors->has('analytics'))
                     <span id="nombre-error" class="error text-danger" for="input-nombre">{{ $errors->first('analytics') }}</span>
                   @endif
@@ -108,7 +108,7 @@ $table->dateTime("creacion")->nullable(); -->
               <label class="col-sm-2 col-form-label">{{ __('Servidor') }}</label>
               <div class="col-sm-7">
                 <div class="form-group{{ $errors->has('firma') ? ' has-danger' : '' }}">
-                  <select class="form-control{{ $errors->has('firma') ? ' is-invalid' : '' }}" id="input-firma" required="false" aria-required="false" name="servidor">
+                  <select class="form-control{{ $errors->has('firma') ? ' is-invalid' : '' }}" id="input-firma" name="servidor">
                     <option value="{{ $host->servidor}}">{{$host->servidor}}</option>
                     @foreach($servidores as $servidor )
                     <option value="{{ $servidor->id }}">{{ $servidor->name }}</option>
