@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Material Dashboard')])
 
 @section('content')
-<header class="masthead text-center text-white">
+<header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">Estatus {{$host["name"] }}</h1>
@@ -29,10 +29,18 @@
           @else
             <p>Host caido hace {{ Carbon\Carbon::parse($host["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @endif
-
+            <p>Google Analytics {{ $host->analytics }}</p>
+            <p>{{ $host->description }}</p>
+            @if (isset($host->servidorDatos))
+            <p>Servidor: {{ $host->servidorDatos->name }}</p>
+            @endif
+            <p>Tipo: {{ $host->tipodatos->nombre }}</p>
           <p></p>
         </a>
-
+        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('host.edit', $host->name) }}" data-original-title="" title="">
+                                USUARIOS<i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                              </a>
         </div>
         <div class="col-lg-8">
           <p>.</p>

@@ -19,7 +19,7 @@
   <div class="row justify-content-center">
 
       @foreach($hosts as $host)
-        <div class="col-lg-4" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
+        <div class="col-lg-4" style="color:{{ ($host["current_state"]==0&&$host["mostrar"]==0)? 'green' : 'red'}}">
           <a href="{{ route('hosts') }}/host/{{$host["name"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
           <div class="card">
             <div class="card-header card-header-{{ ($host["current_state"]==0)? 'success' : 'danger'}}">

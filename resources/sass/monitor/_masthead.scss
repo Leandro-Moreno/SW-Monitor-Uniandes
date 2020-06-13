@@ -8,6 +8,10 @@ header.masthead {
   background-position: center center;
   background-attachment: scroll;
   background-size: cover;
+  &-min{
+    padding-top: calc(2rem + 72px)!important;
+    padding-bottom: 3rem!important;
+  }
   .masthead-content {
     z-index: 1;
     position: relative;

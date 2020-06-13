@@ -17,6 +17,21 @@
             <i class="material-icons">dashboard</i> {{ __('Inicio') }}
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('sitios-web') }}" class="nav-link">
+            <i class="material-icons">dashboard</i> {{ __('Sitios Web') }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('servidores') }}" class="nav-link">
+            <i class="material-icons">dashboard</i> {{ __('Servidores') }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('database') }}" class="nav-link">
+            <i class="material-icons">dashboard</i> {{ __('Bases de Datos') }}
+          </a>
+        </li>        
         <li class="nav-item{{ $activePage == 'register' ? ' active' : '' }}">
           <a href="{{ route('register') }}" class="nav-link">
             <i class="material-icons">person_add</i> {{ __('Registro') }}

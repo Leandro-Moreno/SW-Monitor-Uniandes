@@ -19572,6 +19572,11 @@ header.masthead {
   background-size: cover;
 }
 
+header.masthead-min {
+  padding-top: calc(2rem + 72px) !important;
+  padding-bottom: 3rem !important;
+}
+
 header.masthead .masthead-content {
   z-index: 1;
   position: relative;

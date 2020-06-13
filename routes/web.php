@@ -25,7 +25,9 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 // Route::get('host/{host}', 'HostController@indexUnico')->name('host');
 
-
+Route::get('/sitios-web', 'HostController@sitiosWeb')->name('sitios-web');
+Route::get('/servidores', 'HostController@servidores')->name('servidores');
+Route::get('/bases-de-datos', 'HostController@database')->name('database');
 Route::resource('host', 'HostController')->names([
       'index' => 'index',
 			'show' => 'host.show',
@@ -33,6 +35,14 @@ Route::resource('host', 'HostController')->names([
 			'update' =>'host.update'
   ]);
 
+
+  Route::resource('resource', 'Controller', [
+             'except' => [
+                 'index',
+                 'show'
+             ]
+         ])
+         ->middleware(['auth']);
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {

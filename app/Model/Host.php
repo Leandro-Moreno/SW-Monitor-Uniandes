@@ -19,6 +19,14 @@ class Host extends Model
         'tipo_id', 'servidor', 'servidor_bd','analytics', 'description',
         'creacion', 'responsable1', 'responsable2'
     ];
+    public function servidorDatos()
+    {
+        return $this->belongsTo('App\Model\Host', 'servidor');
+    }
+    public function tipodatos()
+    {
+        return $this->belongsTo('App\Model\HostType', 'tipo_id');
+    }
 
 
 }
