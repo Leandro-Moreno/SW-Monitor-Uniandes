@@ -67,6 +67,7 @@ class HostController extends Controller
         $host->mostrar = $request->mostrar;
         $host->analytics = $request->analytics;
         $host->description = $request->description;
+        $host->tipo_id = $request->tipo;
         $host->save();
         return redirect()->route('hosts')->withStatus(__('Host actualizado con éxito.'));
     }
