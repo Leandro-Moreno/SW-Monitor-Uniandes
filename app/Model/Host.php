@@ -17,7 +17,7 @@ class Host extends Model
         'id_nagios', 'name', 'address', 'tag', 'current_state',
         'last_time_up','last_time_down', 'check_command', 'is_flapping',
         'tipo_id', 'servidor', 'servidor_bd','analytics', 'description',
-        'creacion', 'responsable1', 'responsable2'
+        'creacion', 'responsable1', 'responsable2', 'mostrar'
     ];
     public function servidorDatos()
     {
@@ -26,6 +26,10 @@ class Host extends Model
     public function tipodatos()
     {
         return $this->belongsTo('App\Model\HostType', 'tipo_id');
+    }
+    public function usuariodatos()
+    {
+        return $this->belongsToMany('App\User', 'host_user', 'responsable1', 'id');
     }
 
 

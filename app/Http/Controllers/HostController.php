@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Collecion;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\HostRequest;
+use App\User;
 use App\Model\Host;
 use App\Model\HostType;
 use Carbon\Carbon;
@@ -48,10 +50,10 @@ class HostController extends Controller
       // dd($host);
       $host = Host::where('name','=', $name)->firstOrFail();
       $servidor = Host::where('tipo_id','=', '2')->get();
+      $servidorBD = Host::where('tipo_id','=', '3')->get();
       $typos = HostType::all();
-      // dd($typos);
-
-        return view('hosts.edit', [ 'host' => $host, 'servidores' => $servidor, 'typos' => $typos ]);
+      $users = User::all();
+      return view('hosts.edit', [ 'host' => $host, 'servidores' => $servidor,'servidoresBD' => $servidorBD, 'typos' => $typos, 'users' => $users ]);
     }
 
     /**
@@ -63,11 +65,13 @@ class HostController extends Controller
      */
     public function update(Request $request, Host $host)
     {
+      dd($request);
+        isset($request->mostrar)?$host->mostrar = $request->mostrar:$host->mostrar = "1";
         $host->servidor = $request->servidor;
-        $host->mostrar = $request->mostrar;
         $host->analytics = $request->analytics;
         $host->description = $request->description;
         $host->tipo_id = $request->tipo;
+        // dd($host->mostrar);
         $host->save();
         return redirect()->route('hosts')->withStatus(__('Host actualizado con éxito.'));
     }

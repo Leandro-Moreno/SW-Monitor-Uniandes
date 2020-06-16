@@ -38,7 +38,7 @@
           <p></p>
         </a>
         <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('host.edit', $host->name) }}" data-original-title="" title="">
-                                USUARIOS<i class="material-icons">search</i>
+                                EDITAR<i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                               </a>
         </div>

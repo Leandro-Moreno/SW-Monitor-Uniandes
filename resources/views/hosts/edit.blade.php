@@ -54,7 +54,7 @@ $table->dateTime("creacion")->nullable(); -->
           <div class="card-body ">
             <div class="row">
               <div class="col-md-12 text-right">
-                  <a href="{{ route('hosts') }}" class="btn btn-sm btn-primary">{{ __('Volver a la lista') }}</a>
+                  <a href="{{ route('host.show', $host->name) }}" class="btn btn-sm btn-primary">{{ __('Volver') }}</a>
               </div>
             </div>
             @if ($errors->any())
@@ -107,20 +107,36 @@ $table->dateTime("creacion")->nullable(); -->
             <div class="row">
               <label class="col-sm-2 col-form-label">{{ __('Servidor') }}</label>
               <div class="col-sm-7">
-                <div class="form-group{{ $errors->has('firma') ? ' has-danger' : '' }}">
-                  <select class="form-control{{ $errors->has('firma') ? ' is-invalid' : '' }}" id="input-firma" name="servidor">
+                <div class="form-group{{ $errors->has('servidor') ? ' has-danger' : '' }}">
+                  <select class="form-control{{ $errors->has('firma') ? ' is-invalid' : '' }}" id="input-servidor" name="servidor">
                     <option value="{{ $host->servidor}}">{{$host->servidor}}</option>
                     @foreach($servidores as $servidor )
                     <option value="{{ $servidor->id }}">{{ $servidor->name }}</option>
                     @endforeach
                   </select>
-                  @if ($errors->has('firma'))
-                  <span id="firma-error" class="error text-danger" for="input-firma">{{ $errors->first('firma') }}</span>
+                  @if ($errors->has('servidor'))
+                  <span id="servidor-error" class="error text-danger" for="input-servidor">{{ $errors->first('servidor') }}</span>
                   @endif
                 </div>
               </div>
             </div>
             <!--  -->
+            <div class="row">
+              <label class="col-sm-2 col-form-label">{{ __('Servidor Base de datos') }}</label>
+              <div class="col-sm-7">
+                <div class="form-group{{ $errors->has('firma') ? ' has-danger' : '' }}">
+                  <select class="form-control{{ $errors->has('servidor_bd') ? ' is-invalid' : '' }}" id="input-servidor_bd" name="servidor_bd">
+                    <option value="{{ $host->servidor_bd}}">{{$host->servidor_bd}}</option>
+                    @foreach($servidoresBD as $servidor )
+                    <option value="{{ $servidor->id }}">{{ $servidor->name }}</option>
+                    @endforeach
+                  </select>
+                  @if ($errors->has('servidor_bd'))
+                  <span id="servidor_bd-error" class="error text-danger" for="input-servidor_bd">{{ $errors->first('servidor_bd') }}</span>
+                  @endif
+                </div>
+              </div>
+            </div>
 
             <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Tipo de Servicio') }}</label>
@@ -140,28 +156,45 @@ $table->dateTime("creacion")->nullable(); -->
                     </div>
                   </div>
                 </div>
-                <!--  -->
-            <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Estado') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('estado') ? ' has-danger' : '' }}">
-                      <div class="togglebutton">
-                        <label>
-                          <input id="estadoTogg" name="mostrar" type="checkbox" {{ $host->mostrar==0 ? ' checked' : '' }}  value="{{ old('mostrar', 1) }}">
-                          <span class="toggle"></span>
-                          <span id="toggContenido">{{ $host->mostrar==0?"Activo":"No activo" }}</span>
-                        </label>
+                <div class="row">
+                      <label class="col-sm-2 col-form-label">{{ __('Responsable 1') }}</label>
+                      <div class="col-sm-7">
+                        <div class="form-group{{ $errors->has('responsable1') ? ' has-danger' : '' }}">
+
+                          <select class="form-control{{ $errors->has('responsable1') ? ' is-invalid' : '' }}" id="input-responsable1" required="true" aria-required="true" name="responsable1">
+                            <option value="{{ $host->responsable1}}">{{$host->usuariodatos->id}}</option>
+
+                            @foreach($users as $responsable1 )
+                            <option value="{{ $responsable1->id }}">{{ $responsable1->nombre }}</option>
+                            @endforeach
+                          </select>
+                          @if ($errors->has('responsable1'))
+                            <span id="firma-error" class="error text-danger" for="input-responsable1">{{ $errors->first('responsable1') }}</span>
+                          @endif
+                        </div>
                       </div>
-                      @if ($errors->has('estado'))
-                      <span id="estado-error" class="error text-danger" for="input-estado">{{ $errors->first('estado') }}</span>
-                      @endif
-                    </div>
-                  </div>
                 </div>
+                <div class="row">
+                      <label class="col-sm-2 col-form-label">{{ __('Mostrar') }}</label>
+                      <div class="col-sm-7">
+                        <div class="form-group{{ $errors->has('mostrar') ? ' has-danger' : '' }}">
+                          <div class="togglebutton">
+                            <label>
+                              <input id="mostrarTogg" name="mostrar" type="checkbox" {{ $host->mostrar==0 ? ' checked' : '' }}  value="{{ old('mostrar', $host->mostrar) }}">
+                              <span class="toggle"></span>
+                              <span id="toggContenido">{{ $host->mostrar==0?"Activo":"No activo" }}</span>
+                            </label>
+                          </div>
+                          @if ($errors->has('mostrar'))
+                          <span id="mostrar-error" class="error text-danger" for="input-mostrar">{{ $errors->first('mostrar') }}</span>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
 
             </div>
           <div class="card-footer ml-auto mr-auto">
-            <button type="submit" class="btn btn-primary">{{ __('Actualizar firma') }}</button>
+            <button type="submit" class="btn btn-primary">{{ __('Actualizar') }} {{$host["name"] }}</button>
           </div>
         </div>
       </form>
@@ -173,10 +206,10 @@ $table->dateTime("creacion")->nullable(); -->
   <script type="text/javascript">
 
   $(".toggle").click(function(e){
-    if($("#estadoTogg").prop( "checked" )){
-
-    }
-      $("#estadoTogg").prop( "checked" )?$( "#toggContenido" ).text("No activo"):$( "#toggContenido" ).text("Activo");
+      var hiddenField = $('#mostrarTogg'),
+        val = hiddenField.val();
+        hiddenField.trigger('click');
+      $("#mostrarTogg").prop( "checked" )?$( "#toggContenido" ).text("No activo"):$( "#toggContenido" ).text("Activo");
 
       });
 
