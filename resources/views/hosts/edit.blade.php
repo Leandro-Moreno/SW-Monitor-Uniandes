@@ -47,7 +47,7 @@ $table->dateTime("creacion")->nullable(); -->
         @csrf
         @method('put')
         <div class="card ">
-          <div class="card-header card-header-success">
+          <div class="card-header card-header-black">
             <h4 class="card-title">{{ __('Editar Información del host') }}</h4>
             <p class="card-category"></p>
           </div>

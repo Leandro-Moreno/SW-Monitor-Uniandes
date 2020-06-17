@@ -37,7 +37,7 @@
             <p>Tipo: {{ $host->tipodatos->nombre }}</p>
           <p></p>
         </a>
-        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('host.edit', $host->name) }}" data-original-title="" title="">
+        <a rel="tooltip" class="btn btn-inverse" href="{{ route('host.edit', $host->name) }}" data-original-title="" title="">
                                 EDITAR<i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                               </a>

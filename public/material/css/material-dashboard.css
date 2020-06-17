@@ -17575,6 +17575,15 @@ label {
   background: linear-gradient(60deg, #66bb6a, #43a047);
 }
 
+.card .card-header-black .card-icon,
+.card .card-header-black .card-text,
+.card .card-header-black:not(.card-header-icon):not(.card-header-text),
+.card.bg-success,
+.card.card-rotate.bg-black .front,
+.card.card-rotate.bg-black .back {
+  background: linear-gradient(60deg, #3C4858, #000000);
+}
+
 .card .card-header-warning .card-icon,
 .card .card-header-warning .card-text,
 .card .card-header-warning:not(.card-header-icon):not(.card-header-text),
@@ -17636,6 +17645,12 @@ label {
 .card .card-header-success:not(.card-header-icon):not(.card-header-text),
 .card .card-header-success .card-text {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
+}
+
+.card .card-header-black .card-icon,
+.card .card-header-black:not(.card-header-icon):not(.card-header-text),
+.card .card-header-black .card-text {
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .card [class*=card-header-],
