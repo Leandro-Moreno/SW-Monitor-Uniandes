@@ -27,9 +27,9 @@ class Host extends Model
     {
         return $this->belongsTo('App\Model\HostType', 'tipo_id');
     }
-    public function usuariodatos()
+    public function responsable()
     {
-        return $this->belongsToMany('App\User', 'host_user', 'responsable1', 'id');
+        return $this->belongsToMany('App\Model\Responsable');
     }
 
 

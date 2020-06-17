@@ -13,7 +13,7 @@ class CreateHostUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('host_user', function (Blueprint $table) {
+        Schema::create('responsables', function (Blueprint $table) {
             $table->id();
             $table->biginteger('host_id')->unsigned();
             $table->foreign('host_id')->references('id')->on('hosts');

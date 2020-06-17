@@ -156,24 +156,29 @@ $table->dateTime("creacion")->nullable(); -->
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                      <label class="col-sm-2 col-form-label">{{ __('Responsable 1') }}</label>
-                      <div class="col-sm-7">
-                        <div class="form-group{{ $errors->has('responsable1') ? ' has-danger' : '' }}">
+                @for($i = 1; $i<=2;$i++)
+                <div class="row" id="responsable{{ $i }}">
+                  <label class="col-sm-2 col-form-label">{{ __('Responsable '.$i) }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('responsable'.$i) ? ' has-danger' : '' }}">
 
-                          <select class="form-control{{ $errors->has('responsable1') ? ' is-invalid' : '' }}" id="input-responsable1" required="true" aria-required="true" name="responsable1">
-                            <option value="{{ $host->responsable1}}">{{$host->usuariodatos->id}}</option>
-
-                            @foreach($users as $responsable1 )
-                            <option value="{{ $responsable1->id }}">{{ $responsable1->nombre }}</option>
-                            @endforeach
-                          </select>
-                          @if ($errors->has('responsable1'))
-                            <span id="firma-error" class="error text-danger" for="input-responsable1">{{ $errors->first('responsable1') }}</span>
-                          @endif
-                        </div>
-                      </div>
+                      <select class="form-control{{ $errors->has('responsable'.$i) ? ' is-invalid' : '' }}" id="input-responsable{{ $i }}" name="responsable{{ $i }}">
+                        @if(isset($responsables[$i]))
+                        <option value="{{ $responsables[$i]->user_id}}">{{ $responsables[$i]->usuario->name }} {{ $responsables[$i]->usuario->surname }} - {{$responsables[$i]->usuario->email}}</option>
+                        @endif
+                        <option value="0">Ninguno</option>
+                        @foreach($users as $user )
+                        <option value="{{ $user->id }}">{{ $user->name }} {{ $user->surname }} - {{$user->email}}</option>
+                        @endforeach
+                      </select>
+                      @if ($errors->has('responsable{{ $i }}'))
+                      <span id="responsable{{ $i }}-error" class="error text-danger" for="input-responsable{{ $i }}">{{ $errors->first('responsable'.$i) }}</span>
+                      @endif
+                    </div>
+                  </div>
                 </div>
+                @endfor
+
                 <div class="row">
                       <label class="col-sm-2 col-form-label">{{ __('Mostrar') }}</label>
                       <div class="col-sm-7">
@@ -212,7 +217,23 @@ $table->dateTime("creacion")->nullable(); -->
       $("#mostrarTogg").prop( "checked" )?$( "#toggContenido" ).text("No activo"):$( "#toggContenido" ).text("Activo");
 
       });
+      /*Este codigo necesita refactorización init*/
+      if ($("#input-responsable1").val() !== "0") {
+        $("#responsable2").show();
+      }
+      else{
+        $("#responsable2").hide();
+      }
+      $("#input-responsable1").click(function(e){
 
+        if ($("#input-responsable1").val() !== "0") {
+          $("#responsable2").show();
+        }
+        else{
+          $("#responsable2").hide();
+        }
+        });
+          /*Este codigo necesita refactorización End*/
   </script>
   @endpush
 @endsection

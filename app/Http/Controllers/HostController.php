@@ -9,6 +9,7 @@ use App\Http\Requests\HostRequest;
 use App\User;
 use App\Model\Host;
 use App\Model\HostType;
+use App\Model\Responsable;
 use Carbon\Carbon;
 
 class HostController extends Controller
@@ -47,13 +48,14 @@ class HostController extends Controller
      */
     public function edit($name, HostType $typos)
     {
-      // dd($host);
       $host = Host::where('name','=', $name)->firstOrFail();
       $servidor = Host::where('tipo_id','=', '2')->get();
       $servidorBD = Host::where('tipo_id','=', '3')->get();
       $typos = HostType::all();
       $users = User::all();
-      return view('hosts.edit', [ 'host' => $host, 'servidores' => $servidor,'servidoresBD' => $servidorBD, 'typos' => $typos, 'users' => $users ]);
+      $responsables = Responsable::where('host_id','=',$host->id)->get();
+      // dd($responsables);
+      return view('hosts.edit', [ 'host' => $host, 'servidores' => $servidor,'servidoresBD' => $servidorBD, 'typos' => $typos, 'users' => $users, 'responsables' => $responsables ]);
     }
 
     /**
@@ -65,15 +67,26 @@ class HostController extends Controller
      */
     public function update(Request $request, Host $host)
     {
-      dd($request);
+
         isset($request->mostrar)?$host->mostrar = $request->mostrar:$host->mostrar = "1";
         $host->servidor = $request->servidor;
+        $host->servidor_bd = $request->servidor_bd;
         $host->analytics = $request->analytics;
         $host->description = $request->description;
         $host->tipo_id = $request->tipo;
+        $host->tipo_id = $request->responsable1;
         // dd($host->mostrar);
         $host->save();
+        $this->updateResponsable($host->id, $request->responsable1);
+        $request->responsable1!=1?$this->updateResponsable($host->id, $request->responsable1):'';
         return redirect()->route('hosts')->withStatus(__('Host actualizado con éxito.'));
+    }
+
+    public function updateResponsable(int $host_id, int $user_id){
+      $responsable = new Responsable;
+      $responsable->host_id  = $host_id;
+      $responsable->user_id  = $user_id;
+      $responsable->save();
     }
     /**
      * Show the application dashboard.
