@@ -11,6 +11,7 @@
     <div class="bg-circle-2 bg-circle"></div>
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
+
   </header>
 
 
@@ -20,7 +21,7 @@
 
       @foreach($hosts as $host)
         <div class="col-lg-4" style="color:{{ ($host["current_state"]==0&&$host["mostrar"]==0)? 'green' : 'red'}}">
-          <a href="{{ route('hosts') }}/host/{{$host["name"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
+          <a href="{{ route('hosts') }}/{{$host["name"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
           <div class="card">
             <div class="card-header card-header-{{ ($host["current_state"]==0)? 'success' : 'danger'}}">
               <h3 class="card-title">{{$host["name"] }} <span class="material-icons">

@@ -12,6 +12,9 @@ use App\Model\HostType;
 use App\Model\Responsable;
 use Carbon\Carbon;
 
+use App\Imports\HostsImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class HostController extends Controller
 {
     /**
@@ -74,11 +77,11 @@ class HostController extends Controller
         $host->analytics = $request->analytics;
         $host->description = $request->description;
         $host->tipo_id = $request->tipo;
-        $host->tipo_id = $request->responsable1;
+        // $host->tipo_id = $request->responsable1;
         // dd($host->mostrar);
         $host->save();
-        $this->updateResponsable($host->id, $request->responsable1);
-        $request->responsable1!=1?$this->updateResponsable($host->id, $request->responsable1):'';
+        isset($request->responsable2)?'':$this->updateResponsable($host->id, $request->responsable2);
+        isset($request->responsable1)?'':$this->updateResponsable($host->id, $request->responsable1);
         return redirect()->route('hosts')->withStatus(__('Host actualizado con éxito.'));
     }
 
@@ -117,6 +120,23 @@ class HostController extends Controller
       $host =  $host::where('tipo_id','=',3)->orderBy('last_time_down', 'DESC')->paginate(80);
 
   return view('hosts.index', ['hosts' => $host]);
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function store()
+    {
+        Excel::import(new HostsImport,request()->file('file'));
+        dd("hola");
+        return back();
+    }
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function create()
+    {
+        return view('hosts.create');
     }
 
 }

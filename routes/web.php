@@ -29,11 +29,13 @@ Route::get('/sitios-web', 'HostController@sitiosWeb')->name('sitios-web');
 Route::get('/servidores', 'HostController@servidores')->name('servidores');
 Route::get('/bases-de-datos', 'HostController@database')->name('database');
 Route::resource('host', 'HostController')->names([
-      'index' => 'index',
+      'index' => 'hosts',
 			'show' => 'host.show',
       'edit' => 'host.edit',
-			'update' =>'host.update'
+			'update' =>'host.update',
+      'create' =>'host.create'
   ]);
+
 
 
   Route::resource('resource', 'Controller', [
