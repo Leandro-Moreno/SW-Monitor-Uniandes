@@ -1,8 +1,9 @@
-<div class="wrapper ">
-  @include('layouts.navbars.sidebar')
-  <div class="main-panel">
-    @include('layouts.navbars.navs.auth')
+
+@include('layouts.navbars.navs.auth')
+<div class="wrapper wrapper-full-page">
+  <div class="" filter-color="black" style=" background-size: cover; background-position: top center;align-items: center;" data-color="purple">
+  <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
     @yield('content')
-    @include('layouts.footers.auth')
+    <!-- @include('layouts.footers.guest') -->
   </div>
 </div>
