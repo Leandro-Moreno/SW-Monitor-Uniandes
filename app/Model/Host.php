@@ -31,6 +31,9 @@ class Host extends Model
     {
         return $this->belongsToMany('App\Model\Responsable');
     }
+    public function buscarHostPorNombre($nombre=''){
+      return $this::where('name',$nombre)->get();
+    }
 
 
 }

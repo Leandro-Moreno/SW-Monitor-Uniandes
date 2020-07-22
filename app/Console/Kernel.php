@@ -69,7 +69,7 @@ class Kernel extends ConsoleKernel
                 $hostAlmacenar->mostrar = 0;
             }
 
-            $hostAlmacenar->current_state = $servicio["current_state"];
+            $hostAlmacenar->current_state = $servicio["current_state"]==0?1:2;
             $hostAlmacenar->last_time_up = $servicio["last_time_up"];
             $hostAlmacenar->last_time_down = $servicio["last_time_down"];
             $hostAlmacenar->is_flapping  = $servicio["is_flapping"];

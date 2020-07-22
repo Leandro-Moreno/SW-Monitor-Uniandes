@@ -32,8 +32,9 @@ Route::resource('host', 'HostController')->names([
       'index' => 'hosts',
 			'show' => 'host.show',
       'edit' => 'host.edit',
-			'update' =>'host.update',
-      'create' =>'host.create'
+			'update' =>  'host.update',
+      'create' => 'host.create',
+      'import' => 'host.import'
   ]);
 
 

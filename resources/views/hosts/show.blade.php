@@ -17,14 +17,14 @@
   <section>
 <div class="container" style="height: auto;">
   <div class="row justify-content-center">
-        <div class="col-lg-4" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}">
-          <a href="https://{{$host["address"]}}" style="color:{{ ($host["current_state"]==0)? 'green' : 'red'}}" target="_blank" >
+        <div class="col-lg-4" style="color:{{ ($host["current_state"] == 1)? 'green' : 'red'}}">
+          <a href="https://{{$host["address"]}}" style="color:{{ ($host["current_state"] == 1)? 'green' : 'red'}}" target="_blank" >
           <h3>{{$host["name"] }}</h3>
           <h4>{{$host["address"] }}</h4>
           <span class="material-icons">
-          {{ ($host["current_state"]==0)? 'check_circle' : 'error'}}
+          {{ ($host["current_state"] == 1)? 'check_circle' : 'error'}}
           </span>
-          @if (($host["current_state"])==0)
+          @if (($host["current_state"])==1)
             <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($host["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
           @else
             <p>Host caido hace {{ Carbon\Carbon::parse($host["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>

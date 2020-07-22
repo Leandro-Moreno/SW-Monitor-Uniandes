@@ -127,8 +127,8 @@ class HostController extends Controller
     */
     public function store()
     {
-        Excel::import(new HostsImport,request()->file('file'));
-        dd("hola");
+        $asistentes = Excel::import(  new HostsImport ,  request()->file('file')  );
+        dd($asistentes);
         return back();
     }
     /**

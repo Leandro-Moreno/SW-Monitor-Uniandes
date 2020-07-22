@@ -30,5 +30,11 @@ class HostTypeSeeder extends Seeder
           'created_at' => now(),
           'updated_at' => now()
       ]);
+      DB::table('host_type')->insert([
+          'nombre' => 'Balanceador',
+          'description' => 'Balanceador',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
     }
 }
