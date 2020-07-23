@@ -24,7 +24,7 @@ class StateSeeder extends Seeder
       DB::table('states')->insert([
           'name' => 'borrado',
           'created_at' => now(),
-          'updated_at' => now()
+          'updated_at' => now() 
       ]);
     }
 }
