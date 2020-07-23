@@ -49,35 +49,9 @@ class HostController extends Controller
          * Los servidores, balanceadores
          * y bases de datos pueden tener otros Host hijos
          */
-         // dd($host);
-        if($host->tipo_id!=1){
-          $servicios = Host::where('servidor','=',$host->id)
-                                          ->get();
-
-          $serviciosServidor = Host::where('servidor','=',$host->id)
-                                          ->where('tipo_id','!=','1')
-                                          ->get();
-          if( isset($serviciosServidor)  )
-          {
-            /*
-            *Se buscan y agregan iterativamente todos los servicios que le partenecen a los servidores Hijo.
-            */
-            foreach ( $serviciosServidor as $servHijo ) {
-              $resultado;
-              /*
-              *Valida si el servidor no esta llamando a el mismo.
-              */
-              if( $servHijo->id  ==  $host->id  ){
-                $resultado = Host::where('servidor','=',$servHijo->id)->get();
-                if( $resultado->isNotEmpty()  ){
-                  $servicios->push($resultado);
-                }
-              }
-            }
-            $servicios->sortBy('last_time_down');
-          }
+        if( $host->tipo_id  !=  1 ){
+          $servicios  = $this->buscarServiciosHijos(  $host );
         }
-         // dd($servicios);
         if(isset($host->servidor)){
           $servidor = Host::where('id','=',$host->servidor)->firstOrFail();
         }
@@ -99,6 +73,35 @@ class HostController extends Controller
         $responsables = Responsable::where('host_id', '=', $host->id)->get();
         // dd($responsables);
         return view('hosts.edit', [ 'host' => $host, 'servidores' => $servidor,'servidoresBD' => $servidorBD, 'typos' => $typos, 'users' => $users, 'responsables' => $responsables ]);
+    }
+    public function buscarServiciosHijos(Host $host){
+      $servicios = Host::where('servidor','=',$host->id)->get();
+      /*
+      *Se filtran todos los host del servidor que tambien son un servidor.
+      */
+      $serviciosServidor = $servicios->filter(function($value, $host){
+        return $value['tipo_id']!=1;
+      });
+      if( isset($serviciosServidor)  )
+      {
+        /*
+        *Se buscan y agregan iterativamente todos los servicios que le partenecen a los servidores Hijo.
+        */
+        foreach ( $serviciosServidor as $servHijo ) {
+          $resultado;
+          /*
+          *Valida si el servidor no esta llamando a el mismo.
+          */
+          if( $servHijo->id  ==  $host->id  ){
+            $resultado = Host::where('servidor','=',$servHijo->id)->get();
+            if( $resultado->isNotEmpty()  ){
+              $servicios  = $servicios->merge($resultado);
+            }
+          }
+        }
+        $servicios->sortBy('last_time_down');
+      }
+      return $servicios;
     }
 
     /**
