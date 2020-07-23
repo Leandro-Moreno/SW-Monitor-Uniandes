@@ -21,6 +21,7 @@
           <a href="https://{{$host["address"]}}" style="color:{{ ($host["current_state"] == 1)? 'green' : 'red'}}" target="_blank" >
           <h3>{{$host["name"] }}</h3>
           <h4>{{$host["address"] }}</h4>
+
           <span class="material-icons">
           {{ ($host["current_state"] == 1)? 'check_circle' : 'error'}}
           </span>
@@ -43,7 +44,7 @@
                               </a>
         </div>
         <div class="col-lg-8">
-          <p>.</p>
+          <p>Se encontraron {{$servicios->count()}} servicios</p>
         </div>
   </div>
 </div>

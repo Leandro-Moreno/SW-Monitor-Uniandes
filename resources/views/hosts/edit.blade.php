@@ -109,7 +109,11 @@ $table->dateTime("creacion")->nullable(); -->
               <div class="col-sm-7">
                 <div class="form-group{{ $errors->has('servidor') ? ' has-danger' : '' }}">
                   <select class="form-control{{ $errors->has('firma') ? ' is-invalid' : '' }}" id="input-servidor" name="servidor">
-                    <option value="{{ $host->servidor}}">{{$host->servidor}}</option>
+                    @if ( ! empty($host->servidor) )
+                    <option value="{{ $host->servidor}}">{{$host->servidorDatos->name}}</option>
+                    @else
+                    <option value=""></option>
+                    @endif
                     @foreach($servidores as $servidor )
                     <option value="{{ $servidor->id }}">{{ $servidor->name }}</option>
                     @endforeach
@@ -126,7 +130,11 @@ $table->dateTime("creacion")->nullable(); -->
               <div class="col-sm-7">
                 <div class="form-group{{ $errors->has('firma') ? ' has-danger' : '' }}">
                   <select class="form-control{{ $errors->has('servidor_bd') ? ' is-invalid' : '' }}" id="input-servidor_bd" name="servidor_bd">
-                    <option value="{{ $host->servidor_bd}}">{{$host->servidor_bd}}</option>
+                    @if ( ! empty($host->servidor_bd) )
+                    <option value="{{ $host->servidor_bd}}">{{$host->servidorBDDatos->name}}</option>
+                    @else
+                    <option value=""></option>
+                    @endif
                     @foreach($servidoresBD as $servidor )
                     <option value="{{ $servidor->id }}">{{ $servidor->name }}</option>
                     @endforeach

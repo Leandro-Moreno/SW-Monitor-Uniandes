@@ -23,6 +23,10 @@ class Host extends Model
     {
         return $this->belongsTo('App\Model\Host', 'servidor');
     }
+    public function servidorBDDatos()
+    {
+        return $this->belongsTo('App\Model\Host', 'servidor_bd');
+    }
     public function tipodatos()
     {
         return $this->belongsTo('App\Model\HostType', 'tipo_id');

@@ -24,7 +24,7 @@ class HostController extends Controller
      */
     public function __construct()
     {
-      $this->middleware('auth')->except(['index', 'show','sitiosWeb','servidores','database']);
+        $this->middleware('auth')->except(['index', 'show','sitiosWeb','servidores','database']);
     }
 
     /**
@@ -34,14 +34,45 @@ class HostController extends Controller
      */
     public function index(Host $host)
     {
+        $host =  $host::orderBy('last_time_down', 'DESC')->paginate(80);
 
-          $host =  $host::orderBy('last_time_down', 'DESC')->paginate(80);
-
-      return view('hosts.index', ['hosts' => $host]);
+        return view('hosts.index', ['hosts' => $host]);
     }
-    public function show($name){
-      $host = Host::where('name','=', $name)->firstOrFail();
-      return view('hosts.show', ['host' => $host]);
+    public function show($name)
+    {
+        $servidor = new Host;
+        $servicios = new Host;
+        $serviciosServidor = new Host;
+        $host = Host::where('name', '=', $name)->firstOrFail();
+        /*
+         * Valida si el host no es un Sitio Web.
+         * Los servidores, balanceadores
+         * y bases de datos pueden tener otros Host hijos
+         */
+        if($host->tipo_id!=1){
+          $servicios = Host::where('servidor','=',$host->id)
+                                          ->get();
+
+          $serviciosServidor = Host::where('servidor','=',$host->id)
+                                          ->where('tipo_id','!=','1')
+                                          ->get();
+          if( isset($serviciosServidor)  )
+          { /*
+            *Se buscan y agregan iterativametne todos los servicios que le partenecen a los servidores Hijo.
+            */
+            foreach ($serviciosServidor as $servHijo) {
+              $resultado = Host::where('servidor','=',$servHijo->id)->get();
+              $resultado->whenNotEmpty(function ($resultado ,  $servicios) {
+                          return $servicios->push($collection);
+                        });
+            }
+            $servicios->sortBy('last_time_down');
+          }
+        }
+        if(isset($host->servidor)){
+          $servidor = Host::where('id','=',$host->servidor)->firstOrFail();
+        }
+        return view('hosts.show', ['host' => $host , 'servidor' => $servidor, 'servicios' => $servicios]);
     }
     /**
      * Muestra el formulario para editar el host.
@@ -51,14 +82,14 @@ class HostController extends Controller
      */
     public function edit($name, HostType $typos)
     {
-      $host = Host::where('name','=', $name)->firstOrFail();
-      $servidor = Host::where('tipo_id','=', '2')->get();
-      $servidorBD = Host::where('tipo_id','=', '3')->get();
-      $typos = HostType::all();
-      $users = User::all();
-      $responsables = Responsable::where('host_id','=',$host->id)->get();
-      // dd($responsables);
-      return view('hosts.edit', [ 'host' => $host, 'servidores' => $servidor,'servidoresBD' => $servidorBD, 'typos' => $typos, 'users' => $users, 'responsables' => $responsables ]);
+        $host = Host::where('name', '=', $name)->firstOrFail();
+        $servidor = Host::where('tipo_id', '=', '2')->orWhere('tipo_id', '=', '4')->orderBy('name', 'asc')->get();
+        $servidorBD = Host::where('tipo_id', '=', '3')->orderBy('name', 'asc')->get();
+        $typos = HostType::all();
+        $users = User::all();
+        $responsables = Responsable::where('host_id', '=', $host->id)->get();
+        // dd($responsables);
+        return view('hosts.edit', [ 'host' => $host, 'servidores' => $servidor,'servidoresBD' => $servidorBD, 'typos' => $typos, 'users' => $users, 'responsables' => $responsables ]);
     }
 
     /**
@@ -70,7 +101,6 @@ class HostController extends Controller
      */
     public function update(Request $request, Host $host)
     {
-
         isset($request->mostrar)?$host->mostrar = $request->mostrar:$host->mostrar = "1";
         $host->servidor = $request->servidor;
         $host->servidor_bd = $request->servidor_bd;
@@ -85,41 +115,45 @@ class HostController extends Controller
         return redirect()->route('hosts')->withStatus(__('Host actualizado con éxito.'));
     }
 
-    public function updateResponsable(int $host_id, int $user_id){
-      $responsable = new Responsable;
-      $responsable->host_id  = $host_id;
-      $responsable->user_id  = $user_id;
-      $responsable->save();
+    public function updateResponsable(int $host_id, int $user_id)
+    {
+        $responsable = new Responsable;
+        $responsable->host_id  = $host_id;
+        $responsable->user_id  = $user_id;
+        $responsable->save();
     }
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\View\View
      */
-    public function sitiosWeb(Host $host){
-      $host =  $host::where('tipo_id','=',1)->orderBy('last_time_down', 'DESC')->paginate(80);
-// Host::where('name','=', $name)->firstOrFail();
-  return view('hosts.index', ['hosts' => $host]);
+    public function sitiosWeb(Host $host)
+    {
+        $host =  $host::where('tipo_id', '=', 1)->orderBy('last_time_down', 'DESC')->paginate(80);
+        // Host::where('name','=', $name)->firstOrFail();
+        return view('hosts.index', ['hosts' => $host]);
     }
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\View\View
      */
-    public function servidores(Host $host){
-      $host =  $host::where('tipo_id','=',2)->orderBy('last_time_down', 'DESC')->paginate(80);
+    public function servidores(Host $host)
+    {
+        $host =  $host::where('tipo_id', '=', 2)->orWhere('tipo_id', '=', '4')->orderBy('last_time_down', 'DESC')->paginate(80);
 
-  return view('hosts.index', ['hosts' => $host]);
+        return view('hosts.index', ['hosts' => $host]);
     }
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\View\View
      */
-    public function database(Host $host){
-      $host =  $host::where('tipo_id','=',3)->orderBy('last_time_down', 'DESC')->paginate(80);
+    public function database(Host $host)
+    {
+        $host =  $host::where('tipo_id', '=', 3)->orderBy('last_time_down', 'DESC')->paginate(80);
 
-  return view('hosts.index', ['hosts' => $host]);
+        return view('hosts.index', ['hosts' => $host]);
     }
 
     /**
@@ -127,7 +161,7 @@ class HostController extends Controller
     */
     public function store()
     {
-        $asistentes = Excel::import(  new HostsImport ,  request()->file('file')  );
+        $asistentes = Excel::import(new HostsImport, request()->file('file'));
         dd($asistentes);
         return back();
     }
@@ -138,5 +172,4 @@ class HostController extends Controller
     {
         return view('hosts.create');
     }
-
 }

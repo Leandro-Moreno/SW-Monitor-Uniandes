@@ -158,6 +158,85 @@ class HostSeeder extends Seeder
           'created_at' => now(),
           'updated_at' => now()
       ]);
-
+      /*15*/
+      DB::table('hosts')->insert([
+          'name' => 'AWS - ROBLE',
+          'description' => '',
+          'address' => 'AWS - ROBLE',
+          'tipo_id' => '2',
+          'description' => '',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      /*16*/
+      DB::table('hosts')->insert([
+          'name' => 'artenube.uniandes.edu.co',
+          'description' => '',
+          'address' => '107.180.68.1',
+          'tipo_id' => '2',
+          'description' => '',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      /*17*/
+      DB::table('hosts')->insert([
+          'name' => 'asismat4.uniandes.edu.co',
+          'description' => '',
+          'address' => '190.157.8.101',
+          'tipo_id' => '2',
+          'description' => '',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      /*18*/
+      DB::table('hosts')->insert([
+          'name' => 'moncolc.uniandes.edu.co',
+          'description' => '',
+          'address' => '157.253.15.167',
+          'tipo_id' => '2',
+          'description' => '',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      /*19*/
+      DB::table('hosts')->insert([
+          'name' => 'dagua.uniandes.edu.co',
+          'description' => '',
+          'address' => '157.253.50.163',
+          'tipo_id' => '2',
+          'description' => '',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      /*20*/
+      DB::table('hosts')->insert([
+          'name' => 'dagua3.uniandes.edu.co',
+          'description' => '',
+          'address' => '157.253.50.132',
+          'tipo_id' => '2',
+          'description' => '',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      /*21*/
+      DB::table('hosts')->insert([
+          'name' => 'prodk8s.mysql.database.azure.com',
+          'description' => '',
+          'address' => 'prodk8s.mysql.database.azure.com',
+          'tipo_id' => '3',
+          'description' => '',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      /*22*/
+      DB::table('hosts')->insert([
+          'name' => '172.19.38.180',
+          'description' => '',
+          'address' => '172.19.38.180',
+          'tipo_id' => '3',
+          'description' => '',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
     }
 }
