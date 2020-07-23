@@ -44,7 +44,39 @@
                               </a>
         </div>
         <div class="col-lg-8">
-          <p>Se encontraron {{$servicios->count()}} servicios</p>
+          @if($host["tipo_id"]!=1)
+            @if(isset($servicios))
+            <div class="row">
+            <p>Se encontraron {{$servicios->count()}} servicios</p>
+            </div>
+            <div class="row">
+            @foreach($servicios as $host)
+              <div class="col-lg-4" style="color:{{ ($host["current_state"]==1&&$host["mostrar"]==0)? 'green' : 'red'}}">
+                <a href="{{ route('hosts') }}/{{$host["name"]}}" style="color:{{ ($host["current_state"]==1)? 'green' : 'red'}}">
+                <div class="card">
+                  <div class="card-header card-header-{{ ($host["current_state"]==1)? 'success' : 'danger'}}">
+                    <h3 class="card-title">{{$host["name"] }} <span class="material-icons">
+                    {{ ($host["current_state"]==1)? 'check_circle' : 'error'}}
+                    </span></h3>
+
+                    <p class="card-category"></p>
+                  </div>
+                  <div class="card-body ">
+
+
+                @if (($host["current_state"])==1)
+                  <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($host["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
+                @else
+                  <p>Host caido hace {{ Carbon\Carbon::parse($host["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
+                @endif
+                </div>
+              </div>
+              </a>
+              </div>
+            @endforeach
+          </div>
+            @endif
+          @endif
         </div>
   </div>
 </div>

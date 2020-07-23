@@ -49,6 +49,7 @@ class HostController extends Controller
          * Los servidores, balanceadores
          * y bases de datos pueden tener otros Host hijos
          */
+         // dd($host);
         if($host->tipo_id!=1){
           $servicios = Host::where('servidor','=',$host->id)
                                           ->get();
@@ -57,18 +58,26 @@ class HostController extends Controller
                                           ->where('tipo_id','!=','1')
                                           ->get();
           if( isset($serviciosServidor)  )
-          { /*
-            *Se buscan y agregan iterativametne todos los servicios que le partenecen a los servidores Hijo.
+          {
+            /*
+            *Se buscan y agregan iterativamente todos los servicios que le partenecen a los servidores Hijo.
             */
-            foreach ($serviciosServidor as $servHijo) {
-              $resultado = Host::where('servidor','=',$servHijo->id)->get();
-              $resultado->whenNotEmpty(function ($resultado ,  $servicios) {
-                          return $servicios->push($collection);
-                        });
+            foreach ( $serviciosServidor as $servHijo ) {
+              $resultado;
+              /*
+              *Valida si el servidor no esta llamando a el mismo.
+              */
+              if( $servHijo->id  ==  $host->id  ){
+                $resultado = Host::where('servidor','=',$servHijo->id)->get();
+                if( $resultado->isNotEmpty()  ){
+                  $servicios->push($resultado);
+                }
+              }
             }
             $servicios->sortBy('last_time_down');
           }
         }
+         // dd($servicios);
         if(isset($host->servidor)){
           $servidor = Host::where('id','=',$host->servidor)->firstOrFail();
         }
