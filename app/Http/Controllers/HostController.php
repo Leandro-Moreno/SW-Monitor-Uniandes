@@ -51,6 +51,14 @@ class HostController extends Controller
          */
         if( $host->tipo_id  !=  1 ){
           $servicios  = $this->buscarServiciosHijos(  $host );
+
+          $filtroNagios = $servicios->countBy(function ($host) {
+                return isset( $host['id_nagios'] )?"si":"no";
+            });
+            /*
+            * Se convierte a array para no agregar valor tipo colección
+            */
+            $host->nagios = $filtroNagios->toArray();
         }
         if(isset($host->servidor)){
           $servidor = Host::where('id','=',$host->servidor)->firstOrFail();
@@ -88,7 +96,7 @@ class HostController extends Controller
         *Se buscan y agregan iterativamente todos los servicios que le partenecen a los servidores Hijo.
         */
         foreach ( $serviciosServidor as $servHijo ) {
-          $resultado;
+          $resultado = new Host;
           /*
           *Valida si el servidor no esta llamando a el mismo.
           */
@@ -98,9 +106,10 @@ class HostController extends Controller
               $servicios  = $servicios->merge($resultado);
             }
           }
+
         }
-        $servicios->sortBy('last_time_down');
       }
+      $servicios  = $servicios->sortByDesc('last_time_down');
       return $servicios;
     }
 

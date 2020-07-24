@@ -17,6 +17,7 @@ class CreateStatesTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->longText('name')->nullable();
+            $table->longText('class')->nullable();
         });
     }
 

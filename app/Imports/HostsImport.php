@@ -18,19 +18,19 @@ class HostsImport implements ToCollection
         $cantidadCargada = 0;
         foreach ($rows as $row)
         {
-            $algo = true;
+            $validarEstadoEnExcel = true;
             switch ($row[28]) {
                 case "Borrado":
-                    $algo = false;
+                    $validarEstadoEnExcel = false;
                     break;
                 case "Redirecciona":
-                    $algo = false;
+                    $validarEstadoEnExcel = false;
                     break;
                 case "Eliminar DNS":
-                    $algo = false;
+                    $validarEstadoEnExcel = false;
                     break;
             }
-          if($algo){
+          if($validarEstadoEnExcel){
             $host = $this->buscarHostConCollection($row);
             $host->servidor = $this->buscarHostIdconNombre($row[10]);
             $host->servidor_bd  = $this->buscarHostIdconNombre($row[17]);
@@ -39,6 +39,7 @@ class HostsImport implements ToCollection
             if( ! isset(  $host->name )  ){
               $host->name = $this->urlToDomain($row[2]);
               $host->address = $this->urlToDomain($row[2]);
+              $host->current_state  = 3;
               if($host->name==""){
                 continue;
               }

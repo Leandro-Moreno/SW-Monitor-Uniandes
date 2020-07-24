@@ -51,28 +51,39 @@
           @if($host["tipo_id"]!=1)
             @if(isset($servicios))
             <div class="row">
-            <p>Se encontraron {{$servicios->count()}} servicios</p>
+            <p>Se encontraron {{$servicios->count()}} servicios. </p>
+            <p>{{$host->nagios['si']}} están monitoreados por Nagios. </p>
+            <p>{{$host->nagios['no']}} no están monitoreados por Nagios. </p>
             </div>
             <div class="row">
               @foreach($servicios as $servicio)
                 <div class="col-lg-4" style="color:{{ ( (  $servicio->current_state==1 ) && ( $servicio["mostrar"]==0 ) )? 'green' : 'red'}}">
-                  <a href="{{ route('hosts') }}/{{$servicio["name"]}}" style="color:{{ ($servicio["current_state"]==1)? 'green' : 'red'}}">
+                  <a href="{{ route('hosts') }}/{{$servicio["name"]}}" >
                   <div class="card">
-                    <div class="card-header card-header-{{ ($servicio["current_state"]==1)? 'success' : 'danger'}}">
+                    <div class="card-header card-header-{{ $servicio->estadoMonitor->class}}">
                       <h3 class="card-title">{{$servicio["name"] }} <span class="material-icons">
                       {{ ($servicio["current_state"]==1)? 'check_circle' : 'error'}}
-                      </span></h3>
+                      </span>
+                      @if ( isset($servicio->id_nagios)  )
+                      <span class="material-icons">
+                        remove_red_eye
+                      </span>
+                      @endif
+
+                    </h3>
 
                       <p class="card-category"></p>
                     </div>
                     <div class="card-body ">
-
-
-                  @if (($servicio["current_state"])==1)
-                    <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($servicio["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
-                  @else
-                    <p>Host caido hace {{ Carbon\Carbon::parse($servicio["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
-                  @endif
+                      @if ( isset($servicio->id_nagios)  )
+                        @if ( $servicio["current_state"]==1 )
+                          <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($servicio["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
+                        @else
+                          <p>Host caido hace {{ Carbon\Carbon::parse($servicio["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
+                        @endif
+                      @else
+                        <p>Este host no es monitoreado</p>
+                      @endif
                   </div>
                 </div>
                 </a>

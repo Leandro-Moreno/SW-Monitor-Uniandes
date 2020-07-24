@@ -38,6 +38,9 @@ class Host extends Model
     public function buscarHostPorNombre($nombre=''){
       return $this::where('name',$nombre)->get();
     }
+    public function estadoMonitor(){
+      return $this->belongsTo('App\Model\State', 'current_state');
+    }
 
 
 }
