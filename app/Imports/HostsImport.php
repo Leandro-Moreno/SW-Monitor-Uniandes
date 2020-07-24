@@ -40,7 +40,7 @@ class HostsImport implements ToCollection
             $host->current_state = isset( $host->id_nagios  ) ? $host->current_state  : 3;
             if( ! isset(  $host->name )  ){
               $host->name = $this->urlToDomain($row[2]);
-              $host->address = $this->urlToDomain($row[2]);¿
+              $host->address = $this->urlToDomain($row[2]);
               if($host->name==""){
                 continue;
               }
