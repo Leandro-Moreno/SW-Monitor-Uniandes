@@ -36,10 +36,11 @@ class HostsImport implements ToCollection
             $host->servidor_bd  = $this->buscarHostIdconNombre($row[17]);
             $host->analytics  = $row[18];
             $host->description  = $row[29];
+            /* current_state = 3 corresponde a sin monitor.*/
+            $host->current_state = isset( $host->id_nagios  ) ? $host->current_state  : 3;
             if( ! isset(  $host->name )  ){
               $host->name = $this->urlToDomain($row[2]);
-              $host->address = $this->urlToDomain($row[2]);
-              $host->current_state  = 3;
+              $host->address = $this->urlToDomain($row[2]);¿
               if($host->name==""){
                 continue;
               }
