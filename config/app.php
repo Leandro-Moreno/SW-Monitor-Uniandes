@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'nagios_api' => env('NAGIOS_API'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
