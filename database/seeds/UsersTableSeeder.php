@@ -39,5 +39,6 @@ class UsersTableSeeder extends Seeder
           'created_at' => now(),
           'updated_at' => now()
       ]);
+      factory(App\User::class)->times(48)->create();
     }
 }

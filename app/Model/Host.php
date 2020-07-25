@@ -4,6 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Host
+ * @package App\Model
+ */
 class Host extends Model
 {
     protected $table = 'hosts';
@@ -19,14 +23,25 @@ class Host extends Model
         'tipo_id', 'servidor', 'servidor_bd','analytics', 'description',
         'creacion', 'responsable1', 'responsable2', 'mostrar'
     ];
+
+    /**
+     * @return Host
+     */
     public function servidorDatos()
     {
         return $this->belongsTo('App\Model\Host', 'servidor');
     }
+    /**
+     * @return Host
+     */
     public function servidorBDDatos()
     {
         return $this->belongsTo('App\Model\Host', 'servidor_bd');
     }
+
+    /**
+     * @return HostType
+     */
     public function tipodatos()
     {
         return $this->belongsTo('App\Model\HostType', 'tipo_id');
@@ -35,12 +50,40 @@ class Host extends Model
     {
         return $this->belongsToMany('App\Model\Responsable');
     }
-    public function buscarHostPorNombre($nombre=''){
-      return $this::where('name',$nombre)->get();
-    }
-    public function estadoMonitor(){
-      return $this->belongsTo('App\Model\State', 'current_state');
+
+    /**
+     * @return State
+     */
+    public function estadoMonitor()
+    {
+        return $this->belongsTo('App\Model\State', 'current_state');
     }
 
-
+    /**
+     * @param string $nombre
+     * @return Host[]
+     */
+    public function buscarHostsPorNombre($nombre='')
+    {
+        $resultados  = $this::where('name', $nombre)->get();
+        return is_null($resultados)? $this : $resultados;
+    }
+    /**
+     * @param string $nombre
+     * @return Host
+     */
+    public function buscarHostPorNombre($nombre='')
+    {
+        $resultado  = $this::where('name', $nombre)->first();
+        return is_null($resultado)? $this : $resultado;
+    }
+    /**
+     * @param string $nombre
+     * @return Host['id']
+     */
+    public function buscarHostIdPorNombre($nombre='')
+    {
+        $resultado  = $this::where('name', $nombre)->first();
+        return is_null($resultado)? null: $resultado->id;
+    }
 }
