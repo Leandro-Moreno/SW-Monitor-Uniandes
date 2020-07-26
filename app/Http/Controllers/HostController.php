@@ -29,7 +29,7 @@ class HostController extends Controller
 
     /**
      * Show the application dashboard.
-     *
+     * @param Host  $host
      * @return \Illuminate\View\View
      */
     public function index(Host $host)
@@ -38,7 +38,12 @@ class HostController extends Controller
 
         return view('hosts.index', ['hosts' => $host]);
     }
-    public function show($name)
+
+    /**
+     * @param string $name
+     * @return \Illuminate\View\View
+     */
+    public function show( $name = '' )
     {
         $servidor = new Host;
         $servicios = new Host;
@@ -68,10 +73,11 @@ class HostController extends Controller
     /**
      * Muestra el formulario para editar el host.
      *
+     * @param  string $name
      * @param  \App\Model\Host  $host
      * @return \Illuminate\View\hosts\edit
      */
-    public function edit($name, HostType $typos)
+    public function edit($name = '', HostType $typos)
     {
         $host = Host::where('name', '=', $name)->firstOrFail();
         $servidor = Host::where('tipo_id', '=', '2')->orWhere('tipo_id', '=', '4')->orderBy('name', 'asc')->get();
@@ -146,6 +152,7 @@ class HostController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param \App\Model\Host  $host
      * @return \Illuminate\View\View
      */
     public function sitiosWeb(Host $host)
@@ -157,6 +164,7 @@ class HostController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param \App\Model\Host  $host
      * @return \Illuminate\View\View
      */
     public function servidores(Host $host)
@@ -168,6 +176,7 @@ class HostController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param \App\Model\Host  $host
      * @return \Illuminate\View\View
      */
     public function database(Host $host)
