@@ -16,9 +16,8 @@ class BuscarHost extends Controller
     public function index(Request $request)
     {
         $results = (new Search())
-            ->registerModel(Host::class, 'name')
+            ->registerModel(Host::class, 'name', 'serverAlias')
             ->search($request->input('query'));
-
         return response()->json($results);
     }
 }

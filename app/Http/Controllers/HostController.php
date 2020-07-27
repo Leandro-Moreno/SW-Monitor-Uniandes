@@ -58,17 +58,16 @@ class HostController extends Controller
          */
         if( $host->tipo_id  !=  1 ){
           $servicios  = $this->buscarServiciosHijos(  $host );
-
           $filtroNagios = $servicios->countBy(function ($host) {
                 return isset( $host['id_nagios'] )?"si":"no";
             });
             /*
             * Se convierte a array para no agregar valor tipo colección
             */
-            $host->nagios = $filtroNagios->toArray();
+            $host->nagios = isset($filtroNagios->si)?$filtroNagios->toArray():array("si"=>0,"no"=>0);
         }
         if(isset($host->servidor)){
-          $servidor = Host::where('id','=',$host->servidor)->firstOrFail();
+          $servidor = Host::where('id','=',$host->servidor)->first();
         }
         return view('hosts.show', ['host' => $host , 'servidor' => $servidor, 'servicios' => $servicios]);
     }
@@ -164,7 +163,7 @@ class HostController extends Controller
         return view('hosts.index', ['hosts' => $host]);
     }
     /**
-     * Show the application dashboard.
+     * Muestra todos los servidores
      *
      * @param \App\Model\Host  $host
      * @return \Illuminate\View\View

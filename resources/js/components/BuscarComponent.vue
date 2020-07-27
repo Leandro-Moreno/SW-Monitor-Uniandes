@@ -8,7 +8,7 @@
         <ul v-if="results.length > 0 && query">
             <li v-for="result in results.slice(0,10)" :key="result.id">
                 <a :href="result.url">
-                    <div v-text="result.title"></div>
+                    <div class="dropdown-item" v-text="result.title"></div>
                 </a>
             </li>
         </ul>

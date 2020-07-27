@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
+use Illuminate\Support\Collection;
 
 /**
  * Class Host
@@ -32,8 +33,10 @@ class Host extends Model implements Searchable
     public function getSearchResult(): SearchResult
     {
         $url = route('host.show', $this->name);
-
         return new SearchResult($this, $this->name, $url);
+    }
+    public function resultadoBusqueda(){
+        return $this->name;
     }
     /**
      * @return Host
