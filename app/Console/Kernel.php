@@ -100,8 +100,7 @@ class Kernel extends ConsoleKernel
         $client = new \GuzzleHttp\Client();
         // Initialize the client with the handler option
         $client = new Client(['handler' => $stack]);
-
-        $response = $client->request('GET', 'http://trini.uniandes.edu.co/nagiosxi/api/v1/objects/hoststatus?apikey=pm6pu99iemo6qqhignmkiupkmr984qnseqla2updihhcb2tqmic9e6q4u4c2r0r7&pretty=1');
+        $response = $client->request('GET', config('app.nagios_api'));
 
         $resp=$response->getBody();
         $respuesta=json_decode($resp, true);
