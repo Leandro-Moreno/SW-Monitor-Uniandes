@@ -25,6 +25,10 @@ class Host extends Model implements Searchable
         'tipo_id', 'servidor', 'servidor_bd','analytics', 'description',
         'creacion', 'responsable1', 'responsable2', 'mostrar'
     ];
+
+    /**
+     * @return SearchResult
+     */
     public function getSearchResult(): SearchResult
     {
         $url = route('host.show', $this->name);

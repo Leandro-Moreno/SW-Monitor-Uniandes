@@ -6,8 +6,10 @@
 
 require('./bootstrap');
 
+
 window.Vue = require('vue');
 
+Vue.use(require('bootstrap-vue'));
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -18,6 +20,9 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+import { DropdownPlugin, TablePlugin } from 'bootstrap-vue'
+Vue.use(DropdownPlugin)
 
 Vue.component('buscar-component', require('./components/BuscarComponent.vue').default);
 

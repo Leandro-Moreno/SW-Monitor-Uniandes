@@ -1,6 +1,10 @@
 <template>
     <div>
-        <input type="text" placeholder="Search" v-model="query">
+
+        <div class="input-group no-border">
+            <input type="text" class="form-control" placeholder="Buscar" v-model="query">
+                <i class="material-icons">search</i>
+        </div>
         <ul v-if="results.length > 0 && query">
             <li v-for="result in results.slice(0,10)" :key="result.id">
                 <a :href="result.url">
@@ -8,6 +12,7 @@
                 </a>
             </li>
         </ul>
+
     </div>
 </template>
 

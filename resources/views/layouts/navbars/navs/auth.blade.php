@@ -1,56 +1,66 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-  <div class="container-fluid">
-    <div class="navbar-wrapper">
-      <a class="navbar-brand" href="{{ route('home') }}"><img width="120px" style="fill:white;" src='{{ asset('material') }}/img/logoUniandes.svg' /></a>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="navbar-toggler-icon icon-bar"></span>
-    <span class="navbar-toggler-icon icon-bar"></span>
-    <span class="navbar-toggler-icon icon-bar"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end">
-      <div id="app">
-          <buscar-component></buscar-component>
+<nav id="app" class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+    <div class="container">
+        <div class="navbar-wrapper">
+            <a class="navbar-brand" href="{{ route('home') }}"><img width="120px" style="fill:white;" src='{{ asset('material') }}/img/logoUniandes.svg' /></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end">
 
-      </div>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a href="{{ route('hosts') }}" class="nav-link">
-            <i class="material-icons">dashboard</i> {{ __('Inicio') }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('sitios-web') }}" class="nav-link">
-            <i class="material-icons">dashboard</i> {{ __('Sitios Web') }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('servidores') }}" class="nav-link">
-            <i class="material-icons">dashboard</i> {{ __('Servidores') }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('database') }}" class="nav-link">
-            <i class="material-icons">dashboard</i> {{ __('Bases de Datos') }}
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="material-icons">person</i>
-            <p class="d-lg-none d-md-block">
-              {{ __('Account') }}
-            </p>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-            <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
-            <a class="dropdown-item" href="#">{{ __('Settings') }}</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
-          </div>
-        </li>
-      </ul>
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a href="{{ route('hosts') }}" class="nav-link">
+                        <i class="material-icons">dashboard</i> {{ __('Inicio') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('sitios-web') }}" class="nav-link">
+                        <i class="material-icons">dashboard</i> {{ __('Sitios Web') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('servidores') }}" class="nav-link">
+                        <i class="material-icons">dashboard</i> {{ __('Servidores') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('database') }}" class="nav-link">
+                        <i class="material-icons">dashboard</i> {{ __('Bases de Datos') }}
+                    </a>
+                </li>
+                <li>
+                    <b-dropdown size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
+                        <template v-slot:button-content>
+                            <i class="material-icons">person</i>
+                        </template>
+                        <b-dropdown-item href="#">Action</b-dropdown-item>
+                        <b-dropdown-item class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</b-dropdown-item>
+                        <b-dropdown-item class="dropdown-item" href="#">{{ __('Settings') }}</b-dropdown-item>
+                        <div class="dropdown-divider"></div>
+                        <b-dropdown-item class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</b-dropdown-item>
+                    </b-dropdown>
+                </li>
+                <li>
+                    <b-dropdown class="dropdown-menu dropdown-menu-right" split text="Split Dropdown">
+                        <b-dropdown-item href="#">Action</b-dropdown-item>
+                        <b-dropdown-item class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</b-dropdown-item>
+                        <b-dropdown-item class="dropdown-item" href="#">{{ __('Settings') }}</b-dropdown-item>
+                        <div class="dropdown-divider"></div>
+                        <b-dropdown-item class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</b-dropdown-item>
+                    </b-dropdown>
+                </li>
+                <li class="nav-item">
+                    <div>
+                        <buscar-component></buscar-component>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
