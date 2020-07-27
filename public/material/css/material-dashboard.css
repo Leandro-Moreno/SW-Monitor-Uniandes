@@ -19640,6 +19640,44 @@ header.masthead .bg-circle-4 {
   right: 35%;
 }
 
+.buscar .material-icons {
+  color: #fff;
+}
+
+.buscar .form-control {
+  color: #ffffff;
+}
+
+.buscar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 0px;
+  border-radius: 0 0 3px 3px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0px 3px 6px 0px rgba(195, 195, 195, 0.76);
+  position: absolute;
+}
+
+.buscar ul li {
+  padding: 0;
+  margin: 0;
+}
+
+.buscar ul li a {
+  display: block;
+  color: #f44336;
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+.buscar ul li a:hover {
+  color: #fff;
+  background-color: #f44336;
+}
+
 @media (min-width: 992px) {
   header.masthead {
     padding-top: calc(10rem + 55px);

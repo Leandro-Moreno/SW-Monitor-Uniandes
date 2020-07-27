@@ -34,27 +34,19 @@
                         <i class="material-icons">dashboard</i> {{ __('Bases de Datos') }}
                     </a>
                 </li>
-                <li>
-                    <b-dropdown size="lg"  variant="link" toggle-class="text-decoration-none" no-caret>
-                        <template v-slot:button-content>
+                <li class="nav-item">
+                    <b-dropdown size="lg"  variant="link" toggle-class="nav-link" no-caret>
+                        <template v-slot:button-content class="nav-link">
                             <i class="material-icons">person</i>
                         </template>
                         <b-dropdown-item href="#">Action</b-dropdown-item>
-                        <b-dropdown-item class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</b-dropdown-item>
-                        <b-dropdown-item class="dropdown-item" href="#">{{ __('Settings') }}</b-dropdown-item>
+                        <b-dropdown-item href="{{ route('profile.edit') }}">{{ __('Profile') }}</b-dropdown-item>
+                        <b-dropdown-item href="#">{{ __('Settings') }}</b-dropdown-item>
                         <div class="dropdown-divider"></div>
-                        <b-dropdown-item class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</b-dropdown-item>
+                        <b-dropdown-item href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</b-dropdown-item>
                     </b-dropdown>
                 </li>
-                <li>
-                    <b-dropdown class="dropdown-menu dropdown-menu-right" split text="Split Dropdown">
-                        <b-dropdown-item href="#">Action</b-dropdown-item>
-                        <b-dropdown-item class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</b-dropdown-item>
-                        <b-dropdown-item class="dropdown-item" href="#">{{ __('Settings') }}</b-dropdown-item>
-                        <div class="dropdown-divider"></div>
-                        <b-dropdown-item class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</b-dropdown-item>
-                    </b-dropdown>
-                </li>
+
                 <li class="nav-item">
                     <div>
                         <buscar-component></buscar-component>

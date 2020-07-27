@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="buscar">
 
         <div class="input-group no-border">
             <input type="text" class="form-control" placeholder="Buscar" v-model="query">

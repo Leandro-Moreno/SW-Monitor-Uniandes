@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+<nav id="app" class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
   <div class="container">
     <div class="navbar-wrapper">
       <a class="navbar-brand" href="{{ route('hosts') }}"><img width="120px" style="fill:white;" src='{{ asset('material') }}/img/logoUniandes.svg' /></a>
@@ -31,7 +31,10 @@
           <a href="{{ route('database') }}" class="nav-link">
             <i class="material-icons">dashboard</i> {{ __('Bases de Datos') }}
           </a>
-        </li>        
+        </li>
+          <li class="nav-item">
+              <buscar-component></buscar-component>
+          </li>
         <li class="nav-item{{ $activePage == 'register' ? ' active' : '' }}">
           <a href="{{ route('register') }}" class="nav-link">
             <i class="material-icons">person_add</i> {{ __('Registro') }}
