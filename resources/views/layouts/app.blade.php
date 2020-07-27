@@ -73,6 +73,7 @@
 
         <!-- <script src="{{ asset('material') }}/demo/demo.js"></script> -->
         <script src="{{ asset('material') }}/js/settings.js"></script>
+        <script src="{{ asset('js') }}/app.js"></script>
         @stack('js')
     </body>
 </html>

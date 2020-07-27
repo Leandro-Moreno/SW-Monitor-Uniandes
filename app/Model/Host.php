@@ -3,12 +3,14 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 /**
  * Class Host
  * @package App\Model
  */
-class Host extends Model
+class Host extends Model implements Searchable
 {
     protected $table = 'hosts';
 
@@ -23,7 +25,12 @@ class Host extends Model
         'tipo_id', 'servidor', 'servidor_bd','analytics', 'description',
         'creacion', 'responsable1', 'responsable2', 'mostrar'
     ];
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('host.show', $this->name);
 
+        return new SearchResult($this, $this->name, $url);
+    }
     /**
      * @return Host
      */

@@ -36,7 +36,7 @@ Route::resource('host', 'HostController')->names([
       'create' => 'host.create',
       'import' => 'host.import'
   ]);
-
+Route::get('buscar', 'BuscarHost@index')->name('buscar');
 
 
   Route::resource('resource', 'Controller', [
