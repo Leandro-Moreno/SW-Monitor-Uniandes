@@ -96,7 +96,7 @@ class HostController extends Controller
       *Se filtran todos los host del servidor que tambien son un servidor.
       */
       $serviciosServidor = $servicios->filter(function($value, $host){
-        return $value['tipo_id']!=1;
+        return $value['tipo_id']  !=  1;
       });
       if( isset($serviciosServidor)  )
       {
