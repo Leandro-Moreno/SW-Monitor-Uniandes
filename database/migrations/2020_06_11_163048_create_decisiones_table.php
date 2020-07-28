@@ -17,10 +17,12 @@ class CreateDecisionesTable extends Migration
             $table->id();
             $table->biginteger('sitioWeb')->unsigned();
             $table->foreign('sitioWeb')->references('id')->on('hosts');
-            $table->biginteger('responsable')->unsigned();
-            $table->foreign('responsable')->references('id')->on('users');
-            $table->string('descripcion')->nullable();
+            $table->biginteger('responsableDecision')->unsigned();
+            $table->foreign('responsableDecision')->references('id')->on('users');
+            $table->biginteger('responsableAccion')->unsigned();
+            $table->foreign('responsableAccion')->references('id')->on('users');
             $table->dateTime("fechaTomada")->default(now());
+            $table->dateTime("fechaAccion")->nullable();
             $table->string("decision");
             $table->timestamps();
         });

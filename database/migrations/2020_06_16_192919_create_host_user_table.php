@@ -20,6 +20,7 @@ class CreateHostUserTable extends Migration
             $table->biginteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            //TODO: ROL
         });
     }
 

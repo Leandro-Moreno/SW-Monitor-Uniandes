@@ -18,10 +18,6 @@ class CreateUnidadsTable extends Migration
             $table->longText('name');
             $table->biginteger('unidad_padre_id')->unsigned()->nullable();
             $table->foreign('unidad_padre_id')->references('id')->on('unidads');
-            $table->biginteger('responsable1')->unsigned()->nullable();
-            $table->foreign('responsable1')->references('id')->on('users');
-            $table->biginteger('responsable2')->unsigned()->nullable();
-            $table->foreign('responsable2')->references('id')->on('users');
             $table->timestamps();
         });
     }
