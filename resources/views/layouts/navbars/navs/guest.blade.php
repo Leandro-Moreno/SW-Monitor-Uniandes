@@ -13,11 +13,6 @@
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a href="{{ route('hosts') }}" class="nav-link">
-            <i class="material-icons">dashboard</i> {{ __('Inicio') }}
-          </a>
-        </li>
-        <li class="nav-item">
           <a href="{{ route('sitios-web') }}" class="nav-link">
             <i class="material-icons">dashboard</i> {{ __('Sitios Web') }}
           </a>

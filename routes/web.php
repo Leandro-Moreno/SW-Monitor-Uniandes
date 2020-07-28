@@ -28,13 +28,15 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/sitios-web', 'HostController@sitiosWeb')->name('sitios-web');
 Route::get('/servidores', 'HostController@servidores')->name('servidores');
 Route::get('/bases-de-datos', 'HostController@database')->name('database');
+Route::get('host/import','HostController@importCreate')->name('importCreate');
+Route::post('host/import','HostController@import')->name('import');
 Route::resource('host', 'HostController')->names([
       'index' => 'hosts',
 			'show' => 'host.show',
       'edit' => 'host.edit',
 			'update' =>  'host.update',
       'create' => 'host.create',
-      'import' => 'host.import'
+      'import' => 'hosts',
   ]);
 Route::get('buscar', 'BuscarHost@index')->name('buscar');
 
@@ -47,35 +49,7 @@ Route::get('buscar', 'BuscarHost@index')->name('buscar');
          ])
          ->middleware(['auth']);
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('table-list', function () {
-		return view('pages.table_list');
-	})->name('table');
 
-	Route::get('typography', function () {
-		return view('pages.typography');
-	})->name('typography');
-
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
-
-	Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');
-
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-
-	Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');
-
-	Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');
-});
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);

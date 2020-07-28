@@ -18,7 +18,7 @@
 
   <section>
 <div class="card-body">
-            <form action="{{ route('host.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
 
               <!-- $table->bigIncrements('id');
               $table->integer('id_nagios')->nullable();

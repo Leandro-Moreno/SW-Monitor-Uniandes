@@ -186,15 +186,25 @@ class HostController extends Controller
 
         return view('hosts.index', ['hosts' => $host]);
     }
+    public function import(){
+      $asistentes = Excel::import(new HostsImport, request()->file('file'));
+      dd($asistentes);
+      return back();
+    }
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function store(Request $request)
+    {
+
+    }
 
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function store()
+    public function importCreate()
     {
-        $asistentes = Excel::import(new HostsImport, request()->file('file'));
-        dd($asistentes);
-        return back();
+        return view('hosts.import');
     }
     /**
     * @return \Illuminate\Support\Collection
