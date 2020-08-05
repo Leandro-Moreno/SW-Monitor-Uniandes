@@ -2,7 +2,14 @@
 <project version="4">
   <component name="PublishConfigData" serverName="Monitor">
     <serverData>
-      <paths name="Monitor">
+      <paths name="Capsula local">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Monitor Uniandes">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
