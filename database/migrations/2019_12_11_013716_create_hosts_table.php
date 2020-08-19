@@ -27,8 +27,7 @@ class CreateHostsTable extends Migration
                 $table->integer("mostrar")->default(0)->nullable();
                 $table->integer("is_flapping")->default(0)->nullable();
                 $table->longText("serverAlias")->nullable();
-                // $table->biginteger('unidad_id')->unsigned()->nullable();
-                // $table->foreign('unidad_id')->references('id')->on('unidads');
+                
                 $table->biginteger('current_state')->unsigned()->default(1)->nullable();
                 $table->foreign('current_state')->references('id')->on('states');
 
