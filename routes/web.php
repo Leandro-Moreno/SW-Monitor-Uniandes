@@ -30,14 +30,7 @@ Route::get('/servidores', 'HostController@servidores')->name('servidores');
 Route::get('/bases-de-datos', 'HostController@database')->name('database');
 Route::get('host/import','HostController@importCreate')->name('importCreate');
 Route::post('host/import','HostController@import')->name('import');
-Route::resource('host', 'HostController')->names([
-      'index' => 'host',
-			'show' => 'host.show',
-      'edit' => 'host.edit',
-			'update' =>  'host.update',
-      'create' => 'host.create',
-      'import' => 'hosts',
-  ]);
+Route::resource('host', 'HostController');
 Route::get('buscar', 'BuscarHost@index')->name('buscar');
 
 

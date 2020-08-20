@@ -40,7 +40,7 @@ class Host extends Model implements Searchable
      */
     public function getSearchResult(): SearchResult
     {
-        $url = route('host.show', $this->name);
+        $url = route('host.show', $this);
         return new SearchResult($this, $this->name, $url);
     }
     public function resultadoBusqueda(){

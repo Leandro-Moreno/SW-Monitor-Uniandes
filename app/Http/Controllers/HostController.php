@@ -37,6 +37,7 @@ class HostController extends Controller
      */
     public function index(Host $host)
     {
+      // dd("hola");
         $host =  $host::orderBy('last_time_down', 'DESC')->paginate(80);
 
         return view('hosts.index', ['hosts' => $host]);
