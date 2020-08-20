@@ -26,7 +26,15 @@ class Host extends Model implements Searchable
         'tipo_id', 'servidor', 'servidor_bd','analytics', 'description',
         'creacion', 'responsable1', 'responsable2', 'mostrar'
     ];
-
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
     /**
      * @return SearchResult
      */

@@ -31,7 +31,7 @@ Route::get('/bases-de-datos', 'HostController@database')->name('database');
 Route::get('host/import','HostController@importCreate')->name('importCreate');
 Route::post('host/import','HostController@import')->name('import');
 Route::resource('host', 'HostController')->names([
-      'index' => 'hosts',
+      'index' => 'host',
 			'show' => 'host.show',
       'edit' => 'host.edit',
 			'update' =>  'host.update',

@@ -21,7 +21,7 @@
 
       @foreach($hosts as $host)
         <div class="col-lg-4" >
-          <a href="{{ route('hosts') }}/{{$host["name"]}}" >
+          <a href="{{ route('host.show', $host ) }}" >
           <div class="card">
             <div class="card-header card-header-{{ $host->estadoMonitor->class}}">
               <h3 class="card-title">{{$host["name"] }} <span class="material-icons">
@@ -63,5 +63,3 @@
     <p class="card-category"></p>
   </div>
   <div class="card-body "> -->
-
-

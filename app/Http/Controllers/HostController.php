@@ -26,8 +26,8 @@ class HostController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(Host::class, 'host');
-        // $this->middleware('auth')->except(['index', 'show','sitiosWeb','servidores','database']);
+        $this->authorizeResource(Host::class);
+        $this->middleware('auth')->except(['index', 'show','sitiosWeb','servidores','database']);
     }
 
     /**
@@ -46,12 +46,11 @@ class HostController extends Controller
      * @param string $name
      * @return \Illuminate\View\View
      */
-    public function show( $name = '' )
+    public function show( Host $host )
     {
         $servidor = new Host;
         $servicios = new Host;
         $serviciosServidor = new Host;
-        $host = Host::where('name', '=', $name)->firstOrFail();
         /*
          * Valida si el host no es un Sitio Web.
          * Los servidores, balanceadores
