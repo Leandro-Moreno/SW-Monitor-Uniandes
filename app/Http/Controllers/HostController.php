@@ -26,7 +26,8 @@ class HostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show','sitiosWeb','servidores','database']);
+        $this->authorizeResource(Host::class, 'host');
+        // $this->middleware('auth')->except(['index', 'show','sitiosWeb','servidores','database']);
     }
 
     /**
