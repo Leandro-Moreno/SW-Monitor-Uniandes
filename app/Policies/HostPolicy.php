@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Model\Host;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Auth;
 
 class HostPolicy
 {
@@ -16,7 +17,7 @@ class HostPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return true;
     }
@@ -28,7 +29,7 @@ class HostPolicy
      * @param  \App\Host  $host
      * @return mixed
      */
-    public function view(User $user, Host $host)
+    public function view(?User $user, Host $host)
     {
         return true;
     }
@@ -53,7 +54,10 @@ class HostPolicy
      */
     public function update(User $user, Host $host)
     {
+      if(Auth::user()){
         return true;
+      }
+      return true;
     }
 
     /**

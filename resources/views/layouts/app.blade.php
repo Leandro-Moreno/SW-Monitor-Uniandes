@@ -13,9 +13,9 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="{{ asset('material') }}/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+    <link href="{{ mix('material/css/material-dashboard.css') }}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
+    <!--<link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />-->
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -30,7 +30,7 @@
 
 
         <!--   Core JS Files   -->
-        <script src="{{ asset('js') }}/app.js"  rel="preload"></script>
+        <script src="{{ mix('js/app.js') }}"  rel="preload"></script>
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
         <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>

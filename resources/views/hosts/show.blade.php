@@ -42,10 +42,12 @@
             <p>Tipo: {{ $host->tipodatos->nombre }}</p>
           <p></p>
         </a>
-        <a rel="tooltip" class="btn btn-inverse" href="{{ route('host.edit', $host->name) }}" data-original-title="" title="">
+        @can('update', $host)
+        <a rel="tooltip" class="btn btn-inverse" href="{{ route('host.edit', $host) }}" data-original-title="" title="">
                                 EDITAR<i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                               </a>
+        @endcan
         </div>
         <div class="col-lg-8">
           @if($host["tipo_id"]!=1)
@@ -58,7 +60,7 @@
             <div class="row">
               @foreach($servicios as $servicio)
                 <div class="col-lg-4" style="color:{{ ( (  $servicio->current_state==1 ) && ( $servicio["mostrar"]==0 ) )? 'green' : 'red'}}">
-                  <a href="{{ route('hosts') }}/{{$servicio["name"]}}" >
+                  <a href="{{ route('host.show', $servicio) }}" >
                   <div class="card">
                     <div class="card-header card-header-{{ $servicio->estadoMonitor->class}}">
                       <h3 class="card-title">{{$servicio["name"] }} <span class="material-icons">

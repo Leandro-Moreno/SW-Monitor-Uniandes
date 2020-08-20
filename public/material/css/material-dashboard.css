@@ -93,8 +93,7 @@ p {
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
   cursor: help;
   border-bottom: 0;
 }
@@ -514,8 +513,7 @@ p {
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
   cursor: help;
   border-bottom: 0;
 }
@@ -2354,21 +2352,6 @@ pre code {
   box-shadow: none, 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
 }
 
-.form-control::-moz-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
-.form-control:-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
-.form-control::-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
 .form-control::placeholder {
   color: #6c757d;
   opacity: 1;
@@ -2834,10 +2817,7 @@ select.form-control-lg:not([size]):not([multiple]),
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
   border: 1px solid transparent;
   padding: 0.46875rem 1rem;
   font-size: 1rem;
@@ -4096,10 +4076,7 @@ tbody.collapse.show {
   height: 1rem;
   pointer-events: none;
   content: "";
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
   background-color: #dee2e6;
   box-shadow: inset 0 0.25rem 0.25rem rgba(0, 0, 0, 0.1);
 }
@@ -4174,9 +4151,7 @@ tbody.collapse.show {
   background-size: 8px 10px;
   border: 1px solid #d2d2d2;
   border-radius: 0.25rem;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
 }
 
 .custom-select:focus {
@@ -5050,10 +5025,8 @@ tbody.collapse.show {
 
 @media (min-width: 576px) {
   .card-columns {
-    -moz-column-count: 3;
-         column-count: 3;
-    -moz-column-gap: 1.25rem;
-         column-gap: 1.25rem;
+    column-count: 3;
+    column-gap: 1.25rem;
   }
 
   .card-columns .card {
@@ -5344,16 +5317,6 @@ tbody.collapse.show {
   color: #040505;
 }
 
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    background-position: 1rem 0;
-  }
-
-  to {
-    background-position: 0 0;
-  }
-}
-
 @keyframes progress-bar-stripes {
   from {
     background-position: 1rem 0;
@@ -5390,8 +5353,7 @@ tbody.collapse.show {
 }
 
 .progress-bar-animated {
-  -webkit-animation: progress-bar-stripes 1s linear infinite;
-          animation: progress-bar-stripes 1s linear infinite;
+  animation: progress-bar-stripes 1s linear infinite;
 }
 
 .media {
@@ -6258,8 +6220,7 @@ button.close {
   align-items: center;
   width: 100%;
   transition: transform 0.6s ease;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   perspective: 1000px;
 }
 
@@ -7597,7 +7558,6 @@ button.bg-dark:focus {
 }
 
 .position-sticky {
-  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
@@ -7617,9 +7577,8 @@ button.bg-dark:focus {
   z-index: 1030;
 }
 
-@supports ((position: -webkit-sticky) or (position: sticky)) {
+@supports (position: sticky) {
   .sticky-top {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1020;
@@ -7634,8 +7593,7 @@ button.bg-dark:focus {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
+  clip-path: inset(50%);
   border: 0;
 }
 
@@ -7647,8 +7605,7 @@ button.bg-dark:focus {
   overflow: visible;
   clip: auto;
   white-space: normal;
-  -webkit-clip-path: none;
-          clip-path: none;
+  clip-path: none;
 }
 
 .w-25 {
@@ -11551,6 +11508,10 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   opacity: 0;
   margin: 0;
   top: 0;
+  -webkit-transform: scale3d(2.3,2.3,1);
+  -moz-transform: scale3d(2.3,2.3,1);
+  -o-transform: scale3d(2.3,2.3,1);
+  -ms-transform: scale3d(2.3,2.3,1);
   transform: scale3d(2.3,2.3,1);
 }
 
@@ -11576,8 +11537,7 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   color: #fff;
   height: 0;
   box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
-  -webkit-animation: checkboxOff 0.3s forwards;
-          animation: checkboxOff 0.3s forwards;
+  animation: checkboxOff 0.3s forwards;
 }
 
 .form-check .form-check-input:focus + .form-check-sign .check:after {
@@ -11591,28 +11551,23 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
 .form-check .form-check-input:checked + .form-check-sign .check:before {
   color: #FFFFFF;
   box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
-  -webkit-animation: checkboxOn 0.3s forwards;
-          animation: checkboxOn 0.3s forwards;
+  animation: checkboxOn 0.3s forwards;
 }
 
 .form-check .form-check-input:checked + .form-check-sign:before {
-  -webkit-animation: rippleOn 500ms;
-          animation: rippleOn 500ms;
+  animation: rippleOn 500ms;
 }
 
 .form-check .form-check-input:checked + .form-check-sign .check:after {
-  -webkit-animation: rippleOn 500ms forwards;
-          animation: rippleOn 500ms forwards;
+  animation: rippleOn 500ms forwards;
 }
 
 .form-check .form-check-input:not(:checked) + .form-check-sign:before {
-  -webkit-animation: rippleOff 500ms;
-          animation: rippleOff 500ms;
+  animation: rippleOff 500ms;
 }
 
 .form-check .form-check-input:not(:checked) + .form-check-sign .check:after {
-  -webkit-animation: rippleOff 500ms;
-          animation: rippleOff 500ms;
+  animation: rippleOff 500ms;
 }
 
 .form-check .rtl .form-check .form-check-sign .check::before {
@@ -11640,20 +11595,6 @@ fieldset[disabled] .form-check .form-check-input,
   background-color: #000000;
 }
 
-@-webkit-keyframes checkboxOn {
-  0% {
-    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
-  }
-
-  50% {
-    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
-  }
-
-  100% {
-    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
-  }
-}
-
 @keyframes checkboxOn {
   0% {
     box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
@@ -11668,35 +11609,7 @@ fieldset[disabled] .form-check .form-check-input,
   }
 }
 
-@-webkit-keyframes rippleOn {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0.2;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes rippleOn {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0.2;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes rippleOff {
   0% {
     opacity: 0;
   }
@@ -11764,6 +11677,10 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   width: 15px;
   border-radius: 100%;
   background-color: #f44336;
+  -webkit-transform: scale3d(0,0,0);
+  -moz-transform: scale3d(0,0,0);
+  -o-transform: scale3d(0,0,0);
+  -ms-transform: scale3d(0,0,0);
   transform: scale3d(0,0,0);
 }
 
@@ -11788,11 +11705,14 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
 }
 
 .form-check .form-check-input:checked .check:before {
-  -webkit-animation: checkboxOn 0.5s forwards;
-          animation: checkboxOn 0.5s forwards;
+  animation: checkboxOn 0.5s forwards;
 }
 
 .form-check .form-check-input:checked ~ .circle .check {
+  -webkit-transform: scale3d(0.65, 0.65, 1);
+  -moz-transform: scale3d(0.65, 0.65, 1);
+  -o-transform: scale3d(0.65, 0.65, 1);
+  -ms-transform: scale3d(0.65, 0.65, 1);
   transform: scale3d(0.65, 0.65, 1);
 }
 
@@ -11835,19 +11755,21 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   opacity: 0;
   margin: 0;
   top: -1px;
+  -webkit-transform: scale3d(2.3, 2.3, 1);
+  -moz-transform: scale3d(2.3, 2.3, 1);
+  -o-transform: scale3d(2.3, 2.3, 1);
+  -ms-transform: scale3d(2.3, 2.3, 1);
   transform: scale3d(2.3, 2.3, 1);
 }
 
 .form-check .form-check-label .form-check-input:checked + .circle:before {
-  -webkit-animation: rippleOn 0.5s;
-          animation: rippleOn 0.5s;
+  animation: rippleOn 0.5s;
 }
 
 .form-check .form-check-label .form-check-input:checked + .circle .check:before {
   color: #FFFFFF;
   box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
-  -webkit-animation: checkboxOn 0.3s forwards;
-          animation: checkboxOn 0.3s forwards;
+  animation: checkboxOn 0.3s forwards;
 }
 
 .form-check + .form-check {
@@ -12106,10 +12028,6 @@ fieldset[disabled] .is-focused .switch label:focus {
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
-.form-control:-moz-read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
-
 .form-control:read-only {
   background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
@@ -12277,10 +12195,6 @@ fieldset[disabled][disabled] .form-control,
 
 .has-success .form-control:invalid {
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
-
-.has-success .form-control:-moz-read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
 .has-success .form-control:read-only {
@@ -12452,10 +12366,6 @@ fieldset[disabled][disabled] .has-success .form-control,
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
-.has-info .form-control:-moz-read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
-
 .has-info .form-control:read-only {
   background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
@@ -12623,10 +12533,6 @@ fieldset[disabled][disabled] .has-info .form-control,
 
 .has-white .form-control:invalid {
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #FFFFFF 1px, rgba(255, 255, 255, 0) 1px);
-}
-
-.has-white .form-control:-moz-read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #FFFFFF 1px, rgba(255, 255, 255, 0) 1px);
 }
 
 .has-white .form-control:read-only {
@@ -12802,10 +12708,6 @@ fieldset[disabled][disabled] .has-white .form-control,
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
-.has-warning .form-control:-moz-read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
-
 .has-warning .form-control:read-only {
   background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
@@ -12975,10 +12877,6 @@ fieldset[disabled][disabled] .has-warning .form-control,
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
-.has-danger .form-control:-moz-read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
-
 .has-danger .form-control:read-only {
   background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
@@ -13146,10 +13044,6 @@ fieldset[disabled][disabled] .has-danger .form-control,
 
 .has-rose .form-control:invalid {
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
-
-.has-rose .form-control:-moz-read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
 .has-rose .form-control:read-only {
@@ -13362,18 +13256,6 @@ fieldset[disabled][disabled] .has-rose .form-control,
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.bmd-form-group input::-moz-placeholder {
-  line-height: 1.1;
-}
-
-.bmd-form-group input:-ms-input-placeholder {
-  line-height: 1.1;
-}
-
-.bmd-form-group input::-ms-input-placeholder {
-  line-height: 1.1;
-}
-
 .bmd-form-group .form-control,
 .bmd-form-group label,
 .bmd-form-group input::placeholder {
@@ -13448,18 +13330,6 @@ fieldset[disabled][disabled] .has-rose .form-control,
 .bmd-form-group .form-control.form-control-danger:focus,
 .bmd-form-group.is-focused .bmd-form-group .form-control.form-control-danger {
   background-size: 100% 100%, 100% 100%, 0.9375rem 0.9375rem;
-}
-
-.bmd-form-group.bmd-form-group-sm input::-moz-placeholder {
-  line-height: 1.1;
-}
-
-.bmd-form-group.bmd-form-group-sm input:-ms-input-placeholder {
-  line-height: 1.1;
-}
-
-.bmd-form-group.bmd-form-group-sm input::-ms-input-placeholder {
-  line-height: 1.1;
 }
 
 .bmd-form-group.bmd-form-group-sm .form-control,
@@ -13538,18 +13408,6 @@ fieldset[disabled][disabled] .has-rose .form-control,
   background-size: 100% 100%, 100% 100%, 0.6875rem 0.6875rem;
 }
 
-.bmd-form-group.bmd-form-group-lg input::-moz-placeholder {
-  line-height: 1.1;
-}
-
-.bmd-form-group.bmd-form-group-lg input:-ms-input-placeholder {
-  line-height: 1.1;
-}
-
-.bmd-form-group.bmd-form-group-lg input::-ms-input-placeholder {
-  line-height: 1.1;
-}
-
 .bmd-form-group.bmd-form-group-lg .form-control,
 .bmd-form-group.bmd-form-group-lg label,
 .bmd-form-group.bmd-form-group-lg input::placeholder {
@@ -13624,18 +13482,6 @@ fieldset[disabled][disabled] .has-rose .form-control,
 .bmd-form-group.bmd-form-group-lg .form-control.form-control-danger:focus,
 .bmd-form-group.is-focused .bmd-form-group.bmd-form-group-lg .form-control.form-control-danger {
   background-size: 100% 100%, 100% 100%, 1.1875rem 1.1875rem;
-}
-
-input::-moz-placeholder {
-  line-height: 1.1;
-}
-
-input:-ms-input-placeholder {
-  line-height: 1.1;
-}
-
-input::-ms-input-placeholder {
-  line-height: 1.1;
 }
 
 .form-control,
@@ -14415,6 +14261,8 @@ fieldset[disabled] .form-group .form-control {
   top: 50%;
   left: 50%;
   z-index: 2;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
   color: #FFFFFF;
@@ -14724,6 +14572,8 @@ h2.title {
 }
 
 .tab-content .tab-pane .td-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -14737,12 +14587,20 @@ h2.title {
 
 .tooltip.show {
   opacity: 1;
+  -webkit-transform: translate3d(0, 0px, 0);
+  -moz-transform: translate3d(0, 0px, 0);
+  -o-transform: translate3d(0, 0px, 0);
+  -ms-transform: translate3d(0, 0px, 0);
   transform: translate3d(0, 0px, 0);
 }
 
 .tooltip {
   opacity: 0;
   transition: opacity, transform 0.2s ease;
+  -webkit-transform: translate3d(0, 5px, 0);
+  -moz-transform: translate3d(0, 5px, 0);
+  -o-transform: translate3d(0, 5px, 0);
+  -ms-transform: translate3d(0, 5px, 0);
   transform: translate3d(0, 5px, 0);
   font-size: 0.875rem;
 }
@@ -14833,14 +14691,10 @@ h2.title {
 }
 
 .dropdown-menu.showing {
-  -webkit-animation-name: bmd-dropdown-animation;
-          animation-name: bmd-dropdown-animation;
-  -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-          animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-name: bmd-dropdown-animation;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .open > .dropdown-menu,
@@ -14911,6 +14765,10 @@ h2.title {
   font-size: 0.8125rem;
   border-radius: 0.125rem;
   margin: 0 0.3125rem;
+  -webkit-transition: all 150ms linear;
+  -moz-transition: all 150ms linear;
+  -o-transition: all 150ms linear;
+  -ms-transition: all 150ms linear;
   transition: all 150ms linear;
   min-width: 7rem;
   padding: 0.625rem 1.25rem;
@@ -14944,6 +14802,8 @@ a[aria-expanded=true] .caret,
 .dropup.open .caret,
 .btn-group.bootstrap-select.open .caret {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
@@ -14975,6 +14835,8 @@ a[aria-expanded=true] .caret,
 
 .show > .dropdown-toggle:not(.dropdown-item):after {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
@@ -14986,18 +14848,6 @@ a[aria-expanded=true] .caret,
   color: #777;
   line-height: 1.42857143;
   font-weight: inherit;
-}
-
-@-webkit-keyframes bmd-dropdown-animation {
-  from {
-    opacity: 0;
-    transform: scale(0);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 
 @keyframes bmd-dropdown-animation {
@@ -15040,10 +14890,7 @@ a[aria-expanded=true] .caret,
 .togglebutton label,
 .togglebutton input,
 .togglebutton .toggle {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 .togglebutton label {
@@ -15172,6 +15019,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .footer {
   padding: 0.9375rem 0;
   text-align: center;
+  display: -webkit-flex;
   /* Safari */
   /* Safari 6.1+ */
   display: flex;
@@ -15722,8 +15570,11 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar,
 .main-panel,
 .sidebar-wrapper {
+  -webkit-transition-property: top, bottom, width;
   transition-property: top, bottom, width;
+  -webkit-transition-duration: 0.2s, 0.2s, 0.35s;
   transition-duration: 0.2s, 0.2s, 0.35s;
+  -webkit-transition-timing-function: linear, linear, ease;
   transition-timing-function: linear, linear, ease;
   -webkit-overflow-scrolling: touch;
 }
@@ -15762,6 +15613,10 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
   .sidebar-mini .sidebar .logo a.logo-normal {
     opacity: 0;
+    -webkit-transform: translate3d(-25px, 0, 0);
+    -moz-transform: translate3d(-25px, 0, 0);
+    -o-transform: translate3d(-25px, 0, 0);
+    -ms-transform: translate3d(-25px, 0, 0);
     transform: translate3d(-25px, 0, 0);
   }
 
@@ -15769,6 +15624,10 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   .sidebar-mini .sidebar .sidebar-wrapper .user .user-info [data-toggle=collapse] ~ div > ul > li > a .sidebar-normal,
   .sidebar-mini .sidebar .sidebar-wrapper .user .user-info > a > span,
   .sidebar-mini .sidebar .sidebar-wrapper > .nav li > a p {
+    -webkit-transform: translate3d(-25px, 0, 0);
+    -moz-transform: translate3d(-25px, 0, 0);
+    -o-transform: translate3d(-25px, 0, 0);
+    -ms-transform: translate3d(-25px, 0, 0);
     transform: translate3d(-25px, 0, 0);
     opacity: 0;
   }
@@ -15779,6 +15638,10 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
   .sidebar-mini .sidebar:hover .logo a.logo-normal {
     opacity: 1;
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0);
   }
 
@@ -15790,6 +15653,10 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   .sidebar-mini .sidebar:hover .sidebar-wrapper > .nav [data-toggle=collapse] ~ div > ul > li > a .sidebar-normal,
   .sidebar-mini .sidebar:hover .sidebar-wrapper .user .user-info [data-toggle=collapse] ~ div > ul > li > a .sidebar-normal,
   .sidebar-mini .sidebar:hover .sidebar-wrapper .user .user-info > a > span {
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0);
     opacity: 1;
   }
@@ -16900,10 +16767,18 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .wrapper-full-page ~ .fixed-plugin .dropdown.open .dropdown-menu {
+  -webkit-transform: translateY(-17%);
+  -moz-transform: translateY(-17%);
+  -o-transform: translateY(-17%);
+  -ms-transform: translateY(-17%);
   transform: translateY(-17%);
 }
 
 .wrapper-full-page ~ .fixed-plugin .dropdown .dropdown-menu {
+  -webkit-transform: translateY(-19%);
+  -moz-transform: translateY(-19%);
+  -o-transform: translateY(-19%);
+  -ms-transform: translateY(-19%);
   transform: translateY(-19%);
 }
 
@@ -17133,19 +17008,35 @@ label {
 .sidebar .sidebar-wrapper > .nav [data-toggle=collapse] ~ div > ul > li > a span,
 .sidebar .sidebar-wrapper .user .user-info [data-toggle=collapse] ~ div > ul > li > a span,
 .sidebar .nav p {
+  -webkit-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
   transition: all 300ms linear;
 }
 
 .animation-transition-slow {
+  -webkit-transition: all 370ms linear;
+  -moz-transition: all 370ms linear;
+  -o-transition: all 370ms linear;
+  -ms-transition: all 370ms linear;
   transition: all 370ms linear;
 }
 
 .animation-transition-fast {
+  -webkit-transition: all 150ms ease 0s;
+  -moz-transition: all 150ms ease 0s;
+  -o-transition: all 150ms ease 0s;
+  -ms-transition: all 150ms ease 0s;
   transition: all 150ms ease 0s;
 }
 
 .caret,
 .sidebar a {
+  -webkit-transition: all 150ms ease-in;
+  -moz-transition: all 150ms ease-in;
+  -o-transition: all 150ms ease-in;
+  -ms-transition: all 150ms ease-in;
   transition: all 150ms ease-in;
 }
 
@@ -17525,8 +17416,7 @@ label {
 .card .card-header.card-header-image .colored-shadow {
   transform: scale(0.94);
   top: 12px;
-  -webkit-filter: blur(12px);
-          filter: blur(12px);
+  filter: blur(12px);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17979,11 +17869,23 @@ label {
 }
 
 .card [data-header-animation=true] {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  -webkit-transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
+  -moz-transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
+  -o-transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
+  -ms-transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
   transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
 }
 
 .card:hover [data-header-animation=true] {
+  -webkit-transform: translate3d(0, -50px, 0);
+  -moz-transform: translate3d(0, -50px, 0);
+  -o-transform: translate3d(0, -50px, 0);
+  -ms-transform: translate3d(0, -50px, 0);
   transform: translate3d(0, -50px, 0);
 }
 
@@ -18221,28 +18123,34 @@ Copyright (c) 2015 Daniel Eden
 
 @-webkit-keyframes shake {
   from, to {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 
   10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
     transform: translate3d(-10px, 0, 0);
   }
 
   20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
     transform: translate3d(10px, 0, 0);
   }
 }
 
 @keyframes shake {
   from, to {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 
   10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
     transform: translate3d(-10px, 0, 0);
   }
 
   20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
     transform: translate3d(10px, 0, 0);
   }
 }
@@ -18255,11 +18163,13 @@ Copyright (c) 2015 Daniel Eden
 @-webkit-keyframes fadeInDown {
   from {
     opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
 
   to {
     opacity: 1;
+    -webkit-transform: none;
     transform: none;
   }
 }
@@ -18267,11 +18177,13 @@ Copyright (c) 2015 Daniel Eden
 @keyframes fadeInDown {
   from {
     opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
 
   to {
     opacity: 1;
+    -webkit-transform: none;
     transform: none;
   }
 }
@@ -18313,6 +18225,7 @@ Copyright (c) 2015 Daniel Eden
 
   to {
     opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
 }
@@ -18324,6 +18237,7 @@ Copyright (c) 2015 Daniel Eden
 
   to {
     opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
 }
@@ -18340,6 +18254,7 @@ Copyright (c) 2015 Daniel Eden
 
   to {
     opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
 }
@@ -18351,6 +18266,7 @@ Copyright (c) 2015 Daniel Eden
 
   to {
     opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
 }
@@ -18414,11 +18330,18 @@ Copyright (c) 2015 Daniel Eden
 .ct-chart .ct-label {
   fill: rgba(0, 0, 0, 0.4);
   color: rgba(0, 0, 0, 0.4);
+  display: -webkit-flex;
   display: flex;
 }
 
 .ct-chart .ct-label.ct-vertical.ct-start {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
   align-items: flex-end;
+  -webkit-box-pack: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: flex-end;
   justify-content: flex-end;
   text-align: right;
   text-anchor: end;
@@ -18445,6 +18368,7 @@ Copyright (c) 2015 Daniel Eden
 /* perfect-scrollbar v0.6.13 */
 
 .ps-container {
+  -ms-touch-action: auto;
   touch-action: auto;
   overflow: hidden !important;
   -ms-overflow-style: none;
@@ -18493,6 +18417,9 @@ Copyright (c) 2015 Daniel Eden
   position: absolute;
   /* please don't change 'position' */
   opacity: 0;
+  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
   transition: background-color 0.2s linear, opacity 0.2s linear;
   bottom: 0px;
   /* there must be 'bottom' for ps-scrollbar-x-rail */
@@ -18503,8 +18430,15 @@ Copyright (c) 2015 Daniel Eden
   position: absolute;
   /* please don't change 'position' */
   background-color: #aaa;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
   border-radius: 6px;
+  -webkit-transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, -webkit-border-radius 0.2s ease-in-out;
+  transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, -webkit-border-radius 0.2s ease-in-out;
+  -o-transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, border-radius 0.2s ease-in-out, -moz-border-radius 0.2s ease-in-out;
   transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, border-radius 0.2s ease-in-out, -webkit-border-radius 0.2s ease-in-out, -moz-border-radius 0.2s ease-in-out;
   bottom: 2px;
   /* there must be 'bottom' for ps-scrollbar-x */
   height: 6px;
@@ -18520,6 +18454,9 @@ Copyright (c) 2015 Daniel Eden
   position: absolute;
   /* please don't change 'position' */
   opacity: 0;
+  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
   transition: background-color 0.2s linear, opacity 0.2s linear;
   right: 0;
   /* there must be 'right' for ps-scrollbar-y-rail */
@@ -18530,8 +18467,15 @@ Copyright (c) 2015 Daniel Eden
   position: absolute;
   /* please don't change 'position' */
   background-color: #aaa;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
   border-radius: 6px;
+  -webkit-transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, -webkit-border-radius 0.2s ease-in-out;
+  transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, -webkit-border-radius 0.2s ease-in-out;
+  -o-transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, border-radius 0.2s ease-in-out, -moz-border-radius 0.2s ease-in-out;
   transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  transition: background-color 0.2s linear, height 0.2s linear, width 0.2s ease-in-out, border-radius 0.2s ease-in-out, -webkit-border-radius 0.2s ease-in-out, -moz-border-radius 0.2s ease-in-out;
   right: 2px;
   /* there must be 'right' for ps-scrollbar-y */
   width: 6px;
@@ -18628,7 +18572,15 @@ Copyright (c) 2015 Daniel Eden
     padding-right: 0;
     padding-left: 0;
     max-height: none !important;
+    -webkit-transform: translate3d(230px, 0, 0);
+    -moz-transform: translate3d(230px, 0, 0);
+    -o-transform: translate3d(230px, 0, 0);
+    -ms-transform: translate3d(230px, 0, 0);
     transform: translate3d(230px, 0, 0);
+    -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
   }
 
@@ -18676,10 +18628,18 @@ Copyright (c) 2015 Daniel Eden
   }
 
   .nav-open .navbar-collapse {
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0);
   }
 
   .nav-open .navbar-translate {
+    -webkit-transform: translate3d(-230px, 0, 0);
+    -moz-transform: translate3d(-230px, 0, 0);
+    -o-transform: translate3d(-230px, 0, 0);
+    -ms-transform: translate3d(-230px, 0, 0);
     transform: translate3d(-230px, 0, 0);
   }
 
@@ -18687,8 +18647,14 @@ Copyright (c) 2015 Daniel Eden
     width: 100%;
     position: relative;
     display: flex;
+    -ms-flex-pack: justify !important;
     justify-content: space-between !important;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
   }
 
@@ -18711,14 +18677,14 @@ Copyright (c) 2015 Daniel Eden
     border: 0;
     padding-bottom: 15px;
     transition: none;
+    -webkit-box-shadow: none;
     box-shadow: none;
     transform: none !important;
     width: auto;
     margin-bottom: 15px;
     padding-top: 0;
     height: 300px;
-    -webkit-animation: none;
-            animation: none;
+    animation: none;
     opacity: 1;
     overflow-y: scroll;
   }
@@ -18881,6 +18847,10 @@ Copyright (c) 2015 Daniel Eden
   .nav-open .menu-on-left .main-panel,
   .nav-open .menu-on-left .wrapper-full-page,
   .nav-open .menu-on-left .navbar-fixed > div {
+    -webkit-transform: translate3d(260px, 0, 0);
+    -moz-transform: translate3d(260px, 0, 0);
+    -o-transform: translate3d(260px, 0, 0);
+    -ms-transform: translate3d(260px, 0, 0);
     transform: translate3d(260px, 0, 0);
   }
 
@@ -18888,6 +18858,10 @@ Copyright (c) 2015 Daniel Eden
   .menu-on-left .off-canvas-sidebar {
     left: 0;
     right: auto;
+    -webkit-transform: translate3d(-260px, 0, 0);
+    -moz-transform: translate3d(-260px, 0, 0);
+    -o-transform: translate3d(-260px, 0, 0);
+    -ms-transform: translate3d(-260px, 0, 0);
     transform: translate3d(-260px, 0, 0);
   }
 
@@ -18933,10 +18907,8 @@ Copyright (c) 2015 Daniel Eden
   }
 
   .nav-mobile-menu .dropdown .dropdown-menu.showing {
-    -webkit-animation: initial;
-            animation: initial;
-    -webkit-animation-duration: 0s;
-            animation-duration: 0s;
+    animation: initial;
+    animation-duration: 0s;
   }
 
   .nav-mobile-menu .dropdown .dropdown-menu.hiding {
@@ -19005,6 +18977,7 @@ Copyright (c) 2015 Daniel Eden
     margin-top: 0;
     background-color: transparent;
     border: 0;
+    -webkit-box-shadow: none;
     box-shadow: none;
   }
 
@@ -19027,6 +19000,10 @@ Copyright (c) 2015 Daniel Eden
   .nav-open .navbar .container .navbar-wrapper,
   .nav-open .navbar .container {
     left: 0;
+    -webkit-transform: translate3d(-260px, 0, 0);
+    -moz-transform: translate3d(-260px, 0, 0);
+    -o-transform: translate3d(-260px, 0, 0);
+    -ms-transform: translate3d(-260px, 0, 0);
     transform: translate3d(-260px, 0, 0);
   }
 
@@ -19036,6 +19013,10 @@ Copyright (c) 2015 Daniel Eden
 
   .nav-open .off-canvas-sidebar .navbar-collapse,
   .nav-open .sidebar {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 
@@ -19043,7 +19024,15 @@ Copyright (c) 2015 Daniel Eden
   .navbar .container .navbar-toggler,
   .navbar .container .navbar-wrapper,
   .navbar .container {
+    -webkit-transform: translate3d(0px, 0, 0);
+    -moz-transform: translate3d(0px, 0, 0);
+    -o-transform: translate3d(0px, 0, 0);
+    -ms-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0);
+    -webkit-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
     left: 0;
   }
@@ -19054,6 +19043,10 @@ Copyright (c) 2015 Daniel Eden
 
   .main-panel,
   .navbar-collapse {
+    -webkit-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
   }
 
@@ -19100,7 +19093,15 @@ Copyright (c) 2015 Daniel Eden
     text-align: left;
     padding-right: 0px;
     padding-left: 0;
+    -webkit-transform: translate3d(260px, 0, 0);
+    -moz-transform: translate3d(260px, 0, 0);
+    -o-transform: translate3d(260px, 0, 0);
+    -ms-transform: translate3d(260px, 0, 0);
     transform: translate3d(260px, 0, 0);
+    -webkit-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -moz-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -o-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    -ms-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
     transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
   }
 
@@ -19172,6 +19173,10 @@ Copyright (c) 2015 Daniel Eden
     content: "";
     z-index: 9999;
     overflow-x: hidden;
+    -webkit-transition: all 370ms ease-in;
+    -moz-transition: all 370ms ease-in;
+    -o-transition: all 370ms ease-in;
+    -ms-transition: all 370ms ease-in;
     transition: all 370ms ease-in;
   }
 
@@ -19242,6 +19247,26 @@ Copyright (c) 2015 Daniel Eden
     }
 }
 
+@-moz-keyframes topbar-x {
+    0% {
+      top: 0px;
+      -moz-transform: rotate(0deg);
+    }
+
+    45% {
+      top: 6px;
+      -moz-transform: rotate(145deg);
+    }
+
+    75% {
+      -moz-transform: rotate(130deg);
+    }
+
+    100% {
+      -moz-transform: rotate(135deg);
+    }
+}
+
 @keyframes topbar-back {
     0% {
       top: 6px;
@@ -19279,6 +19304,26 @@ Copyright (c) 2015 Daniel Eden
     100% {
       top: 0px;
       -webkit-transform: rotate(0);
+    }
+}
+
+@-moz-keyframes topbar-back {
+    0% {
+      top: 6px;
+      -moz-transform: rotate(135deg);
+    }
+
+    45% {
+      -moz-transform: rotate(-10deg);
+    }
+
+    75% {
+      -moz-transform: rotate(5deg);
+    }
+
+    100% {
+      top: 0px;
+      -moz-transform: rotate(0);
     }
 }
 
@@ -19322,6 +19367,26 @@ Copyright (c) 2015 Daniel Eden
     }
 }
 
+@-moz-keyframes bottombar-x {
+    0% {
+      bottom: 0px;
+      -moz-transform: rotate(0deg);
+    }
+
+    45% {
+      bottom: 6px;
+      -moz-transform: rotate(-145deg);
+    }
+
+    75% {
+      -moz-transform: rotate(-130deg);
+    }
+
+    100% {
+      -moz-transform: rotate(-135deg);
+    }
+}
+
 @keyframes bottombar-back {
     0% {
       bottom: 6px;
@@ -19362,11 +19427,33 @@ Copyright (c) 2015 Daniel Eden
     }
 }
 
+@-moz-keyframes bottombar-back {
+    0% {
+      bottom: 6px;
+      -moz-transform: rotate(-135deg);
+    }
+
+    45% {
+      -moz-transform: rotate(10deg);
+    }
+
+    75% {
+      -moz-transform: rotate(-5deg);
+    }
+
+    100% {
+      bottom: 0px;
+      -moz-transform: rotate(0);
+    }
+}
+
   .navbar-toggler .icon-bar:nth-child(2) {
     top: 0px;
     -webkit-animation: topbar-back 500ms linear 0s;
+    -moz-animation: topbar-back 500ms linear 0s;
     animation: topbar-back 500ms 0s;
     -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
 
@@ -19377,16 +19464,20 @@ Copyright (c) 2015 Daniel Eden
   .navbar-toggler .icon-bar:nth-child(4) {
     bottom: 0px;
     -webkit-animation: bottombar-back 500ms linear 0s;
+    -moz-animation: bottombar-back 500ms linear 0s;
     animation: bottombar-back 500ms 0s;
     -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
 
   .navbar-toggler.toggled .icon-bar:nth-child(2) {
     top: 6px;
     -webkit-animation: topbar-x 500ms linear 0s;
+    -moz-animation: topbar-x 500ms linear 0s;
     animation: topbar-x 500ms 0s;
     -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
 
@@ -19397,12 +19488,24 @@ Copyright (c) 2015 Daniel Eden
   .navbar-toggler.toggled .icon-bar:nth-child(4) {
     bottom: 6px;
     -webkit-animation: bottombar-x 500ms linear 0s;
+    -moz-animation: bottombar-x 500ms linear 0s;
     animation: bottombar-x 500ms 0s;
     -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
 
 @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
     0% {
       opacity: 0;
     }

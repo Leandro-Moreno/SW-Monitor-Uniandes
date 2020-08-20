@@ -37,7 +37,6 @@ class HostController extends Controller
      */
     public function index(Host $host)
     {
-      // dd("hola");
         $host =  $host::orderBy('last_time_down', 'DESC')->paginate(80);
 
         return view('hosts.index', ['hosts' => $host]);
@@ -79,9 +78,8 @@ class HostController extends Controller
      * @param  \App\Model\Host  $host
      * @return \Illuminate\View\hosts\edit
      */
-    public function edit($name = '', HostType $typos)
+    public function edit(Host $host, HostType $typos)
     {
-        $host = Host::where('name', '=', $name)->firstOrFail();
         $servidor = Host::where('tipo_id', '=', '2')->orWhere('tipo_id', '=', '4')->orderBy('name', 'asc')->get();
         $servidorBD = Host::where('tipo_id', '=', '3')->orderBy('name', 'asc')->get();
         $typos = HostType::all();

@@ -2,7 +2,7 @@
 <nav id="app" class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
     <div class="container">
         <div class="navbar-wrapper">
-            <a class="navbar-brand" href="{{ route('home') }}"><img width="120px" style="fill:white;" src='{{ asset('material') }}/img/logoUniandes.svg' /></a>
+            <a class="navbar-brand" href="{{ route('hosts') }}"><img width="120px" style="fill:white;" src='{{ asset('material') }}/img/logoUniandes.svg' /></a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
