@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use Socialite;
+use App\User;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -37,4 +40,53 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('azure')->redirect();
+    }
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function handleProviderCallback()
+     {
+         $user = Socialite::driver('azure')->user();
+         $givenName  =  explode(" ", $user->user["givenName"]);
+         $surname  =  explode(" ", $user->user["surname"]);
+         $jobTitle  = $user->user["jobTitle"];
+         $usuario = User::where('email',$user->email)
+                           ->first();
+         if (!$usuario) {
+           session()->flash('message', 'Usuario no existe');
+           return redirect('login');
+         }
+         $usuario->update(array(
+                             'name' => $givenName[0],
+                             'name2' => $givenName[1],
+                             'apellido' => $surname[0],
+                             'apellido2' => $surname[1],
+                             'cargo' => $jobTitle,
+                           ));
+         $user = User::where('email',$user->email)->first();
+         if ($user) {
+           Auth::login($user);
+         }
+         else{
+           $usuario->create(array(
+                               'name' => $givenName[0],
+                               'name2' => $givenName[1],
+                               'apellido' => $surname[0],
+                               'apellido2' => $surname[1],
+                               'cargo' => $jobTitle,
+                             ));
+           Auth::login($usuario);
+         }
+         return redirect($this->redirectTo);
+     }
 }

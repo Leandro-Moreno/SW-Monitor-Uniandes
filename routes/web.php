@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+Route::get('auth', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::get('/', 'HostController@index')->name('hosts');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
