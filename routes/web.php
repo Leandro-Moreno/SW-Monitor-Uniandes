@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('auth', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/callback', 'Auth\LoginController@handleProviderCallback');
-
+Route::get('dash', function () {
+    return view('dashboard');
+});
 Route::get('/', 'HostController@index')->name('hosts');
 
 

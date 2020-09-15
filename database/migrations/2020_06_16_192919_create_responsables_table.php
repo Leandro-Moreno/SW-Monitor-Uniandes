@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHostUserTable extends Migration
+class CreateResponsablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,8 +17,8 @@ class CreateHostUserTable extends Migration
             $table->id();
             $table->biginteger('host_id')->unsigned();
             $table->foreign('host_id')->references('id')->on('hosts');
-            $table->biginteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->biginteger('unidad_id')->unsigned();
+            $table->foreign('unidad_id')->references('id')->on('unidads');
             $table->timestamps();
             //TODO: ROL
         });
