@@ -15,17 +15,17 @@ class CreateCasosTable extends Migration
     {
         Schema::create('casos', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('servicio')->unsigned();
-            $table->foreign('servicio')->references('id')->on('hosts');
+            $table->biginteger('host_id')->unsigned();
+            $table->foreign('host_id')->references('id')->on('hosts');
             $table->biginteger('solicitante')->unsigned();
             $table->foreign('solicitante')->references('id')->on('users');
             $table->string("asunto");
-            $table->string("descripcion");
-            $table->biginteger('responsableAccion')->unsigned();
+            $table->longText("descripcion");
+            $table->biginteger('responsableAccion')->unsigned()->nullable();
             $table->foreign('responsableAccion')->references('id')->on('users');
-            $table->dateTime("fechaTomada")->default(now());
+            $table->dateTime("fechaTomada")->nullable();
             $table->dateTime("fechaAccion")->nullable();
-            $table->string("decision");
+            $table->string("decision")->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ class CreateCasosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('decisiones');
+        Schema::dropIfExists('casos');
     }
 }

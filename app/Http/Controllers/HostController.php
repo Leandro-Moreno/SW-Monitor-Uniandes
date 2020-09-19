@@ -10,6 +10,7 @@ use App\User;
 use App\Model\Host;
 use App\Model\HostType;
 use App\Model\Responsable;
+use App\Model\State;
 use Carbon\Carbon;
 
 use App\Imports\HostsImport;
@@ -37,8 +38,10 @@ class HostController extends Controller
      */
     public function index(Host $host)
     {
-        $host =  $host::orderBy('last_time_down', 'DESC')->paginate(80);
-
+        $currentPage = request()->get('page',1);
+        $host = cache()->remember('hosts'.$currentPage, 60*5,function(){
+          return Host::where('mostrar','1')->orderBy('last_time_down', 'DESC')->paginate(80);
+        });
         return view('hosts.index', ['hosts' => $host]);
     }
 
@@ -51,6 +54,7 @@ class HostController extends Controller
         $servidor = new Host;
         $servicios = new Host;
         $serviciosServidor = new Host;
+        // dd($host->casos);
         /*
          * Valida si el host no es un Sitio Web.
          * Los servidores, balanceadores
@@ -83,10 +87,12 @@ class HostController extends Controller
         $servidor = Host::where('tipo_id', '=', '2')->orWhere('tipo_id', '=', '4')->orderBy('name', 'asc')->get();
         $servidorBD = Host::where('tipo_id', '=', '3')->orderBy('name', 'asc')->get();
         $typos = HostType::all();
+        $states = State::get();
+        // dd($states);
         $users = User::all();
         $responsables = Responsable::where('host_id', '=', $host->id)->get();
         // dd($responsables);
-        return view('hosts.edit', [ 'host' => $host, 'servidores' => $servidor,'servidoresBD' => $servidorBD, 'typos' => $typos, 'users' => $users, 'responsables' => $responsables ]);
+        return view('hosts.edit', [ 'host' => $host, 'states' => $states, 'servidores' => $servidor,'servidoresBD' => $servidorBD, 'typos' => $typos, 'users' => $users, 'responsables' => $responsables ]);
     }
     public function buscarServiciosHijos(Host $host){
       $servicios = Host::where('servidor','=',$host->id)->get();
@@ -128,7 +134,7 @@ class HostController extends Controller
      */
     public function update(Request $request, Host $host)
     {
-        isset($request->mostrar)?$host->mostrar = $request->mostrar:$host->mostrar = "1";
+        isset($request->mostrar)?$host->mostrar = $request->mostrar:$host->mostrar = "2";
         $host->servidor = $request->servidor;
         $host->servidor_bd = $request->servidor_bd;
         $host->analytics = $request->analytics;

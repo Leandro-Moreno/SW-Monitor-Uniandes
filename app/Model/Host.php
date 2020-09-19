@@ -21,7 +21,7 @@ class Host extends Model implements Searchable
      * @var array
      */
     protected $fillable = [
-        'id_nagios', 'name', 'address', 'tag', 'current_state',
+        'id_nagios', 'name', 'address', 'tag', 'current_state','manual_state',
         'last_time_up','last_time_down', 'check_command', 'is_flapping',
         'tipo_id', 'servidor', 'servidor_bd','analytics', 'description',
         'creacion', 'responsable1', 'responsable2', 'mostrar'
@@ -72,13 +72,23 @@ class Host extends Model implements Searchable
     {
         return $this->belongsToMany('App\Model\Responsable');
     }
-
+    public function casos()
+    {
+        return $this->hasMany('App\Model\Casos','host_id');
+    }
     /**
      * @return State
      */
     public function estadoMonitor()
     {
         return $this->belongsTo('App\Model\State', 'current_state');
+    }
+    /**
+     * @return State
+     */
+    public function estadoMonitorManual()
+    {
+        return $this->belongsTo('App\Model\State', 'manual_state');
     }
 
     /**

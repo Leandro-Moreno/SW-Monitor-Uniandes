@@ -31,7 +31,7 @@
         },
         methods: {
             searchMembers() {
-                axios.get('/buscar', { params: { query: this.query } })
+                axios.get('/api/buscar', { params: { query: this.query } })
                     .then(response => this.results = response.data)
                     .catch(error => {});
             }

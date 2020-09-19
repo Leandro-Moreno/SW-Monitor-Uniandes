@@ -39,7 +39,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
           $this->almacenarApiNagios();
             //
-        })->everyMinute();
+        })->everyMinute()
+        ->appendOutputTo(storage_path('logs/inspire.log'));
     }
 
     /**
@@ -66,7 +67,13 @@ class Kernel extends ConsoleKernel
                 $hostAlmacenar->address  = $servicio["address"];
                 $hostAlmacenar->name  = $servicio["name"];
                 $hostAlmacenar->check_command = $servicio["check_command"];
-                $hostAlmacenar->mostrar = 0;
+                if( strpos($servicio["name"], "dti-")!== false || strpos($servicio["name"], "dsit-")!== false){
+                  $hostAlmacenar->mostrar = 2;
+                }
+                if(strpos($servicio["name"], "sql")!== false|| strpos($servicio["name"], "beora")!== false)
+                {
+                  $hostAlmacenar->tipo_id = 3; 
+                }
             }
 
             $hostAlmacenar->current_state = $servicio["current_state"]==0?1:2;

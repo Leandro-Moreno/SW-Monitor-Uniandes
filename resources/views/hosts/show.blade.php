@@ -4,7 +4,7 @@
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Estatus {{$host["name"] }}</h1>
+        <h1 class="masthead-heading mb-0">Estatus {{$host->name }}</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -50,6 +50,31 @@
         @endcan
         </div>
         <div class="col-lg-8">
+          <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header card-header-black">
+                    <h3 class="card-title">Casos del Servicio Web</h3>
+                    <p class="card-category">Este servicio web tiene x casos activos.</p><a class="btn btn-outline-warning" href="{{ route('agregarCasoHost', $host) }}">Crear Caso</a>
+                  </div>
+                  <div class="card-body row">
+                    @foreach($host->casos as $caso)
+                    <div class="card col-md-4 col-lg-4">
+                      <a href="{{route('caso.show', $caso )}}">
+                      <div class="card-header card-header-success">
+                        <h3 class="card-title">{{$caso->asunto }} </h3>
+                        <p class="card-category">Caso #{{$caso->id}}. Creado el {{$caso->created_at}}</p>
+                      </div>
+                      <div class="card-body ">
+                        {{Str::of($caso->descripcion)->words(5, ' ...')}}
+                      </div>
+                    </a>
+                    </div>
+                  @endforeach
+                </div>
+                </div>
+              </div>
+            </div>
           @if($host["tipo_id"]!=1)
             @if(isset($servicios))
             <div class="row">
@@ -59,7 +84,7 @@
             </div>
             <div class="row">
               @foreach($servicios as $servicio)
-                <div class="col-lg-4" style="color:{{ ( (  $servicio->current_state==1 ) && ( $servicio["mostrar"]==0 ) )? 'green' : 'red'}}">
+                <div class="col-md-4 col-lg-4" style="color:{{ ( (  $servicio->current_state==1 ) && ( $servicio["mostrar"]==0 ) )? 'green' : 'red'}}">
                   <a href="{{ route('host.show', $servicio) }}" >
                   <div class="card">
                     <div class="card-header card-header-{{ $servicio->estadoMonitor->class}}">

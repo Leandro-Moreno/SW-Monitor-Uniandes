@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatesTable extends Migration
+class CreateTiposResponsabilidades extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateStatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('states', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->longText('name');
-            $table->longText('class')->nullable();
+        Schema::create('responsabilidades_tipos', function (Blueprint $table) {
+            $table->id();
+            $table->string("nombre");
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateStatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('states');
+        Schema::dropIfExists('responsabilidades_tipos');
     }
 }

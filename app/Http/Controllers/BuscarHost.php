@@ -9,7 +9,7 @@ use App\Model\Host;
 class BuscarHost extends Controller
 {
     /**
-     * Devuelve los resutlados de búsqueda
+     * Devuelve los resultados de búsqueda
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */

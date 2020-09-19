@@ -13,7 +13,7 @@ class Unidad extends Model
    *
    * @var array
    */
-  protected $fillable = [ 'name', 'unidad_padre_id' 'responsable1', 'responsable2' ];
+  protected $fillable = [ 'name', 'unidad_padre_id'];
 
   public function unidadPadre()
   {

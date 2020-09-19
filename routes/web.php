@@ -32,20 +32,14 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/sitios-web', 'HostController@sitiosWeb')->name('sitios-web');
 Route::get('/servidores', 'HostController@servidores')->name('servidores');
 Route::get('/bases-de-datos', 'HostController@database')->name('database');
-Route::get('host/import','HostController@importCreate')->name('importCreate');
-Route::post('host/import','HostController@import')->name('import');
+
 Route::resource('host', 'HostController');
-Route::get('buscar', 'BuscarHost@index')->name('buscar');
-
-
-  Route::resource('resource', 'Controller', [
-             'except' => [
-                 'index',
-                 'show'
-             ]
-         ])
-         ->middleware(['auth']);
-
+Route::resource('caso', 'CasosController');
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/host/{host}/agregar-caso','CasosController@agregarCasoHost')->name('agregarCasoHost');
+  Route::get('host/import','HostController@importCreate')->name('importCreate');
+  Route::post('host/import','HostController@import')->name('import');
+});
 
 
 Route::group(['middleware' => 'auth'], function () {

@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Decisiones;
+use Auth;
+use App\Model\Casos;
+use App\Model\Host;
 use Illuminate\Http\Request;
 
-class DecisionesController extends Controller
+class CasosController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // $this->authorizeResource(Casos::class);
+        $this->middleware('auth')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +38,10 @@ class DecisionesController extends Controller
     {
         //
     }
+    public function agregarCasoHost(Host $host)
+    {
+      return view('hosts.create-caso', ['host' => $host]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +51,11 @@ class DecisionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $caso = new Casos();
+        $caso->fill($input);
+        $caso->solicitante = Auth::id();
+        $caso->save();
     }
 
     /**
@@ -44,9 +64,9 @@ class DecisionesController extends Controller
      * @param  \App\Model\Decisiones  $decisiones
      * @return \Illuminate\Http\Response
      */
-    public function show(Decisiones $decisiones)
+    public function show(Casos $caso)
     {
-        //
+        return view('casos.show', ['caso' => $caso]);
     }
 
     /**

@@ -16,7 +16,7 @@ class CreateHostsTable extends Migration
         Schema::create('hosts',
             function (Blueprint $table) {
                 // nagiosxi
-                $table->bigIncrements('id');
+                $table->id();
                 $table->integer('id_nagios')->nullable();
                 $table->longText('name')->nullable();
                 $table->string('address')->nullable();
@@ -24,19 +24,16 @@ class CreateHostsTable extends Migration
                 $table->dateTime("last_time_up")->nullable();
                 $table->dateTime("last_time_down")->nullable();
                 $table->string("check_command")->nullable();
-                $table->integer("mostrar")->default(0)->nullable();
+                $table->integer("mostrar")->default(1);
                 $table->integer("is_flapping")->default(0)->nullable();
                 $table->longText("serverAlias")->nullable();
-                
-                $table->biginteger('current_state')->unsigned()->default(1)->nullable();
-                $table->foreign('current_state')->references('id')->on('states');
 
-                $table->biginteger('tipo_id')->unsigned()->default(1)->nullable();
-                $table->foreign('tipo_id')->references('id')->on('host_type');
-                $table->biginteger('servidor_bd')->unsigned()->nullable();
-                $table->foreign('servidor_bd')->references('id')->on('hosts');
-                $table->biginteger('servidor')->unsigned()->nullable();
-                $table->foreign('servidor')->references('id')->on('hosts');
+                $table->foreignId('manual_state')->nullable()->constrained('states');
+                $table->foreignId('current_state')->nullable()->default(1)->constrained('states');
+                $table->foreignId('tipo_id')->nullable()->default(1)->constrained('host_type');
+                $table->foreignId('servidor_bd')->nullable()->constrained('hosts');
+                $table->foreignId('servidor')->nullable()->constrained('hosts');
+
                 $table->string("analytics")->nullable();
                 $table->longText('description')->nullable();
                 $table->dateTime("creacion")->nullable();

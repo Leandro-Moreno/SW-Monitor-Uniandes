@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UnidadSeeder extends Seeder
+class TipoResponsabilidadSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,14 +11,13 @@ class UnidadSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('unidads')->insert([
-            'name' => 'DSIT',
+        DB::table('responsabilidades_tipos')->insert([
+            'nombre' => 'funcional',
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('unidads')->insert([
-            'name' => 'CedEx Sitios Web',
-            'unidad_padre_id' => '1',
+        DB::table('responsabilidades_tipos')->insert([
+            'nombre' => 'tecnico',
             'created_at' => now(),
             'updated_at' => now()
         ]);

@@ -16,8 +16,7 @@ class CreateUnidadsTable extends Migration
         Schema::create('unidads', function (Blueprint $table) {
             $table->id();
             $table->longText('name');
-            $table->biginteger('unidad_padre_id')->unsigned()->nullable();
-            $table->foreign('unidad_padre_id')->references('id')->on('unidads');
+            $table->foreignId('unidad_padre_id')->nullable()->constrained('unidads');
             $table->timestamps();
         });
     }

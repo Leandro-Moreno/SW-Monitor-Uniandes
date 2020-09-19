@@ -15,10 +15,10 @@ class CreateResponsablesTable extends Migration
     {
         Schema::create('responsables', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('host_id')->unsigned();
-            $table->foreign('host_id')->references('id')->on('hosts');
-            $table->biginteger('unidad_id')->unsigned();
-            $table->foreign('unidad_id')->references('id')->on('unidads');
+            $table->foreignId('host_id')->onUpdate('cascade')->constrained('hosts');
+            $table->foreignId('unidad_id')->nullable()->onUpdate('cascade')->constrained('unidads');
+            $table->foreignId('user_id')->nullable()->onUpdate('cascade')->constrained('users');
+            $table->foreignId('responsabilidad_tipos_id')->nullable()->onUpdate('cascade')->constrained('responsabilidades_tipos');
             $table->timestamps();
             //TODO: ROL
         });

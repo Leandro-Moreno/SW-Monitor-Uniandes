@@ -145,7 +145,26 @@ $table->dateTime("creacion")->nullable(); -->
                 </div>
               </div>
             </div>
+            <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Estado Manual') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('manual_state') ? ' has-danger' : '' }}">
 
+                      <select class="form-control{{ $errors->has('manual_state') ? ' is-invalid' : '' }}" id="input-manual_state" name="manual_state">
+                        @isset($host->manual_state)
+                        <option value="{{ $host->estadoMonitorManual->name}}">{{$host->estadoMonitorManual->name}}</option>
+                        @endisset
+                        <option value="">Vacio</option>
+                        @foreach($states as $state )
+                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                        @endforeach
+                      </select>
+                      @if ($errors->has('manual_state'))
+                        <span id="manual_state-error" class="error text-danger" for="input-manual_state">{{ $errors->first('manual_state') }}</span>
+                      @endif
+                  </div>
+                </div>
+            </div>
             <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Tipo de Servicio') }}</label>
                   <div class="col-sm-7">
@@ -188,22 +207,23 @@ $table->dateTime("creacion")->nullable(); -->
                 @endfor
 
                 <div class="row">
-                      <label class="col-sm-2 col-form-label">{{ __('Mostrar') }}</label>
-                      <div class="col-sm-7">
-                        <div class="form-group{{ $errors->has('mostrar') ? ' has-danger' : '' }}">
-                          <div class="togglebutton">
-                            <label>
-                              <input id="mostrarTogg" name="mostrar" type="checkbox" {{ $host->mostrar==0 ? ' checked' : '' }}  value="{{ old('mostrar', $host->mostrar) }}">
-                              <span class="toggle"></span>
-                              <span id="toggContenido">{{ $host->mostrar==0?"Activo":"No activo" }}</span>
-                            </label>
-                          </div>
-                          @if ($errors->has('mostrar'))
-                          <span id="mostrar-error" class="error text-danger" for="input-mostrar">{{ $errors->first('mostrar') }}</span>
-                          @endif
+                  <label class="col-sm-2 col-form-label">{{ __('Mostrar Host') }}</label>
+                  <div class="col-sm-4">
+                     <div class="form-group{{ $errors->has('mostrar') ? ' has-danger' : '' }}">
+                        <div class="form-check">
+                           <label class="form-check-label" id="lb-mostrar">
+                              <input  class="form-check-input"  aria-expanded="false" aria-controls="collapse" data-toggle="collapse" name="mostrar" type="checkbox" value="1" {{ $host->mostrar ==  "1" ? 'checked' : '' }}></input>
+                              <span class="form-check-sign">
+                                    <span class="check"></span>
+                              </span>
+                           </label>
                         </div>
-                      </div>
-                    </div>
+                        @if ($errors->has('mostrar'))
+                        <span id="mostrar-error" class="error text-danger" for="input-mostrar" >{{ $errors->first('mostrar') }}</span>
+                        @endif
+                     </div>
+                  </div>
+                </div>
 
             </div>
           <div class="card-footer ml-auto mr-auto">
