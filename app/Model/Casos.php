@@ -15,7 +15,7 @@ class Casos extends Model
      * @var array
      */
     protected $fillable = [
-        'host_id' , 'asunto', 'descripcion'
+        'host_id' , 'asunto', 'descripcion' ,'accion', 'responsableAccion', 'estado','fechaAccion'
     ];
     public function host()
     {

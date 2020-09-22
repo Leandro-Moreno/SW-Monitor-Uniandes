@@ -34,7 +34,14 @@ Route::get('/servidores', 'HostController@servidores')->name('servidores');
 Route::get('/bases-de-datos', 'HostController@database')->name('database');
 
 Route::resource('host', 'HostController');
-Route::resource('caso', 'CasosController');
+Route::get('/caso/cerrado', 'CasosController@casoCerrado')->name('caso-cerrado');
+Route::resource('caso', 'CasosController')->names([
+    	'create' => 'caso.create',
+    	'show' => 'caso.show',
+    	'edit' => 'caso.edit',
+    	'update' => 'caso.update',
+		'destroy' => 'caso.destroy',
+	]);
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/host/{host}/agregar-caso','CasosController@agregarCasoHost')->name('agregarCasoHost');
   Route::get('host/import','HostController@importCreate')->name('importCreate');

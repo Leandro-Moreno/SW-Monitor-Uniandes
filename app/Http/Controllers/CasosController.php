@@ -16,7 +16,7 @@ class CasosController extends Controller
      */
     public function __construct()
     {
-        // $this->authorizeResource(Casos::class);
+        $this->authorizeResource(Casos::class, 'caso');
         $this->middleware('auth')->except(['index', 'show']);
     }
     /**
@@ -31,6 +31,14 @@ class CasosController extends Controller
           return Casos::where('estado','1')->with('host')->orderBy('created_at', 'ASC')->paginate(80);
         });
         return view('casos.index', ['casos' => $casos]);
+    }
+    public function casoCerrado()
+    {
+      $currentPage = request()->get('page',1);
+      $casos = cache()->remember('casos-cerrados'.$currentPage, 60,function(){
+        return Casos::where('estado','2')->with('host')->orderBy('created_at', 'ASC')->paginate(80);
+      });
+      return view('casos.index', ['casos' => $casos]);
     }
 
     /**
@@ -76,12 +84,13 @@ class CasosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Decisiones  $decisiones
+     * @param  \App\Model\Casos  $decisiones
      * @return \Illuminate\Http\Response
      */
-    public function edit(Decisiones $decisiones)
+    public function edit(Casos $caso, Host $host)
     {
-        //
+        return view('casos.edit', ['caso' => $caso]);
+
     }
 
     /**
@@ -91,9 +100,17 @@ class CasosController extends Controller
      * @param  \App\Model\Decisiones  $decisiones
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Decisiones $decisiones)
+    public function update(Request $request, Casos $caso)
     {
-        //
+        $datos = $request->all();
+        $user = Auth::user();
+        $datos['responsableAccion'] = $user->id;
+        $datos['fechaAccion'] = now()->toDateTimeString();
+        $caso->fill($datos);
+        // dd($datos);
+        $caso->save();
+        return redirect('caso')->with('status', 'Caso '.$caso->id.' actualizado con éxito.');
+
     }
 
     /**
@@ -102,7 +119,7 @@ class CasosController extends Controller
      * @param  \App\Model\Decisiones  $decisiones
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Decisiones $decisiones)
+    public function destroy(Casos $caso)
     {
         //
     }

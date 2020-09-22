@@ -26,7 +26,7 @@ class CreateCasosTable extends Migration
             $table->foreign('responsableAccion')->references('id')->on('users');
             $table->dateTime("fechaTomada")->nullable();
             $table->dateTime("fechaAccion")->nullable();
-            $table->string("decision")->nullable();
+            $table->longText("accion")->nullable();
             $table->timestamps();
         });
     }

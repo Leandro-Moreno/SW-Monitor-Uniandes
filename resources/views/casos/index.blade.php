@@ -20,7 +20,17 @@
             <div class="card">
               <div class="card-header card-header-black">
                 <h4 class="card-title ">{{ __('Casos Servicios Web') }}</h4>
-                <p class="card-category"> {{ __('Casos abiertos') }}</p>
+                <div class="card-category row">
+                  <p class="col-md-8">
+                  {{ __('Casos abiertos') }}
+                </p>
+                <a rel="tooltip" class="btn btn-sm btn-danger" href="{{ route('caso.index') }}" data-original-title="{{ __('Todos los casos') }}" title="">
+                  {{ __('Todos') }}
+                </a>
+                <a rel="tooltip" class="btn btn-sm btn-black" href="{{ route('caso-cerrado') }}" data-original-title="{{ __('Casos Cerrados') }}" title="">
+                  {{ __('Cerrados') }}
+                </a>
+                </div>
               </div>
               <div class="card-body">
                 @if (session('status'))
@@ -70,14 +80,16 @@
                             {{ $caso->created_at }}
                           </td>
                           <td class="td-actions text-right">
-                            <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('caso.show', $caso) }}" data-original-title="{{ __('Ver Detalle del caso') }}" title="">
+                            <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('caso.show', $caso->id) }}" data-original-title="{{ __('Ver Detalle del caso') }}" title="">
                                 {{ __('Detalle') }}<i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                               </a>
-                              <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('caso.edit', $caso) }}" data-original-title="{{ __('Modificar estado del caso') }}" title="">
+                              @can('update', $caso)
+                              <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('caso.edit', $caso->id) }}" data-original-title="{{ __('Modificar estado del caso') }}" title="">
                                   {{ __('Modificar') }}<i class="material-icons">search</i>
                                   <div class="ripple-container"></div>
                                 </a>
+                              @endcan
                           </td>
                         </tr>
                       @endforeach

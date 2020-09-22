@@ -24,7 +24,10 @@
                           <div class="card-body ">
                               <div class="row">
                                   <div class="col-md-12 text-right">
-                                      <a href="{{ route('host.show', $caso->host) }}" class="btn btn-sm btn-primary">{{ __('Ver Detalle del Servicio Web') }}</a>
+                                    @can('update', $caso)
+                                      <a href="{{ route('caso.edit', $caso->id) }}" class="btn btn-sm btn-primary">{{ __('Editar Caso') }}</a>
+                                      @endcan
+                                      <a href="{{ route('host.show', $caso->host) }}" class="btn btn-sm btn-black">{{ __('Ver Detalle del Servicio Web') }}</a>
                                       <a href="{{ route('caso.index') }}" class="btn btn-sm btn-black">{{ __('Ver Todos los casos') }}</a>
                                   </div>
                               </div>
@@ -51,6 +54,12 @@
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Fecha Creación') }}</label>
                                     <div class="col-md-12  col-xl-12">
                                         {{$caso->created_at}}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xl-4">
+                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Acción') }}</label>
+                                    <div class="col-md-12  col-xl-12">
+                                        {{$caso->accion}}
                                     </div>
                                 </div>
                               </div>

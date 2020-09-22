@@ -53,14 +53,14 @@ class HostPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Host  $host
-     * @return mixed
+     * @return boolean
      */
     public function update(User $user, Host $host)
     {
-      if($user->rol_id > 1){
-        return false;
+      if($user->rol_id == 1){
+        return true;
       }
-      return true;
+      return false;
     }
     /*
     * Policies para validar si su unidad o el usuario tiene permisos

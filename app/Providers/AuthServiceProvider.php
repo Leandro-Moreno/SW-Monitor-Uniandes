@@ -14,6 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
          'App\Model\Host' => 'App\Policies\HostPolicy',
+         'App\Model\Casos' => 'App\Policies\CasosPolicy',
     ];
 
     /**
