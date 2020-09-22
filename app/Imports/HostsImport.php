@@ -29,8 +29,8 @@ class HostsImport implements ToCollection
                 $host = $this->buscarHostConServerAlias(  $row  );
                 $servidor = new Host();
                 $servidor_bd = new Host();
-                $host->servidor = $servidor->buscarHostIdPorNombre( $row[10]  );
-                $host->servidor_bd  = $servidor_bd->buscarHostIdPorNombre(  $row[17]  );
+                $host->servidor = $servidor->buscarHostIdPorname( $row[10]  );
+                $host->servidor_bd  = $servidor_bd->buscarHostIdPorname(  $row[17]  );
                 $host->analytics  = $row[18];
                 $host->description  = $row[29];
                 /* current_state = 3 corresponde a sin monitor.*/
@@ -62,7 +62,7 @@ class HostsImport implements ToCollection
             $dominio  = $this->urlToDomain($row[$casilla]);
             if (isset($dominio)) {
                 if (! isset($host->name)) {
-                    $host = $host->buscarHostPorNombre($dominio);
+                    $host = $host->buscarHostPorname($dominio);
                 } else {
                     if ($host->name != $dominio && ! in_array($dominio, $serverAlias)) {
                         array_push($serverAlias, $dominio);

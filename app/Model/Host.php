@@ -68,9 +68,13 @@ class Host extends Model implements Searchable
     {
         return $this->belongsTo('App\Model\HostType', 'tipo_id');
     }
-    public function responsable()
+    public function usuarios()
     {
-        return $this->belongsToMany('App\Model\Responsable');
+        return $this->belongsToMany('App\User', 'responsables','host_id','user_id')->withPivot(["tipo","responsabilidad_tipos_id"]);
+    }
+    public function unidades()
+    {
+        return $this->belongsToMany('App\Model\Unidad', 'responsables','host_id','unidad_id')->withPivot(["tipo","responsabilidad_tipos_id"]);
     }
     public function casos()
     {
@@ -92,30 +96,30 @@ class Host extends Model implements Searchable
     }
 
     /**
-     * @param string $nombre
+     * @param string $name
      * @return Host[]
      */
-    public function buscarHostsPorNombre($nombre='')
+    public function buscarHostsPorname($name='')
     {
-        $resultados  = $this::where('name', $nombre)->get();
+        $resultados  = $this::where('name', $name)->get();
         return is_null($resultados)? $this : $resultados;
     }
     /**
-     * @param string $nombre
+     * @param string $name
      * @return Host
      */
-    public function buscarHostPorNombre($nombre='')
+    public function buscarHostPorname($name='')
     {
-        $resultado  = $this::where('name', $nombre)->first();
+        $resultado  = $this::where('name', $name)->first();
         return is_null($resultado)? $this : $resultado;
     }
     /**
-     * @param string $nombre
+     * @param string $name
      * @return Host['id']
      */
-    public function buscarHostIdPorNombre($nombre='')
+    public function buscarHostIdPorname($name='')
     {
-        $resultado  = $this::where('name', $nombre)->first();
+        $resultado  = $this::where('name', $name)->first();
         return is_null($resultado)? null: $resultado->id;
     }
 }

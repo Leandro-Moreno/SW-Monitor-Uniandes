@@ -20,6 +20,7 @@ class CreateCasosTable extends Migration
             $table->biginteger('solicitante')->unsigned();
             $table->foreign('solicitante')->references('id')->on('users');
             $table->string("asunto");
+            $table->integer("estado")->default(1);
             $table->longText("descripcion");
             $table->biginteger('responsableAccion')->unsigned()->nullable();
             $table->foreign('responsableAccion')->references('id')->on('users');

@@ -42,7 +42,10 @@ class HostPolicy
      */
     public function create(User $user)
     {
-        return true;
+      if($user->isAdmin() > 1){
+        return false;
+      }
+      return true;
     }
 
     /**
@@ -54,12 +57,47 @@ class HostPolicy
      */
     public function update(User $user, Host $host)
     {
-      if(Auth::user()){
-        return true;
+      if($user->rol_id > 1){
+        return false;
       }
       return true;
     }
-
+    /*
+    * Policies para validar si su unidad o el usuario tiene permisos
+    *
+    *
+    */
+    // public function update(User $user, Host $host)
+    // {
+    //   $user_hosts = $user->hosts;
+    //   $host_unidades = $host->unidades;
+    //   if($host_unidades->contains($user->unidad)  ||  $user_hosts->contains(  $host )){
+    //     $datos = $this->permisosHostUnidades( $host_unidades, $user );
+    //     if( $user_hosts->contains( $host ) ){
+    //       $datos_usuario_host = $this->permisosUsuarioHosts(  $user_hosts, $host  );
+    //       $datos = $datos->push(  $datos_usuario_host );
+    //     }
+    //     return $datos->contains(function (  $resultado  ){
+    //       return $resultado->getOriginal('pivot_responsabilidad_tipos_id') == 2;
+    //     });
+    //   }
+    //   return false;
+    // }
+    public function permisosHostUnidades( $unidades, $user){
+      $unidades  = $unidades->unique();
+      $unidades  = $unidades->filter(function($unidad) use ($user){
+        return $unidad->id==$user->unidad->id;
+      });
+      return $unidades;
+    }
+    public function permisosUsuarioHosts( $hosts, Host $host)
+    {
+      $hosts  = $hosts->unique();
+      $hosts  = $hosts->filter(function(  $value) use ($host){
+        return $value->id==$host->id;
+      });
+      return $hosts;
+    }
     /**
      * Determine whether the user can delete the model.
      *
@@ -69,7 +107,10 @@ class HostPolicy
      */
     public function delete(User $user, Host $host)
     {
-        return true;
+      if($user->rol_id > 1){
+        return false;
+      }
+      return true;
     }
 
     /**
@@ -81,7 +122,10 @@ class HostPolicy
      */
     public function restore(User $user, Host $host)
     {
-        return true;
+      if($user->rol_id > 1){
+        return false;
+      }
+      return true;
     }
 
     /**
@@ -93,6 +137,9 @@ class HostPolicy
      */
     public function forceDelete(User $user, Host $host)
     {
-        return true;
+      if($user->rol_id > 1){
+        return false;
+      }
+      return true;
     }
 }

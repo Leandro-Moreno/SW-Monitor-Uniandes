@@ -26,7 +26,11 @@ class CasosController extends Controller
      */
     public function index()
     {
-        //
+        $currentPage = request()->get('page',1);
+        $casos = cache()->remember('casos'.$currentPage, 60,function(){
+          return Casos::where('estado','1')->with('host')->orderBy('created_at', 'ASC')->paginate(80);
+        });
+        return view('casos.index', ['casos' => $casos]);
     }
 
     /**

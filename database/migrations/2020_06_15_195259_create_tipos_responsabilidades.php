@@ -15,7 +15,7 @@ class CreateTiposResponsabilidades extends Migration
     {
         Schema::create('responsabilidades_tipos', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre");
+            $table->string("name");
             $table->timestamps();
         });
     }

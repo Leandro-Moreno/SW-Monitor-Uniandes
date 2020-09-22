@@ -19,4 +19,8 @@ class Unidad extends Model
   {
       return $this->belongsTo('App\Model\Unidad', 'unidad_padre_id');
   }
+  public function usuarios()
+  {
+    return $this->hasMany('App\User');
+  }
 }

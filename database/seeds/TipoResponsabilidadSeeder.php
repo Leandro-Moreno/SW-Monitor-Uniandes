@@ -12,12 +12,12 @@ class TipoResponsabilidadSeeder extends Seeder
     public function run()
     {
         DB::table('responsabilidades_tipos')->insert([
-            'nombre' => 'funcional',
+            'name' => 'funcional',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('responsabilidades_tipos')->insert([
-            'nombre' => 'tecnico',
+            'name' => 'tecnico',
             'created_at' => now(),
             'updated_at' => now()
         ]);

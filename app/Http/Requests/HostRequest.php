@@ -27,7 +27,7 @@ class HostRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => [
+            'name' => [
                 'required'
             ]
         ];

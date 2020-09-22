@@ -14,6 +14,7 @@ class ResponsablesSeeder extends Seeder
         DB::table('responsables')->insert([
             'host_id' => '1',
             'unidad_id' => '1',
+            'tipo' => '2',
             'responsabilidad_tipos_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
@@ -21,6 +22,7 @@ class ResponsablesSeeder extends Seeder
         DB::table('responsables')->insert([
             'host_id' => '2',
             'unidad_id' => '1',
+            'tipo' => '2',
             'responsabilidad_tipos_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
@@ -28,6 +30,7 @@ class ResponsablesSeeder extends Seeder
         DB::table('responsables')->insert([
             'host_id' => '2',
             'user_id' => '1',
+            'tipo' => '1',
             'responsabilidad_tipos_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
@@ -35,6 +38,7 @@ class ResponsablesSeeder extends Seeder
         DB::table('responsables')->insert([
             'host_id' => '2',
             'user_id' => '1',
+            'tipo' => '1',
             'responsabilidad_tipos_id' => '1',
             'created_at' => now(),
             'updated_at' => now()

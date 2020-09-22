@@ -4,7 +4,9 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Responsable extends Model
+use Illuminate\Database\Eloquent\Relations\Pivot;
+
+class Responsable extends Pivot
 {
     protected $table = 'responsables';
 
@@ -13,7 +15,7 @@ class Responsable extends Model
      *
      * @var array
      */
-     protected $fillable = ['host_id', 'user_id', 'unidad_id', 'responsabilidad_tipos_id'];
+     protected $fillable = ['host_id', 'user_id', 'unidad_id', 'tipo', 'responsabilidad_tipos_id'];
     // protected $fillable = [
     //     'id_nagios', 'name', 'address', 'tag', 'current_state',
     //     'last_time_up','last_time_down', 'check_command', 'is_flapping',
@@ -25,10 +27,14 @@ class Responsable extends Model
         return $this->belongsTo('App\Model\Host', 'host_id');
     }
 
-    public function responsable()
+    public function usuariosResponsables()
     {
-        $responsable = isset($this->belongsTo('App\User', 'user_id'))?$this->belongsTo('App\User', 'user_id'):$this->belongsTo('App\Unidad', 'unidad_id')
+        $responsable = $this->belongsTo('App\User', 'user_id');
         return $responsable;
     }
-
+    public function unidadesResponsables()
+    {
+        $responsable = $this->belongsTo('App\Model\Unidad', 'unidad_id');
+        return $responsable;
+    }
 }

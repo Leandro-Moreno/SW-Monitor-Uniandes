@@ -39,7 +39,7 @@
             @if (isset($host->servidorBDDatos))
             <p>Servidor Base de Datos: {{ $host->servidorBDDatos->name }}</p>
             @endif
-            <p>Tipo: {{ $host->tipodatos->nombre }}</p>
+            <p>Tipo: {{ $host->tipodatos->name }}</p>
           <p></p>
         </a>
         @can('update', $host)

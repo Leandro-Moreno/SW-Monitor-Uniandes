@@ -39,7 +39,7 @@ class HostController extends Controller
     public function index(Host $host)
     {
         $currentPage = request()->get('page',1);
-        $host = cache()->remember('hosts'.$currentPage, 60*5,function(){
+        $host = cache()->remember('hosts'.$currentPage, 60,function(){
           return Host::where('mostrar','1')->orderBy('last_time_down', 'DESC')->paginate(80);
         });
         return view('hosts.index', ['hosts' => $host]);
@@ -88,7 +88,7 @@ class HostController extends Controller
         $servidorBD = Host::where('tipo_id', '=', '3')->orderBy('name', 'asc')->get();
         $typos = HostType::all();
         $states = State::get();
-        // dd($states);
+        // dd($servidor[1]->responsable());
         $users = User::all();
         $responsables = Responsable::where('host_id', '=', $host->id)->get();
         // dd($responsables);

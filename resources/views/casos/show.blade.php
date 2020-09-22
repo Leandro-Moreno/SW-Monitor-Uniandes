@@ -24,7 +24,8 @@
                           <div class="card-body ">
                               <div class="row">
                                   <div class="col-md-12 text-right">
-                                      <a href="{{ route('host.show', $caso->host) }}" class="btn btn-sm btn-primary">{{ __('Regresar a información del host') }}</a>
+                                      <a href="{{ route('host.show', $caso->host) }}" class="btn btn-sm btn-primary">{{ __('Ver Detalle del Servicio Web') }}</a>
+                                      <a href="{{ route('caso.index') }}" class="btn btn-sm btn-black">{{ __('Ver Todos los casos') }}</a>
                                   </div>
                               </div>
                               <div class="row">
@@ -34,19 +35,24 @@
                                         {{$caso->asunto}}
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-xl-4">
-                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Asunto') }}</label>
-                                    <div class="col-md-12  col-xl-12">
-                                        {{$caso->usuarioSolicitante->name}} {{$caso->usuarioSolicitante->surname}}
-                                    </div>
-                                </div>
                                 <div class="col-md-8 col-xl-8">
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Descripción') }}</label>
                                     <div class="col-md-12  col-xl-12">
                                         {{$caso->descripcion}}
                                     </div>
                                 </div>
-
+                                <div class="col-md-4 col-xl-4">
+                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Solicitante') }}</label>
+                                    <div class="col-md-12  col-xl-12">
+                                        {{$caso->usuarioSolicitante->name}} {{$caso->usuarioSolicitante->surname}}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xl-4">
+                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Fecha Creación') }}</label>
+                                    <div class="col-md-12  col-xl-12">
+                                        {{$caso->created_at}}
+                                    </div>
+                                </div>
                               </div>
                           </div>
                       </div>
