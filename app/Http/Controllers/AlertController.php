@@ -109,7 +109,7 @@ class AlertController extends Controller
         // $caso->create($input);
         $caso->save();
         // dd($caso);
-        return redirect()->route('servicio.show',$caso->servicio_id)->withStatus(__('Alerta creada con éxito.'));
+        return redirect()->route('servicio.show',$caso->servicio)->withStatus(__('Alerta creada con éxito.'));
 
     }
 
