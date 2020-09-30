@@ -1,11 +1,11 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Caso')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Alerta')])
 
 @section('content')
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">{{__('Caso #')}}{{$caso->id }}</h1>
-        <h2 class="masthead-heading mb-0">{{$caso->asunto }}</h2>
+        <h1 class="masthead-heading mb-0">{{__('Alerta #')}}{{$alerta->id }}</h1>
+        <h2 class="masthead-heading mb-0">{{$alerta->asunto }}</h2>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -24,42 +24,42 @@
                           <div class="card-body ">
                               <div class="row">
                                   <div class="col-md-12 text-right">
-                                    @can('update', $caso)
-                                      <a href="{{ route('caso.edit', $caso->id) }}" class="btn btn-sm btn-primary">{{ __('Editar Caso') }}</a>
+                                    @can('update', $alerta)
+                                      <a href="{{ route('alert.edit', $alerta) }}" class="btn btn-sm btn-primary">{{ __('Editar Alerta') }}</a>
                                       @endcan
-                                      <a href="{{ route('host.show', $caso->host) }}" class="btn btn-sm btn-black">{{ __('Ver Detalle del Servicio Web') }}</a>
-                                      <a href="{{ route('caso.index') }}" class="btn btn-sm btn-black">{{ __('Ver Todos los casos') }}</a>
+                                      <a href="{{ route('servicio.show', $alerta->servicio) }}" class="btn btn-sm btn-black">{{ __('Ver Detalle del Servicio Web') }}</a>
+                                      <a href="{{ route('alert.index') }}" class="btn btn-sm btn-black">{{ __('Ver Todas las alertas') }}</a>
                                   </div>
                               </div>
                               <div class="row">
-                                <div class="col-md-4 col-xl-4">
-                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Asunto') }}</label>
-                                    <div class="col-md-12  col-xl-12">
-                                        {{$caso->asunto}}
-                                    </div>
-                                </div>
                                 <div class="col-md-8 col-xl-8">
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Descripción') }}</label>
                                     <div class="col-md-12  col-xl-12">
-                                        {{$caso->descripcion}}
+                                        {{$alerta->descripcion}}
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-4">
-                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Solicitante') }}</label>
+                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Servicio') }}</label>
                                     <div class="col-md-12  col-xl-12">
-                                        {{$caso->usuarioSolicitante->name}} {{$caso->usuarioSolicitante->surname}}
+                                        {{$alerta->servicio->name}}
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-4">
-                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Fecha Creación') }}</label>
+                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Fecha inicio') }}</label>
                                     <div class="col-md-12  col-xl-12">
-                                        {{$caso->created_at}}
+                                        {{$alerta->fechaInicio}}
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-4">
-                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Acción') }}</label>
+                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Fecha final') }}</label>
                                     <div class="col-md-12  col-xl-12">
-                                        {{$caso->accion}}
+                                        {{isset($alerta->fechaFin)?$alerta->fechaFin:__('Sin fecha estimada.')}}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xl-4">
+                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Usuario creador de la Alerta') }}</label>
+                                    <div class="col-md-12  col-xl-12">
+                                        {{$alerta->usuarioSolicitante->name}} {{$alerta->usuarioSolicitante->surname}} ({{$alerta->usuarioSolicitante->email}})
                                     </div>
                                 </div>
                               </div>

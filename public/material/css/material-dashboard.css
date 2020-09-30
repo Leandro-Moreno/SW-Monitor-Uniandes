@@ -15122,7 +15122,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .wrapper {
   position: relative;
-  top: 0;
+  top: 70px;
   height: 100vh;
 }
 
@@ -19680,8 +19680,8 @@ Copyright (c) 2015 Daniel Eden
 header.masthead {
   position: relative;
   overflow: hidden;
-  padding-top: calc(7rem + 72px);
-  padding-bottom: 7rem;
+  padding-top: calc(5rem + 40px);
+  padding-bottom: 6rem;
   background: linear-gradient(0deg, #ff9800 0%, #f44336 100%);
   background-repeat: no-repeat;
   background-position: center center;
@@ -19690,7 +19690,7 @@ header.masthead {
 }
 
 header.masthead-min {
-  padding-top: calc(2rem + 72px) !important;
+  padding-top: calc(2rem + 40px) !important;
   padding-bottom: 3rem !important;
 }
 

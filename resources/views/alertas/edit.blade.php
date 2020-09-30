@@ -1,10 +1,10 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Crear caso de host')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Crear alerta de Servicio')])
 
 @section('content')
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">{{__('Editar caso')}}{{$caso->id}} - {{$caso->host->name }}</h1>
+        <h1 class="masthead-heading mb-0">{{__('Editar Alerta')}} {{$alerta->id}} - {{$alerta->servicio->name }}</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -17,7 +17,7 @@
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-12">
-                  <form method="post" action="{{ route('caso.update', $caso) }}" autocomplete="on" class="form-horizontal" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('alert.update', $alerta) }}" autocomplete="on" class="form-horizontal" enctype="multipart/form-data">
                       @csrf
                       @method('put')
                       <div class="card ">
@@ -27,12 +27,12 @@
                                     <div class="col-sm-12">
                                       <div class="form-group{{ $errors->has('estado') ? ' has-danger' : '' }}">
                                         <select class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" id="input-servidor" name="estado">
-                                          @if ( $caso->estado == 1 )
-                                          <option selected value="{{ $caso->estado}}">{{ __('Caso Activo') }}</option>
-                                          <option value="2">{{ __('Caso Cerrado') }}</option>
+                                          @if ( $alerta->estado == 1 )
+                                          <option selected value="{{ $alerta->estado}}">{{ __('Alerta Activa') }}</option>
+                                          <option value="2">{{ __('Alerta Cerrada') }}</option>
                                           @else
-                                          <option value="1">{{ __('Caso Activo') }}</option>
-                                          <option selected value="{{ $caso->estado}}">{{ __('Caso Cerrado') }}</option>
+                                          <option value="1">{{ __('Alerta Activa') }}</option>
+                                          <option selected value="{{ $alerta->estado}}">{{ __('Alerta Cerrada') }}</option>
                                           @endif
                                         </select>
                                         @if ($errors->has('servidor'))
@@ -42,7 +42,7 @@
                                     </div>
                                   </div>
                                   <div class="col-md-4 text-right">
-                                      <a href="{{ route('host.show', $caso->host) }}" class="btn btn-sm btn-primary">{{ __('Regresar a información del host') }}</a>
+                                      <a href="{{ route('servicio.show', $alerta->servicio) }}" class="btn btn-sm btn-primary">{{ __('Regresar a información del host') }}</a>
                                   </div>
                               </div>
                               @if ($errors->any())
@@ -64,7 +64,7 @@
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Edite el asunto') }}</label>
                                     <div class="col-md-12  col-xl-12">
                                       <div class="form-group{{ $errors->has('asunto') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('asunto') ? ' is-invalid' : '' }}" name="asunto" id="input-asunto" type="text" placeholder="{{ __('Edite el asunto') }}" value="{{ $caso->asunto }}" required="true" aria-required="true"/>
+                                        <input class="form-control{{ $errors->has('asunto') ? ' is-invalid' : '' }}" name="asunto" id="input-asunto" type="text" placeholder="{{ __('Edite el asunto') }}" value="{{ $alerta->asunto }}" required="true" aria-required="true"/>
                                         @if ($errors->has('asunto'))
                                         <span id="asunto-error" class="error text-danger" for="input-asunto">{{ $errors->first('asunto') }}</span>
                                         @endif
@@ -73,30 +73,37 @@
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Edite la descripción') }}</label>
                                     <div class="col-md-12  col-xl-12">
                                       <div class="form-group{{ $errors->has('descripcion') ? ' has-danger' : '' }}">
-                                        <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion" id="input-descripcion" placeholder="{{ __('Ingrese la descripcion del problema o solicitud') }}" value="{{ $caso->descripcion }}" rows="5" required aria-required="true">{{ $caso->descripcion }}</textarea>
+                                        <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion" id="input-descripcion" placeholder="{{ __('Ingrese la descripcion del problema o solicitud') }}" value="{{ $alerta->descripcion }}" rows="5" required aria-required="true">{{ $alerta->descripcion }}</textarea>
                                         @if ($errors->has('descripcion'))
                                         <span id="descripcion-error" class="error text-danger" for="input-descripcion">{{ $errors->first('descripcion') }}</span>
                                         @endif
                                       </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                  <div class="row">
-                                    <label class="col-md-12 col-xl-12 col-form-label">{{ __('Acción ejecutada') }}</label>
-                                    <div class="col-md-12  col-xl-12">
-                                      <div class="form-group{{ $errors->has('accion') ? ' has-danger' : '' }}">
-                                        <textarea class="form-control{{ $errors->has('accion') ? ' is-invalid' : '' }}" name="accion" id="input-accion" placeholder="{{ __('Ingrese la acción') }}" value="{{ $caso->accion }}" rows="5" required aria-required="true">{{ $caso->accion }}</textarea>
-                                        @if ($errors->has('accion'))
-                                        <span id="accion-error" class="error text-danger" for="input-accion">{{ $errors->first('accion') }}</span>
-                                        @endif
-                                      </div>
-                                    </div>
+                              </div>
+                              <div class="row">
+                                <label class="col-sm-2 col-form-label" for="input-fecha">{{ __('Fecha Inicial') }}</label>
+                                <div class="col-sm-7">
+                                  <div class="form-group{{ $errors->has('fechaInicio') ? ' has-danger' : '' }}">
+                                    <input class="form-control{{ $errors->has('fechaInicio') ? ' is-invalid' : '' }}" input type="date" name="fechaInicio" id="input-fechaInicio" placeholder="{{ __('fechaInicio') }}" value="{{ old('fechaInicio', $alerta->fechaDeInicio()) }}" />
+                                    @if ($errors->has('fechaInicio'))
+                                      <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('fechaInicio') }}</span>
+                                    @endif
                                   </div>
                                 </div>
-
-
                               </div>
-                              <button class="btn btn-success">Actualizar Caso</button>
+                              <div class="row">
+                                <label class="col-sm-2 col-form-label" for="input-fecha">{{ __('Fecha Inicial') }}</label>
+                                <div class="col-sm-7">
+                                  <div class="form-group{{ $errors->has('fechaInicio') ? ' has-danger' : '' }}">
+                                    <input class="form-control{{ $errors->has('fechaInicio') ? ' is-invalid' : '' }}" input type="date" name="fechaInicio" id="input-fechaInicio" placeholder="{{ __('fechaInicio') }}" value="{{ old('fechaInicio', $alerta->fechaFinal()) }}" />
+                                    @if ($errors->has('fechaInicio'))
+                                      <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('fechaInicio') }}</span>
+                                    @endif
+                                  </div>
+                                </div>
+                              </div>
+                              <button class="btn btn-success">Actualizar Alerta</button>
                           </div>
                       </div>
                   </form>

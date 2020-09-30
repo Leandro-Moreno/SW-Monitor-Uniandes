@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHostTypeTable extends Migration
+class CreateServicioTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateHostTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('host_type', function (Blueprint $table) {
+        Schema::create('servicio_type', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("name");
             $table->longText('description');
+            $table->integer('habilitado')->default(1);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateHostTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('host_type');
+        Schema::dropIfExists('servicio_type');
     }
 }

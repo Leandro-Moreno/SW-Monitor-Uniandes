@@ -12,7 +12,7 @@ class ResponsablesSeeder extends Seeder
     public function run()
     {
         DB::table('responsables')->insert([
-            'host_id' => '1',
+            'servicio_id' => '1',
             'unidad_id' => '1',
             'tipo' => '2',
             'responsabilidad_tipos_id' => '2',
@@ -20,7 +20,7 @@ class ResponsablesSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('responsables')->insert([
-            'host_id' => '2',
+            'servicio_id' => '2',
             'unidad_id' => '1',
             'tipo' => '2',
             'responsabilidad_tipos_id' => '2',
@@ -28,7 +28,7 @@ class ResponsablesSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('responsables')->insert([
-            'host_id' => '2',
+            'servicio_id' => '2',
             'user_id' => '1',
             'tipo' => '1',
             'responsabilidad_tipos_id' => '2',
@@ -36,7 +36,7 @@ class ResponsablesSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('responsables')->insert([
-            'host_id' => '2',
+            'servicio_id' => '2',
             'user_id' => '1',
             'tipo' => '1',
             'responsabilidad_tipos_id' => '1',

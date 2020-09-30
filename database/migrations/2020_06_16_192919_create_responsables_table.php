@@ -15,7 +15,7 @@ class CreateResponsablesTable extends Migration
     {
         Schema::create('responsables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('host_id')->onUpdate('cascade')->constrained('hosts');
+            $table->foreignId('servicio_id')->onUpdate('cascade')->constrained('servicios');
             $table->integer('tipo');
             $table->foreignId('unidad_id')->nullable()->onUpdate('cascade')->constrained('unidads');
             $table->foreignId('user_id')->nullable()->onUpdate('cascade')->constrained('users');

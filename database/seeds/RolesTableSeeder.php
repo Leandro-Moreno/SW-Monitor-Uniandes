@@ -12,12 +12,20 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-      $user = new Rol();
-      $user->nombre="Administrador";
-      $user->save();
-
-      $user = new Rol();
-      $user->nombre="Usuario";
-      $user->save();
+      DB::table('roles')->insert([
+          'nombre' => 'Super Administrador',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      DB::table('roles')->insert([
+          'nombre' => 'Administrador',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      DB::table('roles')->insert([
+          'nombre' => 'Usuario',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
     }
 }

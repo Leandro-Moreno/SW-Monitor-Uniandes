@@ -3,11 +3,11 @@
 namespace App\Policies;
 
 use App\User;
-use App\Model\Casos;
+use App\Model\Alert;
 use App\Model\Host;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CasosPolicy
+class AlertPolicy
 {
     use HandlesAuthorization;
 
@@ -26,10 +26,10 @@ class CasosPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Casos  $casos
+     * @param  \App\Model\Alert  $alert
      * @return mixed
      */
-    public function view(?User $user, Casos $casos)
+    public function view(?User $user, Alert $alert)
     {
         return true;
     }
@@ -49,25 +49,25 @@ class CasosPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Casos  $casos
+     * @param  \App\Model\Alert  $alert
      * @return mixed
      */
-    public function update(User $user, Casos $caso)
+    public function update(User $user, Alert $alert)
     {
-      if($user->rol_id == 1 || $caso->usuarioSolicitante->id == $user->id){
+      // if($user->rol_id == 1 || $alert->usuarioSolicitante->id == $user->id){
         return true;
-      }
-        return false;
+      // }
+        // return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Casos  $casos
+     * @param  \App\Model\Alert  $alert
      * @return mixed
      */
-    public function delete(User $user, Casos $casos)
+    public function delete(User $user, Alert $alert)
     {
       return true;
         //
@@ -77,10 +77,10 @@ class CasosPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Casos  $casos
+     * @param  \App\Model\Alert  $alert
      * @return mixed
      */
-    public function restore(User $user, Casos $casos)
+    public function restore(User $user, Alert $alert)
     {
       return true;
         //
@@ -90,10 +90,10 @@ class CasosPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Model\Casos  $casos
+     * @param  \App\Model\Alert  $alert
      * @return mixed
      */
-    public function forceDelete(User $user, Casos $casos)
+    public function forceDelete(User $user, Alert $alert)
     {
         //
     }

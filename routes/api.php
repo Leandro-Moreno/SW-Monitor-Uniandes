@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/buscar', 'BuscarHost@index')->name('buscar');
+Route::get('/buscar', 'BuscarHost@index');

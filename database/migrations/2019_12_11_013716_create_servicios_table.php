@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHostsTable extends Migration
+class CreateServiciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateHostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hosts',
+        Schema::create('servicios',
             function (Blueprint $table) {
                 // nagiosxi
                 $table->id();
                 $table->integer('id_nagios')->nullable();
                 $table->longText('name')->nullable();
+                $table->foreignId('tipo_id')->nullable()->default(1)->constrained('servicio_type');
+                $table->string("imagen")->nullable();
+                $table->longText('description')->nullable();
                 $table->string('address')->nullable();
                 $table->string('tag')->nullable();
                 $table->dateTime("last_time_up")->nullable();
@@ -30,12 +33,12 @@ class CreateHostsTable extends Migration
 
                 $table->foreignId('manual_state')->nullable()->constrained('states');
                 $table->foreignId('current_state')->nullable()->default(1)->constrained('states');
-                $table->foreignId('tipo_id')->nullable()->default(1)->constrained('host_type');
-                $table->foreignId('servidor_bd')->nullable()->constrained('hosts');
-                $table->foreignId('servidor')->nullable()->constrained('hosts');
+                $table->foreignId('servidor_bd')->nullable()->constrained('servicios');
+                $table->foreignId('servidor')->nullable()->constrained('servicios');
+                $table->foreignId('responsable1')->nullable()->constrained('users');
+                $table->foreignId('responsable2')->nullable()->constrained('users');
 
                 $table->string("analytics")->nullable();
-                $table->longText('description')->nullable();
                 $table->dateTime("creacion")->nullable();
 
                 $table->timestamps();
@@ -49,6 +52,6 @@ class CreateHostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hosts');
+        Schema::dropIfExists('servicios');
     }
 }

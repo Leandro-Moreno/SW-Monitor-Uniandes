@@ -1,15 +1,15 @@
 header.masthead {
   position: relative;
   overflow: hidden;
-  padding-top: calc(7rem + 72px);
-  padding-bottom: 7rem;
+  padding-top: calc(5rem + 40px);
+  padding-bottom: 6rem;
   background: linear-gradient(0deg, $brand-secondary 0%, $brand-primary 100%);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
   background-size: cover;
   &-min{
-    padding-top: calc(2rem + 72px)!important;
+    padding-top: calc(2rem + 40px)!important;
     padding-bottom: 3rem!important;
   }
   .masthead-content {

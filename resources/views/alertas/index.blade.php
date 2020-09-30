@@ -1,10 +1,10 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Todos los casos abiertos')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Todas las alertas abiertos')])
 
 @section('content')
 <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Casos abiertos de Servicios Web Uniandes</h1>
+        <h1 class="masthead-heading mb-0">Alertas de Servicios Web Uniandes</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -19,16 +19,19 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-black">
-                <h4 class="card-title ">{{ __('Casos Servicios Web') }}</h4>
+                <h4 class="card-title ">{{ __('Alertas Servicios Web') }}</h4>
                 <div class="card-category row">
-                  <p class="col-md-8">
-                  {{ __('Casos abiertos') }}
+                  <p class="col-md-4">
+                  {{ __('Alertas') }}
                 </p>
-                <a rel="tooltip" class="btn btn-sm btn-danger" href="{{ route('caso.index') }}" data-original-title="{{ __('Todos los casos') }}" title="">
-                  {{ __('Todos') }}
+                <a rel="tooltip" class="btn btn-sm btn-danger" href="{{ route('alert.index') }}" data-original-title="{{ __('Todos las Alertas') }}" title="">
+                  {{ __('Alertas activas') }}
                 </a>
-                <a rel="tooltip" class="btn btn-sm btn-black" href="{{ route('caso-cerrado') }}" data-original-title="{{ __('Casos Cerrados') }}" title="">
-                  {{ __('Cerrados') }}
+                <a rel="tooltip" class="btn btn-sm btn-black" href="{{ route('alerta-semana') }}" data-original-title="{{ __('Alertas de la semana') }}" title="">
+                  {{ __('Alertas de la semana') }}
+                </a>
+                <a rel="tooltip" class="btn btn-sm btn-black" href="{{ route('alerta-mes') }}" data-original-title="{{ __('Alertas del mes') }}" title="">
+                  {{ __('Alertas del mes') }}
                 </a>
                 </div>
               </div>
@@ -60,32 +63,40 @@
                       <th>
                         {{ __('Fecha creación') }}
                       </th>
+                      <th>
+                        {{ __('Fecha Fin') }}
+                      </th>
                       <th class="text-right">
                         {{ __('Acciones') }}
                       </th>
                     </thead>
                     <tbody>
-                      @foreach($casos as $caso)
+                      @foreach($alertas as $alerta)
                         <tr>
                           <td>
-                            {{ $caso->host->name }}
+                            <a rel="tooltip" class="btn btn-link" href="{{route('servicio.show',$alerta->servicio)}}">
+                            {{ $alerta->servicio->name }}
+                          </a>
                           </td>
                           <td>
-                            {{ $caso->asunto }}
+                            {{ $alerta->asunto }}
                           </td>
                           <td>
-                            {{ $caso->descripcion }}
+                            {{ $alerta->descripcion }}
                           </td>
                           <td>
-                            {{ $caso->created_at }}
+                            {{ $alerta->fechaInicio }}
+                          </td>
+                          <td>
+                            {{ $alerta->fechaFin }}
                           </td>
                           <td class="td-actions text-right">
-                            <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('caso.show', $caso->id) }}" data-original-title="{{ __('Ver Detalle del caso') }}" title="">
+                            <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('alert.show', $alerta->id) }}" data-original-title="{{ __('Ver Detalle de la alerta') }}" title="">
                                 {{ __('Detalle') }}<i class="material-icons">search</i>
                                 <div class="ripple-container"></div>
                               </a>
-                              @can('update', $caso)
-                              <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('caso.edit', $caso->id) }}" data-original-title="{{ __('Modificar estado del caso') }}" title="">
+                              @can('update', $alerta)
+                              <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('alert.edit', $alerta->id) }}" data-original-title="{{ __('Modificar estado de la alerta') }}" title="">
                                   {{ __('Modificar') }}<i class="material-icons">search</i>
                                   <div class="ripple-container"></div>
                                 </a>
@@ -96,7 +107,7 @@
                     </tbody>
                   </table>
                 </div>
-                {{ $casos->links() }}
+                {{ $alertas->links() }}
               </div>
             </div>
         </div>

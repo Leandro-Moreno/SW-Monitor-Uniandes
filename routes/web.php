@@ -18,7 +18,7 @@ Route::get('auth/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('dash', function () {
     return view('dashboard');
 });
-Route::get('/', 'HostController@index')->name('hosts');
+Route::get('/', 'ServicioController@index')->name('servicios');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -29,25 +29,31 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 // Route::get('host/{host}', 'HostController@indexUnico')->name('host');
 
-Route::get('/sitios-web', 'HostController@sitiosWeb')->name('sitios-web');
-Route::get('/servidores', 'HostController@servidores')->name('servidores');
-Route::get('/bases-de-datos', 'HostController@database')->name('database');
+Route::get('/sitios-web', 'ServicioController@sitiosWeb')->name('sitios-web');
+Route::get('/servidores', 'ServicioController@servidores')->name('servidores');
+Route::get('/bases-de-datos', 'ServicioController@database')->name('database');
+Route::get('/servicios', 'ServicioController@soloServicio')->name('solo-servicios');
 
-Route::resource('host', 'HostController');
-Route::get('/caso/cerrado', 'CasosController@casoCerrado')->name('caso-cerrado');
-Route::resource('caso', 'CasosController')->names([
-    	'create' => 'caso.create',
-    	'show' => 'caso.show',
-    	'edit' => 'caso.edit',
-    	'update' => 'caso.update',
-		'destroy' => 'caso.destroy',
+Route::resource('servicio', 'ServicioController');
+
+Route::get('/alert/activas', 'AlertController@casoCerrado')->name('alerta-cerrada');
+Route::get('/alert/semana', 'AlertController@alertasSemana')->name('alerta-semana');
+Route::get('/alert/mes', 'AlertController@alertasMes')->name('alerta-mes');
+
+Route::resource('alert', 'AlertController')->names([
+    	'create' => 'alert.create',
+    	'show' => 'alert.show',
+    	'edit' => 'alert.edit',
+    	'update' => 'alert.update',
+		'destroy' => 'alert.destroy',
 	]);
-Route::group(['middleware' => 'auth'], function () {
-  Route::get('/host/{host}/agregar-caso','CasosController@agregarCasoHost')->name('agregarCasoHost');
-  Route::get('host/import','HostController@importCreate')->name('importCreate');
-  Route::post('host/import','HostController@import')->name('import');
-});
 
+
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/servicio/{servicio}/agregar-alerta','AlertController@agregarAlertaServicio')->name('agregarAlerta');
+  Route::get('/servicio/import','ServicioController@importCreate')->name('importCreate');
+  Route::post('/servicio/import','ServicioController@import')->name('import');
+});
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);

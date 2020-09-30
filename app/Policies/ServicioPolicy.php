@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\Model\Host;
+use App\Model\Servicio;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Auth;
 
-class HostPolicy
+class ServicioPolicy
 {
     use HandlesAuthorization;
 
@@ -26,10 +26,10 @@ class HostPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Host  $host
+     * @param  \App\Servicio  $servicio
      * @return mixed
      */
-    public function view(?User $user, Host $host)
+    public function view(?User $user, Servicio $servicio)
     {
         return true;
     }
@@ -52,10 +52,10 @@ class HostPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Host  $host
+     * @param  \App\Servicio  $servicio
      * @return boolean
      */
-    public function update(User $user, Host $host)
+    public function update(User $user, Servicio $servicio)
     {
       if($user->rol_id == 1){
         return true;
@@ -67,14 +67,14 @@ class HostPolicy
     *
     *
     */
-    // public function update(User $user, Host $host)
+    // public function update(User $user, Servicio $servicio)
     // {
     //   $user_hosts = $user->hosts;
-    //   $host_unidades = $host->unidades;
-    //   if($host_unidades->contains($user->unidad)  ||  $user_hosts->contains(  $host )){
-    //     $datos = $this->permisosHostUnidades( $host_unidades, $user );
-    //     if( $user_hosts->contains( $host ) ){
-    //       $datos_usuario_host = $this->permisosUsuarioHosts(  $user_hosts, $host  );
+    //   $servicio_unidades = $servicio->unidades;
+    //   if($servicio_unidades->contains($user->unidad)  ||  $user_hosts->contains(  $servicio )){
+    //     $datos = $this->permisosServicioUnidades( $servicio_unidades, $user );
+    //     if( $user_hosts->contains( $servicio ) ){
+    //       $datos_usuario_host = $this->permisosUsuarioServicios(  $user_hosts, $servicio  );
     //       $datos = $datos->push(  $datos_usuario_host );
     //     }
     //     return $datos->contains(function (  $resultado  ){
@@ -83,29 +83,29 @@ class HostPolicy
     //   }
     //   return false;
     // }
-    public function permisosHostUnidades( $unidades, $user){
+    public function permisosServicioUnidades( $unidades, $user){
       $unidades  = $unidades->unique();
       $unidades  = $unidades->filter(function($unidad) use ($user){
         return $unidad->id==$user->unidad->id;
       });
       return $unidades;
     }
-    public function permisosUsuarioHosts( $hosts, Host $host)
+    public function permisosUsuarioServicios( $servicios, Servicio $servicio)
     {
-      $hosts  = $hosts->unique();
-      $hosts  = $hosts->filter(function(  $value) use ($host){
-        return $value->id==$host->id;
+      $servicios  = $servicios->unique();
+      $servicios  = $servicios->filter(function(  $value) use ($servicio){
+        return $value->id==$servicio->id;
       });
-      return $hosts;
+      return $servicios;
     }
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Host  $host
+     * @param  \App\Servicio  $servicio
      * @return mixed
      */
-    public function delete(User $user, Host $host)
+    public function delete(User $user, Servicio $servicio)
     {
       if($user->rol_id > 1){
         return false;
@@ -117,10 +117,10 @@ class HostPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Host  $host
+     * @param  \App\Servicio  $servicio
      * @return mixed
      */
-    public function restore(User $user, Host $host)
+    public function restore(User $user, Servicio $servicio)
     {
       if($user->rol_id > 1){
         return false;
@@ -132,10 +132,10 @@ class HostPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Host  $host
+     * @param  \App\Servicio  $servicio
      * @return mixed
      */
-    public function forceDelete(User $user, Host $host)
+    public function forceDelete(User $user, Servicio $servicio)
     {
       if($user->rol_id > 1){
         return false;
