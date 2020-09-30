@@ -141,7 +141,7 @@ class ServicioController extends Controller
         if(isset($datos['tipo'])){
           $datos['tipo_id'] = $datos['tipo'];
         }
-        if ($datos['imagen']) {
+        if (array_key_exists("imagen",$datos)) {
             $imagen = $datos['imagen'];
             $nombreImagen = $request->file('imagen')->getClientOriginalName();
             $nombreImagen = $servicio->id."-".\Str::random(3)."-".$nombreImagen;
@@ -222,7 +222,7 @@ class ServicioController extends Controller
       if(isset($datos['tipo'])){
         $datos['tipo_id'] = $datos['tipo'];
       }
-      if ($datos['imagen']) {
+      if (array_key_exists("imagen",$datos)) {
           $imagen = $datos['imagen'];
           $nombreImagen = $request->file('imagen')->getClientOriginalName();
           $nombreImagen = \Str::random(3)."-".$nombreImagen;

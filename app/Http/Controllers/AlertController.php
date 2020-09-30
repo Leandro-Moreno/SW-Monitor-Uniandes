@@ -102,13 +102,10 @@ class AlertController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        // dd($input);
         $caso = new Alert();
         $caso->fill($input);
         $caso->creador = Auth::id();
-        // $caso->create($input);
         $caso->save();
-        // dd($caso);
         return redirect()->route('servicio.show',$caso->servicio)->withStatus(__('Alerta creada con éxito.'));
 
     }
