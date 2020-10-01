@@ -28,7 +28,7 @@ class ServicioRequest extends FormRequest
     {
         return [
             'name' => [
-                'required', 'string', Rule::unique((new Servicio)->getTable())->ignore($this->route()->servicio->name ?? null)
+                'required', 'string', 'exists:servicios,name',
             ]
         ];
     }
