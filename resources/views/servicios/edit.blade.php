@@ -136,7 +136,7 @@
                   </div>
                 </div>
             @else
-            <input type="hidden" value="5" name="tipo">
+            <input type="hidden" value="{{$typos->first()->id}}" name="tipo">
             @endif
 
             <div class="row">
