@@ -57,35 +57,16 @@ class LoginController extends Controller
      public function handleProviderCallback()
      {
          $user = Socialite::driver('microsoft')->user();
-         dd($user);
-         $givenName  =  explode(" ", $user->user["givenName"]);
-         $surname  =  explode(" ", $user->user["surname"]);
-         $jobTitle  = $user->user["jobTitle"];
-         $usuario = User::where('email',$user->email)
-                           ->first();
+         $givenName  =  $user->user["displayName"];
+         $email = $user->user["userPrincipalName"];
+         $usuario = User::where('email',$email)->first();
          if (!$usuario) {
            session()->flash('message', 'Usuario no existe');
            return redirect('login');
          }
          $usuario->update(array(
-                             'name' => $givenName[0],
-                             'name2' => $givenName[1],
-                             'apellido' => $surname[0],
-                             'apellido2' => $surname[1],
-                             'cargo' => $jobTitle,
+                             'name' => $givenName,
                            ));
-         $user = User::where('email',$user->email)->first();
-         if ($user) {
-           Auth::login($user);
-         }
-         else{
-           $usuario->create(array(
-                               'name' => $givenName[0],
-                               'name2' => $givenName[1],
-                               'apellido' => $surname[0],
-                               'apellido2' => $surname[1],
-                               'cargo' => $jobTitle,
-                             ));
            Auth::login($usuario);
          }
          return redirect($this->redirectTo);
