@@ -47,7 +47,7 @@ class LoginController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver('azure')->redirect();
+        return Socialite::driver('microsoft')->redirect();
     }
     /**
      * Obtain the user information from GitHub.
@@ -56,7 +56,7 @@ class LoginController extends Controller
      */
      public function handleProviderCallback()
      {
-         $user = Socialite::driver('azure')->user();
+         $user = Socialite::driver('microsoft')->user();
          $givenName  =  explode(" ", $user->user["givenName"]);
          $surname  =  explode(" ", $user->user["surname"]);
          $jobTitle  = $user->user["jobTitle"];
