@@ -116,6 +116,7 @@
                   </div>
                 </div>
             </div>
+            @if($typos->count()< 1)
             <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Tipo de Servicio') }}</label>
                   <div class="col-sm-7">
@@ -134,6 +135,10 @@
                     </div>
                   </div>
                 </div>
+            @else
+            <input type="hidden" value="5" name="tipo">
+            @endif
+
             <div class="row">
                     <label class="col-sm-2 col-form-label" >{{ __('Imagen Servicio') }}</label>
                       <div class="col-sm-7">

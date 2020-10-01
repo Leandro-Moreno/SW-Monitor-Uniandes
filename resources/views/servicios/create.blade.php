@@ -90,6 +90,7 @@
                                     </div>
                                   </div>
                                 </div>
+                                @if($typos->count()< 1)
                                 <div class="row">
                                   <label class="col-sm-2 col-form-label" for="input-tipo">{{ __('Tipo de Servicio') }}</label>
                                   <div class="col-sm-7">
@@ -103,6 +104,9 @@
                                     </div>
                                   </div>
                                 </div>
+                                @else
+                                <input type="hidden" value="5" name="tipo">
+                                @endif
                             </div>
                             <div class="card-footer ml-auto mr-auto">
                               <button type="submit" class="btn btn-primary">{{ __('Crear Servicio') }}</button>
