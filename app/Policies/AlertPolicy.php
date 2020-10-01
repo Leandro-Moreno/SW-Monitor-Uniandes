@@ -42,7 +42,10 @@ class AlertPolicy
      */
     public function create(User $user)
     {
+      if($user->isAdmin()){
         return true;
+      }
+      return false;
     }
 
     /**
@@ -54,10 +57,10 @@ class AlertPolicy
      */
     public function update(User $user, Alert $alert)
     {
-      // if($user->rol_id == 1 || $alert->usuarioSolicitante->id == $user->id){
+      if($user->isAdmin()){
         return true;
-      // }
-        // return false;
+      }
+      return false;
     }
 
     /**

@@ -56,6 +56,6 @@ class User extends Authenticatable
     **/
     public function isAdmin()
     {
-      return $this->role_id < 2;
+      return $this->role_id <= 2;
     }
 }

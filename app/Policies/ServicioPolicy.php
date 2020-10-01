@@ -42,10 +42,10 @@ class ServicioPolicy
      */
     public function create(User $user)
     {
-      if($user->isAdmin() > 1){
-        return false;
+      if($user->isAdmin()){
+        return true;
       }
-      return true;
+      return false;
     }
 
     /**
@@ -57,7 +57,7 @@ class ServicioPolicy
      */
     public function update(User $user, Servicio $servicio)
     {
-      if($user->rol_id == 1){
+      if($user->isAdmin()){
         return true;
       }
       return false;
