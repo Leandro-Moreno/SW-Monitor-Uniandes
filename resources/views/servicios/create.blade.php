@@ -86,7 +86,7 @@
                                   <label class="col-sm-2 col-form-label" for="input-imagen">{{ __('Imagen') }}</label>
                                   <div class="col-sm-7">
                                     <div class="form-control-file">
-                                      <input class="form-control-file" name="imagen" id="input-imagen" type="file" required value="{{ old('imagen') }}"/>
+                                      <input class="form-control-file" name="imagen" id="input-imagen" type="file" value="{{ old('imagen') }}"/>
                                     </div>
                                   </div>
                                 </div>

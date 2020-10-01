@@ -18,7 +18,7 @@ class CreateServiciosTable extends Migration
                 // nagiosxi
                 $table->id();
                 $table->integer('id_nagios')->nullable();
-                $table->longText('name')->nullable();
+                $table->string('name',255)->unique();
                 $table->foreignId('tipo_id')->nullable()->default(1)->constrained('servicio_type');
                 $table->string("imagen")->nullable();
                 $table->longText('description')->nullable();

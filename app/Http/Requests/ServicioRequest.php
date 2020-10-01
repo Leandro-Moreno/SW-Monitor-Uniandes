@@ -3,11 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Rules\ImagenUnique;
-use App\Model\Host;
+use App\Model\Servicio;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class HostRequest extends FormRequest
+class ServicioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +28,14 @@ class HostRequest extends FormRequest
     {
         return [
             'name' => [
-                'required'
+                'required', 'string', Rule::unique((new Servicio)->getTable())->ignore($this->route()->servicio->name ?? null)
             ]
         ];
+    }
+    public function messages()
+    {
+       return [
+           'name.unique' => 'El nombre de servicio ya esta creado',
+       ];
     }
 }

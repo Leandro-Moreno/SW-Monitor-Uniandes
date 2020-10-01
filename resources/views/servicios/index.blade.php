@@ -40,16 +40,23 @@
 
               <p class="card-category"></p>
             </div>
-            <div class="card-body ">
-              @isset($servicio->id_nagios)
-                @if ( $servicio->current_state==1 )
-                <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($servicio["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
-                @else
-                <p>Host caido hace {{ Carbon\Carbon::parse($servicio["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
+            <div class="card-body row">
+              <div class="col-sm-3">
+                @if(isset($servicio->imagen))
+                  <img width="100%" src="{{ asset('storage/servicios-300/'.$servicio->imagen) }}"  alt="{{$servicio->imagen}}">
                 @endif
-              @else
-                <p>{{$servicio->description}}</p>
-              @endisset
+              </div>
+              <div class="col-sm-9">
+                @isset($servicio->id_nagios)
+                  @if ( $servicio->current_state==1 )
+                  <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($servicio["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
+                  @else
+                  <p>Host caido hace {{ Carbon\Carbon::parse($servicio["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
+                  @endif
+                @else
+                  <p>{{$servicio->description}}</p>
+                @endisset
+              </div>
           </div>
         </div>
       </a>

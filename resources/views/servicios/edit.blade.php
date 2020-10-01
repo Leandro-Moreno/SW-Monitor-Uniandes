@@ -97,7 +97,7 @@
               </div>
             </div>
             <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Estado Manual') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Estado') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('manual_state') ? ' has-danger' : '' }}">
 

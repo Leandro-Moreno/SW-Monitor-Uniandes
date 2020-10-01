@@ -133,7 +133,7 @@ class ServicioController extends Controller
      * @param  \App\Model\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Servicio $servicio)
+    public function update(ServicioRequest $request, Servicio $servicio)
     {
         $datos = $request->all();
         // dd($datos);
@@ -142,11 +142,13 @@ class ServicioController extends Controller
           $datos['tipo_id'] = $datos['tipo'];
         }
         if (array_key_exists("imagen",$datos)) {
+            $this->validarCarpetaImagenes();
             $imagen = $datos['imagen'];
             $nombreImagen = $request->file('imagen')->getClientOriginalName();
             $nombreImagen = $servicio->id."-".\Str::random(3)."-".$nombreImagen;
             $datos['imagen'] = $nombreImagen;
-            Storage::putFileAs('public/servicios', new File($imagen), $nombreImagen);
+            $this->crearImagenReducida( $request, $nombreImagen );
+            $this->crearImagenNormal($request, $nombreImagen);
         }
         $servicio->update($datos);
         return redirect()->route('servicio.show',$servicio)->withStatus(__('Servicio actualizado con éxito.'));
@@ -215,7 +217,7 @@ class ServicioController extends Controller
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function store(Request $request)
+    public function store(ServicioRequest $request)
     {
       $datos = $request->all();
       // dd($datos);
@@ -227,7 +229,8 @@ class ServicioController extends Controller
           $nombreImagen = $request->file('imagen')->getClientOriginalName();
           $nombreImagen = \Str::random(3)."-".$nombreImagen;
           $datos['imagen'] = $nombreImagen;
-          $a =Storage::putFileAs('public/servicios', new File($imagen), $nombreImagen);
+          $this->crearImagenReducida( $request, $nombreImagen );
+          $this->crearImagenNormal($request, $nombreImagen);
       }
       $servicio = Servicio::create($datos);
       return redirect()->route('servicio.show',$servicio)->withStatus(__('Servicio creado con éxito.'));
