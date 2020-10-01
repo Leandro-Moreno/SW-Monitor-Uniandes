@@ -133,7 +133,7 @@ class ServicioController extends Controller
      * @param  \App\Model\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function update(ServicioRequest $request, Servicio $servicio)
+    public function update(Request $request, Servicio $servicio)
     {
         $datos = $request->all();
         // dd($datos);
@@ -217,7 +217,7 @@ class ServicioController extends Controller
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function store(ServicioRequest $request)
+    public function store(Request $request)
     {
       $datos = $request->all();
       // dd($datos);
