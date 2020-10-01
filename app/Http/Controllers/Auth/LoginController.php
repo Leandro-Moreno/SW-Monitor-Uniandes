@@ -47,7 +47,9 @@ class LoginController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver('microsoft')->redirect();
+        return Socialite::driver('microsoft')
+                        ->with(['tenant' => config('app.tenant')])
+                        ->redirect();
     }
     /**
      * Obtain the user information from GitHub.
