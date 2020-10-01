@@ -125,6 +125,8 @@ return [
 
     'nagios_api' => env('NAGIOS_API'),
 
+    'tenant' => env('TENANT'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -164,7 +166,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        \SocialiteProviders\Manager\ServiceProvider::class, 
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Package Service Providers...
