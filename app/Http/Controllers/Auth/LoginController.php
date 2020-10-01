@@ -67,8 +67,7 @@ class LoginController extends Controller
          $usuario->update(array(
                              'name' => $givenName,
                            ));
-           Auth::login($usuario);
-         }
+         Auth::login($usuario);
          return redirect($this->redirectTo);
      }
 }
