@@ -48,7 +48,7 @@ class LoginController extends Controller
     public function redirectToProvider()
     {
         return Socialite::driver('microsoft')
-                        ->with(['tenant' => config('app.tenant')])
+                        ->setTenantId(env('tenant'))
                         ->redirect();
     }
     /**
