@@ -31,6 +31,10 @@ class AlertController extends Controller
         $hoy = now();
         $fin_semana = now()->endOfWeek();
         return Alert::whereBetween('fechaInicio', [$hoy, $fin_semana])
+                    ->orWhere(function($query) use($hoy, $fin_semana){
+                      $query->where('fechaInicio','<',$hoy)
+                            ->where('fechaFin','>',$fin_semana);
+                    })
                     ->orWhereBetween('fechaFin', [$hoy, $fin_semana])
                     ->with('servicio')
                     ->orderBy('created_at', 'ASC')
@@ -59,6 +63,10 @@ class AlertController extends Controller
         $fin_semana = now()->endOfWeek();
         return Alert::whereBetween('fechaInicio', [$inicio_semana, $fin_semana])
                     ->orWhereBetween('fechaFin', [$inicio_semana, $fin_semana])
+                    ->orWhere(function($query) use($inicio_semana, $fin_semana){
+                      $query->where('fechaInicio','<',$inicio_semana)
+                            ->where('fechaFin','>',$fin_semana);
+                    })
                     ->with('servicio')
                     ->orderBy('created_at', 'ASC')
                     ->paginate(80);
