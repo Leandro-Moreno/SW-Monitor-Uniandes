@@ -57,7 +57,7 @@
             <button type="submit" class="btn btn-outline-primary btn-lg">{{ __('Ingresar') }}</button>
 
             <a href="{{ url('/auth') }}" class="btn btn-outline-success btn-lg">
-              <img src="{{asset('excelencia/iconoUniandes.png') }}" />
+              <img src="{{asset('material/img/iconoUniandes.png') }}" />
             </a>
           </div>
         </div>
