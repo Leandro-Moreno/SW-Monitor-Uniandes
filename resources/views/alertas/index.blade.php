@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Todas las alertas abiertos')])
 
 @section('content')
-<header class="masthead text-center text-white">
+<header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
         <h1 class="masthead-heading mb-0">Alertas de Servicios Web Uniandes</h1>
