@@ -28,9 +28,9 @@ class AlertController extends Controller
     public function index()
     {
       $currentPage = request()->get('page',1);
-      $alertas = cache()->remember('alertas'.$currentPage,1, function(){
-        $hoy = today();
-        $fin_semana = today()->endOfWeek();
+      $hoy = today();
+      $fin_semana = today()->endOfWeek();
+      $alertas = cache()->remember('alertas'.$currentPage,1, function() use ($hoy, $fin_semana){
         return Alert::whereBetween('fechaInicio', [$hoy, $fin_semana])
                     ->orWhereBetween('fechaFin', [$hoy, $fin_semana])
                     ->orWhere(function($query) use($hoy, $fin_semana){
@@ -41,7 +41,7 @@ class AlertController extends Controller
                     ->orderBy('created_at', 'ASC')
                     ->paginate(80);
       });
-      return view('alertas.index', ['alertas' => $alertas]);
+      return view('alertas.index', ['alertas' => $alertas,'antes' => $hoy, 'despues' => $fin_semana]);
     }
     public function alertasSemana()
     {

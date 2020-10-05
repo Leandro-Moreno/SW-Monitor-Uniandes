@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
                 $table->bigIncrements('id');
                 $table->foreignId('rol_id')->default(2)->constrained('roles');
                 $table->string('name');
-                $table->string('surname');
                 $table->string('email')->unique();
                 $table->timestamp('email_verified_at')->nullable();
                 $table->biginteger('unidad_id')->unsigned()->nullable();

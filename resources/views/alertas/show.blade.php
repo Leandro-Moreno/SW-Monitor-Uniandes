@@ -59,7 +59,7 @@
                                 <div class="col-md-4 col-xl-4">
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Usuario creador de la Alerta') }}</label>
                                     <div class="col-md-12  col-xl-12">
-                                        {{$alerta->usuarioSolicitante->name}} {{$alerta->usuarioSolicitante->surname}} ({{$alerta->usuarioSolicitante->email}})
+                                        {{$alerta->usuarioSolicitante->name}} ({{$alerta->usuarioSolicitante->email}})
                                     </div>
                                 </div>
                               </div>
