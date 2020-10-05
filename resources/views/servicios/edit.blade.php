@@ -105,7 +105,6 @@
                         @isset($servicio->manual_state)
                         <option value="{{ $servicio->estadoMonitorManual->name}}">{{$servicio->estadoMonitorManual->name}}</option>
                         @endisset
-                        <option value="">Vacio</option>
                         @foreach($states as $state )
                         <option value="{{ $state->id }}">{{ $state->name }}</option>
                         @endforeach

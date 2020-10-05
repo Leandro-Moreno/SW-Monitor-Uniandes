@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Carbon\Carbon;
 use App\Model\Alert;
 use App\Model\Servicio;
 use Illuminate\Http\Request;
@@ -28,52 +29,58 @@ class AlertController extends Controller
     {
       $currentPage = request()->get('page',1);
       $alertas = cache()->remember('alertas'.$currentPage,1, function(){
-        $hoy = now();
-        $fin_semana = now()->endOfWeek();
+        $hoy = today();
+        $fin_semana = today()->endOfWeek();
         return Alert::whereBetween('fechaInicio', [$hoy, $fin_semana])
+                    ->orWhereBetween('fechaFin', [$hoy, $fin_semana])
                     ->orWhere(function($query) use($hoy, $fin_semana){
                       $query->where('fechaInicio','<',$hoy)
                             ->where('fechaFin','>',$fin_semana);
                     })
-                    ->orWhereBetween('fechaFin', [$hoy, $fin_semana])
                     ->with('servicio')
                     ->orderBy('created_at', 'ASC')
                     ->paginate(80);
-      });
-      return view('alertas.index', ['alertas' => $alertas]);
-    }
-    public function casoCerrado()
-    {
-      $currentPage = request()->get('page',1);
-      $alertas = cache()->remember('alertas-activas'.$currentPage, 60,function(){
-        $fecha_actual = now();
-        return Alert::whereDate('fechaInicio', '<', $fecha_actual)
-        ->whereDate('fechaFin', '>=', $fecha_actual)
-        ->with('host')
-        ->orderBy('created_at', 'ASC')
-        ->paginate(80);
       });
       return view('alertas.index', ['alertas' => $alertas]);
     }
     public function alertasSemana()
     {
       $currentPage = request()->get('page',1);
-      $alertas = cache()->remember('alertas-semana'.$currentPage,1, function(){
-        $inicio_semana = now()->startOfWeek();
-        $fin_semana = now()->endOfWeek();
-        return Alert::whereBetween('fechaInicio', [$inicio_semana, $fin_semana])
-                    ->orWhereBetween('fechaFin', [$inicio_semana, $fin_semana])
-                    ->orWhere(function($query) use($inicio_semana, $fin_semana){
-                      $query->where('fechaInicio','<',$inicio_semana)
-                            ->where('fechaFin','>',$fin_semana);
+      $dias_antes = now()->sub(7,'day');
+      $mañana = now()->tomorrow();
+      $alertas = cache()->remember('alertas-semana'.$currentPage,60*5, function() use ($dias_antes, $mañana){
+        return Alert::whereBetween('fechaInicio', [$dias_antes, $mañana])
+                    ->orWhereBetween('fechaFin', [$dias_antes, $mañana])
+                    ->orWhere(function($query) use($dias_antes, $mañana){
+                      $query->where('fechaInicio','<',$dias_antes)
+                            ->where('fechaFin','>',$mañana);
                     })
                     ->with('servicio')
                     ->orderBy('created_at', 'ASC')
                     ->paginate(80);
       });
-      return view('alertas.index', ['alertas' => $alertas]);
+      return view('alertas.index', ['alertas' => $alertas,'antes' => $dias_antes, 'despues' => $mañana]);
     }
+    /*alertasUltimos30Dias*/
     public function alertasMes()
+    {
+      $currentPage = request()->get('page',1);
+      $dias_antes = today()->sub(30,'day');
+      $mañana = today();
+      $alertas = cache()->remember('alertas-semana'.$currentPage,60*5, function() use ($dias_antes, $mañana){
+        return Alert::whereBetween('fechaInicio', [$dias_antes, $mañana])
+                    ->orWhereBetween('fechaFin', [$dias_antes, $mañana])
+                    ->orWhere(function($query) use($dias_antes, $mañana){
+                      $query->where('fechaInicio','<',$dias_antes)
+                            ->where('fechaFin','>',$mañana);
+                    })
+                    ->with('servicio')
+                    ->orderBy('created_at', 'ASC')
+                    ->paginate(80);
+      });
+      return view('alertas.index', ['alertas' => $alertas,'antes' => $dias_antes, 'despues' => $mañana]);
+    }
+    public function alertasMes2()
     {
       $currentPage = request()->get('page',1);
       $alertas = cache()->remember('alertas-semana'.$currentPage,1, function(){

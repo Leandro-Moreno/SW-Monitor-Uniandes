@@ -34,6 +34,8 @@
                   {{ __('Alertas del mes') }}
                 </a>
                 </div>
+                {{__('Alertas desde: ')}}{{$antes->format('Y-m-d')}}
+                {{__('hasta: ')}}{{$despues->format('Y-m-d')}}
               </div>
               <div class="card-body">
                 @if (session('status'))
