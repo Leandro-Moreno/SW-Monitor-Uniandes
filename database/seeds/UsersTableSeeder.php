@@ -45,17 +45,7 @@ class UsersTableSeeder extends Seeder
           'created_at' => now(),
           'updated_at' => now()
       ]);
-      /**/
-      DB::table('users')->insert([
-          'name' => 'Adriana Hernandez',
-          'email' => 'adherna@uniandes.edu.co',
-          'email_verified_at' => now(),
-          'unidad_id' => '1',
-          'rol_id' => '2',
-          'password' => 'a',
-          'created_at' => now(),
-          'updated_at' => now()
-      ]);
+
       DB::table('users')->insert([
           'name' => 'Ana Carrillo',
           'email' => 'am.carrillo@uniandes.edu.co',
@@ -118,17 +108,7 @@ class UsersTableSeeder extends Seeder
       ]);
       DB::table('users')->insert([
           'name' => 'Daiana Paez',
-          'email' => 'adherna@uniandes.edu.co',
-          'email_verified_at' => now(),
-          'unidad_id' => '1',
-          'rol_id' => '2',
-          'password' => 'a',
-          'created_at' => now(),
-          'updated_at' => now()
-      ]);
-      DB::table('users')->insert([
-          'name' => 'Daiana Paez',
-          'email' => 'adherna@uniandes.edu.co',
+          'email' => 'dr.paez@uniandes.edu.co',
           'email_verified_at' => now(),
           'unidad_id' => '1',
           'rol_id' => '2',
