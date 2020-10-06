@@ -97,6 +97,17 @@ class Servicio extends Model implements Searchable
     {
         return $this->belongsTo('App\Model\State', 'manual_state');
     }
+    public function claseEstadoMonitor()
+    {
+      dd($this->manual_state);
+      if ($this->manual_state != 0)
+      {
+
+      }
+      else {
+        // code...
+      }
+    }
 
     /**
      * @param string $name

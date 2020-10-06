@@ -42,7 +42,7 @@
                                     </div>
                                   </div>
                                   <div class="col-md-4 text-right">
-                                      <a href="{{ route('servicio.show', $alerta->servicio) }}" class="btn btn-sm btn-primary">{{ __('Regresar a información del host') }}</a>
+                                      <a href="{{ route('servicio.show', $alerta->servicio) }}" class="btn btn-sm btn-primary">{{ __('Regresar a información del servicio') }}</a>
                                   </div>
                               </div>
                               @if ($errors->any())

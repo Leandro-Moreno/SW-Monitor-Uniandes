@@ -49,6 +49,7 @@ class ServicioController extends Controller
                     ->orderBy('last_time_down', 'DESC')
                     ->paginate(80);
         });
+        // $servicios->first()->claseEstadoMonitor();
         return view('servicios.index', ['servicios' => $servicios]);
     }
 

@@ -18,10 +18,9 @@
 <div class="container" style="height: auto;">
   <div class="row justify-content-center">
 
-
-        <div class="card col-lg-4" style="color:{{ ($servicio["current_state"] == 1)? 'green' : 'red'}}">
-          <a href="{{$servicio["address"]}}" style="color:{{ ($servicio["current_state"] == 1)? 'green' : 'red'}}" target="_blank" >
-          <h3>{{$servicio["name"] }} <span class="material-icons">
+        <div class="card col-lg-4">
+          <a href="{{$servicio["address"]}}" target="_blank" >
+          <h3 class="card-header card-header-{{ isset($servicio->estadoMonitorManual)?$servicio->estadoMonitorManual->class:$servicio->estadoMonitor->class}}">{{$servicio["name"] }} <span class="material-icons">
           {{ ($servicio["current_state"] == 1)? 'check_circle' : 'error'}}
           </span></h3>
           @can('update', $servicio)

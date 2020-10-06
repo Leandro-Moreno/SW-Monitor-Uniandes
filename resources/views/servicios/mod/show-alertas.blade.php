@@ -4,7 +4,7 @@
         <div class="card-header card-header-black">
           <h3 class="card-title">Alertas del Servicio</h3>
           @can('create', 'App\Model\Alert')
-            <p class="card-category">Este servicio web tiene x alertas activos.</p><a class="btn btn-outline-warning" href="{{ route('agregarAlerta', $servicio) }}">Crear Alerta</a>
+            <p class="card-category">Este servicio web tiene x alertas activas.</p><a class="btn btn-outline-warning" href="{{ route('agregarAlerta', $servicio) }}">Crear Alerta</a>
           @endcan
         </div>
         <div class="card-body row">
@@ -13,7 +13,7 @@
             <a href="{{route('alert.show', $alerta )}}">
             <div class="card-header card-header-success">
               <h3 class="card-title">{{$alerta->asunto }} </h3>
-              <p class="card-category">Caso #{{$alerta->id}}. Creado el {{$alerta->created_at}}</p>
+              <p class="card-category">Alerta #{{$alerta->id}}. Creada el {{$alerta->created_at}}</p>
             </div>
             <div class="card-body ">
               {{Str::of($alerta->descripcion)->words(8, ' ...')}}

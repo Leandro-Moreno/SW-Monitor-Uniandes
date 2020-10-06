@@ -64,7 +64,7 @@
               </div>
             </div>
             <div class="row">
-              <label class="col-sm-2 col-form-label">{{ __('name') }}</label>
+              <label class="col-sm-2 col-form-label">{{ __('Nombre') }}</label>
               <div class="col-sm-7">
                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                   <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('name') }}" value="{{ old('name', $servicio->name) }}" required="true" aria-required="true"/>
@@ -75,7 +75,7 @@
               </div>
             </div>
             <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('descripcion') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Descripción') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                        <textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="input-description" type="" placeholder="{{ __('Descripción') }}" value="{{ old('description', $servicio->description) }}" rows="3">{{ old('description', $servicio->description) }}</textarea>

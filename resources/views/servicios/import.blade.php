@@ -12,7 +12,7 @@
     <div class="bg-circle-2 bg-circle"></div>
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
-<a href="{{ route('hosts') }}" class="btn btn-sm btn-secondary">{{ __('Volver a la lista') }}</a>
+<a href="{{ route('servicio') }}" class="btn btn-sm btn-secondary">{{ __('Volver a la lista') }}</a>
   </header>
 
 

@@ -27,10 +27,10 @@
             @if ( $servicio["current_state"]==1 )
               <p>Funcionando correctamente desde {{ Carbon\Carbon::parse($servicio["last_time_down"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
             @else
-              <p>Host caido hace {{ Carbon\Carbon::parse($servicio["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
+              <p>Servicio caido hace {{ Carbon\Carbon::parse($servicio["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
             @endif
           @else
-            <p>Este host no es monitoreado</p>
+            <p>Este Servicio no es monitoreado</p>
           @endif
       </div>
     </div>

@@ -11462,7 +11462,7 @@ fieldset[disabled][disabled] .btn-group-raised .btn,
 }
 
 .form-group.is-focused .form-check .form-check-label {
-  color: rgba(0,0,0, 0.26);
+  color: rgba($brand-primary, 1);
 }
 
 .form-group.is-focused .form-check .form-check-label:hover,
@@ -11471,7 +11471,7 @@ fieldset[disabled][disabled] .btn-group-raised .btn,
 }
 
 fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
-  color: rgba(0,0,0, 0.26);
+  color: rgba($brand-primary, 1);
 }
 
 .form-check .form-check-input {
@@ -11644,7 +11644,7 @@ fieldset[disabled] .form-check .form-check-input,
 }
 
 .form-group.is-focused .form-check .form-check-label {
-  color: rgba(0,0,0, 0.26);
+  color: rgba($brand-primary, 1);
 }
 
 .form-group.is-focused .form-check .form-check-label:hover,
@@ -11653,7 +11653,7 @@ fieldset[disabled] .form-check .form-check-input,
 }
 
 fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
-  color: rgba(0,0,0, 0.26);
+  color: rgba($brand-primary, 1);
 }
 
 .form-check .form-check-label span {
@@ -14895,11 +14895,11 @@ a[aria-expanded=true] .caret,
 
 .togglebutton label {
   cursor: pointer;
-  color: rgba(0,0,0, 0.26);
+  color: rgba($brand-primary, 1);
 }
 
 .form-group.is-focused .togglebutton label {
-  color: rgba(0,0,0, 0.26);
+  color: rgba($brand-primary, 1);
 }
 
 .form-group.is-focused .togglebutton label:hover,
@@ -14908,7 +14908,7 @@ a[aria-expanded=true] .caret,
 }
 
 fieldset[disabled] .form-group.is-focused .togglebutton label {
-  color: rgba(0,0,0, 0.26);
+  color: rgba($brand-primary, 1);
 }
 
 .togglebutton label input[type=checkbox] {
@@ -16998,7 +16998,7 @@ a .material-icons {
 label {
   font-size: 14px;
   line-height: 1.42857;
-  color: #AAAAAA;
+  color: #f32c1e;
   font-weight: 400;
 }
 
