@@ -103,7 +103,7 @@
 
                       <select class="form-control{{ $errors->has('manual_state') ? ' is-invalid' : '' }}" id="input-manual_state" name="manual_state">
                         @isset($servicio->manual_state)
-                        <option value="{{ $servicio->estadoMonitorManual->name}}">{{$servicio->estadoMonitorManual->name}}</option>
+                        <option value="{{ $servicio->estadoMonitorManual->id}}">{{$servicio->estadoMonitorManual->name}}</option>
                         @endisset
                         @foreach($states as $state )
                         <option value="{{ $state->id }}">{{ $state->name }}</option>
