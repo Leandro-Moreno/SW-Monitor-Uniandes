@@ -252,4 +252,13 @@ class ServicioController extends Controller
         $typos = ServicioType::where('habilitado', 1)->get();
         return view('servicios.create', ['typos' => $typos]);
     }
+    public function destroy(Servicio $servicio)
+    {
+      $alertas = $servicio->alertas;
+      foreach ($alertas as $alerta) {
+        $alerta->delete();
+      }
+      $servicio->delete();
+      return redirect()->route('servicio.index')->with('success', 'Servicio eliminado con exito');
+    }
 }

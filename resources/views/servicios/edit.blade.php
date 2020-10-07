@@ -11,6 +11,11 @@
     <div class="bg-circle-2 bg-circle"></div>
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
+    <form method="post" action="{{ route('servicio.destroy', $servicio) }}">
+      @csrf
+      @method('DELETE')
+      <button type="submit" class="btn btn-primary"><span class="material-icons">warning</span> {{ __('Eliminar') }} {{$servicio["name"] }}</button>
+    </form>
   </header>
 
   <section>
@@ -28,7 +33,7 @@
           <div class="card-body ">
             <div class="row">
               <div class="col-md-12 text-right">
-                  <a href="{{ route('servicio.show', $servicio->name) }}" class="btn btn-sm btn-primary">{{ __('Volver') }}</a>
+                <a href="{{ route('servicio.show', $servicio->name) }}" class="btn btn-sm btn-primary">{{ __('Volver') }}</a>
               </div>
             </div>
             @if ($errors->any())

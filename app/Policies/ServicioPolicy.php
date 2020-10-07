@@ -107,10 +107,10 @@ class ServicioPolicy
      */
     public function delete(User $user, Servicio $servicio)
     {
-      if($user->rol_id > 1){
-        return false;
+      if($user->isAdmin()){
+        return true;
       }
-      return true;
+      return false;
     }
 
     /**
@@ -122,10 +122,10 @@ class ServicioPolicy
      */
     public function restore(User $user, Servicio $servicio)
     {
-      if($user->rol_id > 1){
-        return false;
+      if($user->isAdmin()){
+        return true;
       }
-      return true;
+      return false;
     }
 
     /**
@@ -137,9 +137,9 @@ class ServicioPolicy
      */
     public function forceDelete(User $user, Servicio $servicio)
     {
-      if($user->rol_id > 1){
-        return false;
+      if($user->isAdmin()){
+        return true;
       }
-      return true;
+      return false;
     }
 }
