@@ -17,10 +17,28 @@ mix.js('resources/js/app.js', 'public/js')
         autoprefixer: {
             options: {
                 browsers: [
-                    'last 2 versions',
+                    'last 10 versions',
                 ]
             }
         }
    })
     .version();
+mix.babel(['public/material/js/core/popper.min.js',
+'public/material/js/plugins/perfect-scrollbar.jquery.min.js',
+'public/material/js/core/popper.min.js',
+'public/material/js/plugins/moment.min.js',
+'public/material/js/plugins/jquery.validate.min.js',
+'public/material/js/plugins/bootstrap-selectpicker.js',
+'public/material/js/plugins/bootstrap-datetimepicker.min.js',
+'public/material/js/plugins/jquery.dataTables.min.js',
+'public/material/js/plugins/bootstrap-tagsinput.js',
+'public/material/js/plugins/jasny-bootstrap.min.js',
+'public/material/js/plugins/fullcalendar.min.js',
+'public/material/js/plugins/jquery-jvectormap.js',
+'public/material/js/plugins/nouislider.min.js',
+'public/material/js/plugins/arrive.min.js',
+'public/material/js/plugins/chartist.min.js',
+'public/material/js/plugins/bootstrap-notify.js',
+'public/material/js/plugins/sweetalert2.js'],
+'public/js/merged.js');
 mix.browserSync('materia.test');
