@@ -65,7 +65,7 @@
                                   </div>
                               @endif
                               <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Edite el asunto') }}</label>
                                     <div class="col-md-12  col-xl-12">
                                       <div class="form-group{{ $errors->has('asunto') ? ' has-danger' : '' }}">
@@ -86,9 +86,9 @@
                                     </div>
                                 </div>
                               </div>
-                              <div class="row">
+                              <div class="row col-sm-12 com-md-6">
                                 <label class="col-sm-2 col-form-label" for="input-fecha">{{ __('Fecha Inicial') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-10">
                                   <div class="form-group{{ $errors->has('fechaInicio') ? ' has-danger' : '' }}">
                                     <input class="form-control{{ $errors->has('fechaInicio') ? ' is-invalid' : '' }}" input type="date" name="fechaInicio" id="input-fechaInicio" placeholder="{{ __('fechaInicio') }}" value="{{ old('fechaInicio', $alerta->fechaDeInicio()) }}" />
                                     @if ($errors->has('fechaInicio'))
@@ -97,9 +97,9 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="row">
+                              <div class="row col-sm-12 com-md-6">
                                 <label class="col-sm-2 col-form-label" for="input-fecha">{{ __('Fecha Inicial') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-10">
                                   <div class="form-group{{ $errors->has('fechaInicio') ? ' has-danger' : '' }}">
                                     <input class="form-control{{ $errors->has('fechaInicio') ? ' is-invalid' : '' }}" input type="date" name="fechaInicio" id="input-fechaInicio" placeholder="{{ __('fechaInicio') }}" value="{{ old('fechaInicio', $alerta->fechaFinal()) }}" />
                                     @if ($errors->has('fechaInicio'))

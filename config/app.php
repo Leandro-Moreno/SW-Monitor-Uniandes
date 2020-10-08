@@ -125,6 +125,8 @@ return [
 
     'nagios_api' => env('NAGIOS_API'),
 
+    'gtm' => env('GTM'),
+
     'tenant' => env('TENANT'),
 
     /*
