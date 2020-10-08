@@ -54,7 +54,7 @@
                   <p>Host caido hace {{ Carbon\Carbon::parse($servicio["last_time_up"])->diff(Carbon\Carbon::now())->format('%M mes(es), %D día(s), %I minuto(s)  ') }}</p>
                   @endif
                 @else
-                  <p>{{$servicio->description}}</p>
+                  <p>{{Str::limit($servicio->description, 50, ' (...)')}}</p>
                 @endisset
               </div>
           </div>
