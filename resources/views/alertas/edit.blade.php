@@ -11,6 +11,11 @@
     <div class="bg-circle-2 bg-circle"></div>
     <div class="bg-circle-3 bg-circle"></div>
     <div class="bg-circle-4 bg-circle"></div>
+    <form method="post" action="{{ route('alert.destroy', $alerta) }}">
+      @csrf
+      @method('DELETE')
+      <button type="submit" class="btn btn-primary"><span class="material-icons">warning</span> {{ __('Eliminar Alerta') }} </button>
+    </form>
 </header>
 <section>
   <div class="content">

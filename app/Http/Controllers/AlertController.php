@@ -173,8 +173,9 @@ class AlertController extends Controller
      * @param  \App\Model\Decisiones  $decisiones
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alert $alerta)
+    public function destroy(Alert $alert)
     {
-        //
+        $alert->delete();
+        return redirect()->route('alert.index')->withStatus(__('Alerta eliminada con éxito.'));
     }
 }
