@@ -46,6 +46,7 @@ class ServicioController extends Controller
                     ->whereHas('tipodatos', function($q){
                       $q->where('habilitado',1);
                     })
+                    ->orderBy('manual_state', 'DESC')
                     ->orderBy('last_time_down', 'DESC')
                     ->paginate(80);
         });
