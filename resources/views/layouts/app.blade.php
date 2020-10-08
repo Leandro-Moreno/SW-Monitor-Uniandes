@@ -38,7 +38,7 @@
 
         <script src="{{ mix('js/app.js') }}"  rel="preload"></script>
         <script src="{{ mix('js/merged.js')}}" rel="preload"></script>
-        <script src="{{ asset('material') }}/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+        <script src="{{ mix('material/js/material-dashboard.min.js') }}" type="text/javascript"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
         @stack('js')

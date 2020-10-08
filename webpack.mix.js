@@ -23,7 +23,7 @@ mix.js('resources/js/app.js', 'public/js')
         }
    })
     .version();
-mix.babel(['public/material/js/core/popper.min.js',
+mix.combine(['public/material/js/core/popper.min.js',
 'public/material/js/plugins/perfect-scrollbar.jquery.min.js',
 'public/material/js/core/popper.min.js',
 'public/material/js/plugins/moment.min.js',
@@ -41,4 +41,5 @@ mix.babel(['public/material/js/core/popper.min.js',
 'public/material/js/plugins/bootstrap-notify.js',
 'public/material/js/plugins/sweetalert2.js'],
 'public/js/merged.js');
+mix.minify('public/material/js/material-dashboard.js');
 mix.browserSync('materia.test');
