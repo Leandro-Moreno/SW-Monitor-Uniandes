@@ -20,9 +20,10 @@
 
         <div class="card col-lg-4">
           <a href="{{$servicio["address"]}}" target="_blank" >
-          <h3 class="card-header card-header-{{ isset($servicio->estadoMonitorManual)?$servicio->estadoMonitorManual->class:$servicio->estadoMonitor->class}}">{{$servicio["name"] }} <span class="material-icons">
-          {{ ($servicio["current_state"] == 1)? 'check_circle' : 'error'}}
-          </span></h3>
+            <h3 class="card-header card-header-{{ isset($servicio->estadoMonitorManual)?$servicio->estadoMonitorManual->class:$servicio->estadoMonitor->class}}">{{$servicio["name"] }} <span class="material-icons">
+            {{ ($servicio["current_state"] == 1)? 'check_circle' : 'error'}}
+            </span></h3>
+          </a>
           @can('update', $servicio)
           <a rel="tooltip" class="btn btn-success btm-sm" href="{{ route('servicio.edit', $servicio) }}" data-original-title="" title="">
                                   EDITAR<i class="material-icons">search</i>
@@ -48,7 +49,7 @@
             @endif
             <p>Tipo: {{ $servicio->tipodatos->name }}</p>
           <p></p>
-        </a>
+
         @if(isset($servicio->imagen))
           @include('servicios.mod.show-imagen')
         @endif
