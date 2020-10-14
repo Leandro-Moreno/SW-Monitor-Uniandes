@@ -123,6 +123,12 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'nagios_api' => env('NAGIOS_API'),
+
+    'gtm' => env('GTM'),
+
+    'tenant' => env('TENANT'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -161,6 +167,9 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
+        HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -174,6 +183,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
 
     ],
 
@@ -207,7 +217,9 @@ return [
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
         'Http' => Illuminate\Support\Facades\Http::class,
+        'Image' => Intervention\Image\Facades\Image::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,

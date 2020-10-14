@@ -185,6 +185,15 @@
     &.card-rotate.bg-success .back{
       background: linear-gradient(60deg, $green-400, $green-600);
     }
+
+    .card-header-black .card-icon,
+    .card-header-black .card-text,
+    .card-header-black:not(.card-header-icon):not(.card-header-text),
+    &.bg-success,
+    &.card-rotate.bg-black .front,
+    &.card-rotate.bg-black .back{
+      background: linear-gradient(60deg, $black-color, $black);
+    }
     .card-header-warning .card-icon,
     .card-header-warning .card-text,
     .card-header-warning:not(.card-header-icon):not(.card-header-text),
@@ -247,6 +256,11 @@
     .card-header-success:not(.card-header-icon):not(.card-header-text),
     .card-header-success .card-text{
         @include shadow-big-color($brand-success);
+    }
+    .card-header-black .card-icon,
+    .card-header-black:not(.card-header-icon):not(.card-header-text),
+    .card-header-black .card-text{
+        @include shadow-big-color($black);
     }
 
     [class*="card-header-"],
