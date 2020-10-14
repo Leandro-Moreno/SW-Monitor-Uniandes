@@ -32,7 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/sitios-web', 'ServicioController@sitiosWeb')->name('sitios-web');
 Route::get('/servidores', 'ServicioController@servidores')->name('servidores');
 Route::get('/bases-de-datos', 'ServicioController@database')->name('database');
-Route::get('/servicios', 'ServicioController@soloServicio')->name('solo-servicios');
+Route::get('/servicios', 'ServicioController@index')->name('solo-servicios');
 
 Route::resource('servicio', 'ServicioController');
 

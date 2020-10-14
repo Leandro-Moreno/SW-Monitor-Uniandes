@@ -17,7 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
         autoprefixer: {
             options: {
                 browsers: [
-                    'last 10 versions',
+                    'last 2 versions',
                 ]
             }
         }
