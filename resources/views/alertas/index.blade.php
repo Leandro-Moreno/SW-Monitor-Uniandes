@@ -4,7 +4,7 @@
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Alertas de Servicios Web Uniandes</h1>
+        <h1 class="masthead-heading mb-0">Alertas de Servicios Uniandes</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -19,7 +19,7 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-black">
-                <h4 class="card-title ">{{ __('Alertas Servicios Web') }}</h4>
+                <h4 class="card-title ">{{ __('Alertas Servicios') }}</h4>
                 <div class="card-category row">
                   <p class="col-md-4">
                   {{ __('Alertas') }}

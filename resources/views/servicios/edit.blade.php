@@ -154,7 +154,6 @@
                         <div>
                           <span class="btn btn-raised btn-round btn-default btn-file"><span class="fileinput-new">Seleccionar imagen Servicio </span><span class="fileinput-exists">Modificar</span>
                           <input type="file" class="form-control-file" name="imagen"  id="input-imagen" value="{{ old('imagen', $servicio->imagen) }}" ></span>
-                          <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remover</a>
                         </div>
                       </div>
                   </div>
