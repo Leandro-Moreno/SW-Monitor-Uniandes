@@ -1,10 +1,10 @@
-@extends('layouts.app', ['activePage' => 'eventos', 'titlePage' => __('Editar Información del servicio')])
+@extends('layouts.app', ['activePage' => 'eventos', 'titlePage' => $servicio->name . __('Editar Información')])
 
 @section('content')
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Estatus {{$servicio["name"] }}</h1>
+        <h1 class="masthead-heading mb-0">Editar estado de {{$servicio["name"] }}</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>

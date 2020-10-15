@@ -4,7 +4,7 @@
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Estatus Servicios Uniandes</h1>
+        <h1 class="masthead-heading mb-0">Estado de Servicios Uniandes</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>

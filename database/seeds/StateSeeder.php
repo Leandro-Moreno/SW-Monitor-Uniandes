@@ -12,19 +12,25 @@ class StateSeeder extends Seeder
     public function run()
     {
       DB::table('states')->insert([
-          'name' => 'activo',
+          'name' => 'Bien',
           'class' => 'success',
           'created_at' => now(),
           'updated_at' => now()
       ]);
       DB::table('states')->insert([
-          'name' => 'caido',
+          'name' => 'Información',
           'class' => 'danger',
           'created_at' => now(),
           'updated_at' => now()
       ]);
       DB::table('states')->insert([
-          'name' => 'activo con comentarios',
+          'name' => 'Advertencia',
+          'class' => 'warning',
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+      DB::table('Crítico')->insert([
+          'name' => 'Advertencia',
           'class' => 'warning',
           'created_at' => now(),
           'updated_at' => now()
