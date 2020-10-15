@@ -43,8 +43,14 @@
             <div class="card-body row">
               <div class="col-sm-3">
                 @if(isset($servicio->imagen))
-                  <img width="100%" src="{{ asset('storage/servicios-300/'.$servicio->imagen) }}"  alt="{{$servicio->imagen}}">
+                  <picture>
+                   <source srcset="{{ asset('storage/servicios/'.$servicio->imagen) }}" media="(max-width: 575px)">
+                   <img width="100%" srcset="{{ asset('storage/servicios-300/'.$servicio->imagen) }}" alt="{{$servicio->imagen}}">
+                 </picture>
                 @endif
+
+
+
               </div>
               <div class="col-sm-9">
                 @isset($servicio->id_nagios)
