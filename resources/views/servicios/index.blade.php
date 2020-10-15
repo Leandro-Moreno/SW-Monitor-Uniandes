@@ -21,6 +21,20 @@
 
   <section>
 <div class="container" style="height: auto;">
+  <div class="row mt-1 mx-auto col-md-12 alert">
+    <span class="mx-1 badge badge-success">Bien<span class="material-icons">
+    check_circle
+    </span></span>
+    <span class="mx-1 badge badge-info">Información<span class="material-icons">
+    info
+    </span></span>
+    <span class="mx-1 badge badge-warning">Advertencia<span class="material-icons">
+    warning
+    </span></span>
+    <span class="mx-1 badge badge-danger">Crítico<span class="material-icons">
+    bug_report
+    </span></span>
+</div>
   <div class="row justify-content-center">
 
       @foreach($servicios as $servicio)
@@ -29,7 +43,7 @@
           <div class="card">
             <div class="card-header card-header-{{ isset($servicio->estadoMonitorManual)?$servicio->estadoMonitorManual->class:$servicio->estadoMonitor->class}}">
               <h3 class="card-title">{{$servicio->name }} <span class="material-icons">
-              {{ ($servicio->current_state==1)? 'check_circle' : 'error'}}
+              {{ $servicio->icono()}}
               </span>
               @if ( isset($servicio->id_nagios)  )
               <span class="material-icons">
