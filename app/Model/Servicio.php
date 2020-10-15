@@ -64,6 +64,10 @@ class Servicio extends Model implements Searchable
     {
       return $this->hasMany('App\Model\Servicio','servidor', 'id');
     }
+    public function rutaImagen()
+    {
+      return str_replace(" ", '%20', $this->imagen);
+    }
     /**
      * @return HostType
      */

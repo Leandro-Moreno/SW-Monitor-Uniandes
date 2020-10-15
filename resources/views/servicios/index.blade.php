@@ -44,8 +44,8 @@
               <div class="col-sm-3">
                 @if(isset($servicio->imagen))
                   <picture>
-                   <source srcset="{{ asset('storage/servicios/'.$servicio->imagen) }}" media="(max-width: 575px)">
-                   <img width="100%" srcset="{{ asset('storage/servicios-300/'.$servicio->imagen) }}" alt="{{$servicio->imagen}}">
+                   <source srcset="{{ asset('storage/servicios/'.$servicio->rutaImagen()) }}" media="(max-width: 575px)">
+                   <img width="100%" srcset="{{ asset('storage/servicios-300/'.$servicio->rutaImagen()) }}" alt="{{$servicio->imagen}}">
                  </picture>
                 @endif
 
