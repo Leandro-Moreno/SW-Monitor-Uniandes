@@ -21,17 +21,17 @@
 
   <section>
 <div class="container" style="height: auto;">
-  <div class="row mt-1 mx-auto col-md-12 alert">
-    <span class="mx-1 badge badge-success">Bien<span class="material-icons">
+  <div class="row mt-1 mx-auto align-self-end col-md-3 col-sm-12 alert" style="padding:.35rem .15rem; right: 0; margin-bottom:0px;">
+    <span class="px-1 mx-1 badge badge-success" style="font-size:67%;">Bien<span class="material-icons" style="font-size:14px;">
     check_circle
     </span></span>
-    <span class="mx-1 badge badge-info">Información<span class="material-icons">
+    <span class="mx-1 badge badge-info" style="font-size:67%;">Información<span class="material-icons" style="font-size:14px;">
     info
     </span></span>
-    <span class="mx-1 badge badge-warning">Advertencia<span class="material-icons">
+    <span class="mx-1 badge badge-warning" style="font-size:67%;">Advertencia<span class="material-icons" style="font-size:14px;">
     warning
     </span></span>
-    <span class="mx-1 badge badge-danger">Crítico<span class="material-icons">
+    <span class="mx-1 badge badge-danger" style="font-size:67%;">Crítico<span class="material-icons" style="font-size:14px;">
     bug_report
     </span></span>
 </div>
