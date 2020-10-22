@@ -24,13 +24,13 @@
                   <p class="col-md-4">
                   {{ __('Alertas') }}
                 </p>
-                <a rel="tooltip" class="btn btn-sm btn-danger" href="{{ route('alert.index') }}" data-original-title="{{ __('Todos las Alertas') }}" title="">
+                <a rel="tooltip" class="btn btn-sm {{ $alertaActiva == 'index' ? ' btn-danger' : 'btn-black' }}" href="{{ route('alert.index') }}" data-original-title="{{ __('Todos las Alertas') }}" title="">
                   {{ __('Alertas activas') }}
                 </a>
-                <a rel="tooltip" class="btn btn-sm btn-black" href="{{ route('alerta-semana') }}" data-original-title="{{ __('Alertas de la semana') }}" title="">
+                <a rel="tooltip" class="btn btn-sm {{ $alertaActiva == 'semana' ? ' btn-danger' : 'btn-black' }}" href="{{ route('alerta-semana') }}" data-original-title="{{ __('Alertas de la semana') }}" title="">
                   {{ __('Alertas de la semana') }}
                 </a>
-                <a rel="tooltip" class="btn btn-sm btn-black" href="{{ route('alerta-mes') }}" data-original-title="{{ __('Alertas del mes') }}" title="">
+                <a rel="tooltip" class="btn btn-sm {{ $alertaActiva == 'mes' ? ' btn-danger' : 'btn-black' }}" href="{{ route('alerta-mes') }}" data-original-title="{{ __('Alertas del mes') }}" title="">
                   {{ __('Alertas del mes') }}
                 </a>
                 </div>
@@ -87,10 +87,10 @@
                             {{ $alerta->descripcion }}
                           </td>
                           <td>
-                            {{ $alerta->fechaInicio }}
+                            {{ $alerta->fechaDeInicio() }}
                           </td>
                           <td>
-                            {{ $alerta->fechaFin }}
+                            {{ $alerta->fechaFinal() }}
                           </td>
                           <td class="td-actions text-right">
                             <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('alert.show', $alerta->id) }}" data-original-title="{{ __('Ver Detalle de la alerta') }}" title="">

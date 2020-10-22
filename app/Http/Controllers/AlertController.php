@@ -35,13 +35,13 @@ class AlertController extends Controller
                     ->orWhereBetween('fechaFin', [$hoy, $fin_semana])
                     ->orWhere(function($query) use($hoy, $fin_semana){
                       $query->where('fechaInicio','<',$hoy)
-                            ->where('fechaFin','>',$fin_semana);
+                            ->whereNull('fechaFin');
                     })
                     ->with('servicio')
                     ->orderBy('created_at', 'ASC')
                     ->paginate(80);
       });
-      return view('alertas.index', ['alertas' => $alertas,'antes' => $hoy, 'despues' => $fin_semana]);
+      return view('alertas.index', ['alertas' => $alertas,'antes' => $hoy, 'despues' => $fin_semana, 'alertaActiva' => "index"]);
     }
     public function alertasSemana()
     {
@@ -53,13 +53,13 @@ class AlertController extends Controller
                     ->orWhereBetween('fechaFin', [$dias_antes, $mañana])
                     ->orWhere(function($query) use($dias_antes, $mañana){
                       $query->where('fechaInicio','<',$dias_antes)
-                            ->where('fechaFin','>',$mañana);
+                            ->whereNull('fechaFin');
                     })
                     ->with('servicio')
                     ->orderBy('created_at', 'ASC')
                     ->paginate(80);
       });
-      return view('alertas.index', ['alertas' => $alertas,'antes' => $dias_antes, 'despues' => $mañana]);
+      return view('alertas.index', ['alertas' => $alertas,'antes' => $dias_antes, 'despues' => $mañana, 'alertaActiva' => "semana"]);
     }
     /*alertasUltimos30Dias*/
     public function alertasMes()
@@ -72,13 +72,13 @@ class AlertController extends Controller
                     ->orWhereBetween('fechaFin', [$dias_antes, $mañana])
                     ->orWhere(function($query) use($dias_antes, $mañana){
                       $query->where('fechaInicio','<',$dias_antes)
-                            ->where('fechaFin','>',$mañana);
+                            ->whereNull('fechaFin');
                     })
                     ->with('servicio')
                     ->orderBy('created_at', 'ASC')
                     ->paginate(80);
       });
-      return view('alertas.index', ['alertas' => $alertas,'antes' => $dias_antes, 'despues' => $mañana]);
+      return view('alertas.index', ['alertas' => $alertas,'antes' => $dias_antes, 'despues' => $mañana, 'alertaActiva' => "mes"]);
     }
     public function alertasMes2()
     {
