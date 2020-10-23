@@ -65,7 +65,7 @@ class ServicioController extends Controller
         $fin_semana = today()->endOfWeek();
         $query->whereBetween('fechaInicio', [$hoy, $fin_semana])
         ->orWhereBetween('fechaFin', [$hoy, $fin_semana])
-        ->orWhere(function($query) use($hoy, $fin_semana){
+        ->orWhere(function($query) use($hoy){
           $query->where('fechaInicio','<',$hoy)
                 ->whereNull('fechaFin');
         });
