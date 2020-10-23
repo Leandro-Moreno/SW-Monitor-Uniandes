@@ -9,7 +9,7 @@
         </div>
         <div class="card-body row">
           @foreach($servicio->alertas as $alerta)
-          <div class="card col-md-4 col-lg-4">
+          <div class="card col-md-6 col-lg-6">
             <a href="{{route('alert.show', $alerta )}}">
             <div class="card-header card-header-warning">
               <h3 class="card-title">{{$alerta->asunto }} </h3>
