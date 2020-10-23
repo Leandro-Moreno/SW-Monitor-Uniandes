@@ -60,6 +60,16 @@ class ServicioController extends Controller
      */
     public function show( Servicio $servicio )
     {
+      $servicio->load(['alertas' => function($query){
+        $hoy = today();
+        $fin_semana = today()->endOfWeek();
+        $query->whereBetween('fechaInicio', [$hoy, $fin_semana])
+        ->orWhereBetween('fechaFin', [$hoy, $fin_semana])
+        ->orWhere(function($query) use($hoy, $fin_semana){
+          $query->where('fechaInicio','<',$hoy)
+                ->whereNull('fechaFin');
+        });
+      }]);
         $servidor = new Servicio;
         $servicios = new Servicio;
         $serviciosServidor = new Servicio;
