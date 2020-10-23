@@ -77,16 +77,16 @@ header.masthead {
         li{
             padding: 0;
             margin: 0;
-
             a{
                 display: block;
                 color: $brand-primary;
                 background-color: $white-color;
                 padding: 0;
                 margin:0;
+                z-index: 100;
                 &:hover{
                     color: $white-color;
-                    background-color: $brand-primary;
+                    background-color: $brand-secondary;
                 }
             }
         }
@@ -104,5 +104,17 @@ header.masthead {
         font-size: 3rem;
       }
     }
+  }
+}
+@media (max-width: 992px) {
+  .buscar{
+    ul{
+      width: 84%;
+    }
+  }
+}
+.buscar{
+  ul{
+    z-index:9999;
   }
 }

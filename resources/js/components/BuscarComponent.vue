@@ -6,7 +6,7 @@
                 <i class="material-icons">search</i>
         </div>
         <ul v-if="results.length > 0 && query">
-            <li v-for="result in results.slice(0,10)" :key="result.id">
+            <li class="nav-item" v-for="result in results.slice(0,10)" :key="result.id">
                 <a :href="result.url">
                     <div class="dropdown-item" v-text="result.title"></div>
                 </a>

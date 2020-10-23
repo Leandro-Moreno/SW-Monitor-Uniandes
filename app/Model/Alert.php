@@ -32,6 +32,14 @@ class Alert extends Model
     }
     public function fechaFinal()
     {
-      return Carbon::parse($this->fechaFin)->isoFormat('YYYY-MM-DD');
+      if(isset($this->fechaFin))
+      {
+        return Carbon::parse($this->fechaFin)->isoFormat('YYYY-MM-DD');
+      }
+      return "Fecha indefinida";
+    }
+    public function fechaCreacion()
+    {
+      return Carbon::parse($this->created_at)->isoFormat('YYYY-MM-DD');
     }
 }

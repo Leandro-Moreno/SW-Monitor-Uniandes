@@ -1,10 +1,10 @@
-@extends('layouts.app', ['activePage' => 'eventos', 'titlePage' => __('Editar Información del servicio')])
+@extends('layouts.app', ['activePage' => 'eventos', 'title' => $servicio->name . __('- Editar Información')])
 
 @section('content')
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Estatus {{$servicio["name"] }}</h1>
+        <h1 class="masthead-heading mb-0">Editar estado de {{$servicio["name"] }}</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -154,7 +154,6 @@
                         <div>
                           <span class="btn btn-raised btn-round btn-default btn-file"><span class="fileinput-new">Seleccionar imagen Servicio </span><span class="fileinput-exists">Modificar</span>
                           <input type="file" class="form-control-file" name="imagen"  id="input-imagen" value="{{ old('imagen', $servicio->imagen) }}" ></span>
-                          <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remover</a>
                         </div>
                       </div>
                   </div>

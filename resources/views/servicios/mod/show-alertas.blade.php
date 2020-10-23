@@ -11,9 +11,9 @@
           @foreach($servicio->alertas as $alerta)
           <div class="card col-md-4 col-lg-4">
             <a href="{{route('alert.show', $alerta )}}">
-            <div class="card-header card-header-success">
+            <div class="card-header card-header-warning">
               <h3 class="card-title">{{$alerta->asunto }} </h3>
-              <p class="card-category">Alerta #{{$alerta->id}}. Creada el {{$alerta->created_at}}</p>
+              <p class="card-category">Alerta #{{$alerta->id}}. Creada el {{$alerta->fechaCreacion()}}</p>
             </div>
             <div class="card-body ">
               {{Str::of($alerta->descripcion)->words(8, ' ...')}}

@@ -1,10 +1,10 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Detalles servicio')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => $servicio->name . __('- Detalles servicio') ])
 
 @section('content')
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Estatus {{$servicio->name }}</h1>
+        <h1 class="masthead-heading mb-0">Estado de {{$servicio->name }}</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>

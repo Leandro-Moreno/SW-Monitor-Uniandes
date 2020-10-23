@@ -64,6 +64,33 @@ class Servicio extends Model implements Searchable
     {
       return $this->hasMany('App\Model\Servicio','servidor', 'id');
     }
+    public function rutaImagen()
+    {
+      return str_replace(" ", '%20', $this->imagen);
+    }
+    public function icono()
+    {
+      $icono = "";
+      switch ($this->manual_state) {
+        case '1':
+          $icono = "check_circle";
+          break;
+        case '2':
+          $icono = "info";
+          break;
+        case '3':
+          $icono = "warning";
+          break;
+        case '4':
+          $icono = "bug_report";
+          break;
+
+        default:
+          $icono = "check_circle";
+          break;
+      }
+      return $icono;
+    }
     /**
      * @return HostType
      */

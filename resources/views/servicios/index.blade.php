@@ -4,7 +4,7 @@
 <header class="masthead masthead-min text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <h1 class="masthead-heading mb-0">Estatus Servicios Uniandes</h1>
+        <h1 class="masthead-heading mb-0">Estado de Servicios Uniandes</h1>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
@@ -21,6 +21,17 @@
 
   <section>
 <div class="container" style="height: auto;">
+  <div class="row mt-1 mx-auto align-self-end col-md-2 col-sm-12 alert" style="padding:.35rem .15rem; right: 0; margin-bottom:0px;">
+    <span class="px-1 mx-1 badge badge-success" style="font-size:67%;">Bien<span class="material-icons" style="font-size:14px;">
+    check_circle
+    </span></span>
+    <span class="mx-1 badge badge-warning" style="font-size:67%;">Advertencia<span class="material-icons" style="font-size:14px;">
+    warning
+    </span></span>
+    <span class="mx-1 badge badge-danger" style="font-size:67%;">Crítico<span class="material-icons" style="font-size:14px;">
+    bug_report
+    </span></span>
+</div>
   <div class="row justify-content-center">
 
       @foreach($servicios as $servicio)
@@ -29,7 +40,7 @@
           <div class="card">
             <div class="card-header card-header-{{ isset($servicio->estadoMonitorManual)?$servicio->estadoMonitorManual->class:$servicio->estadoMonitor->class}}">
               <h3 class="card-title">{{$servicio->name }} <span class="material-icons">
-              {{ ($servicio->current_state==1)? 'check_circle' : 'error'}}
+              {{ $servicio->icono()}}
               </span>
               @if ( isset($servicio->id_nagios)  )
               <span class="material-icons">
@@ -43,8 +54,14 @@
             <div class="card-body row">
               <div class="col-sm-3">
                 @if(isset($servicio->imagen))
-                  <img width="100%" src="{{ asset('storage/servicios-300/'.$servicio->imagen) }}"  alt="{{$servicio->imagen}}">
+                  <picture>
+                   <source srcset="{{ asset('storage/servicios/'.$servicio->rutaImagen()) }}" media="(max-width: 575px)">
+                   <img width="100%" srcset="{{ asset('storage/servicios-300/'.$servicio->rutaImagen()) }}" alt="{{$servicio->imagen}}">
+                 </picture>
                 @endif
+
+
+
               </div>
               <div class="col-sm-9">
                 @isset($servicio->id_nagios)
