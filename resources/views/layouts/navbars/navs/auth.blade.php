@@ -29,14 +29,9 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <b-dropdown size="md" right variant="white">
-                        <template v-slot:button-content class="nav-link">
-                            <i class="material-icons">person</i>
-                        </template>
-                        <b-dropdown-item href="{{ route('profile.edit') }}">{{ __('Profile') }}</b-dropdown-item>
-                        <div class="dropdown-divider"></div>
-                        <b-dropdown-item href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</b-dropdown-item>
-                    </b-dropdown>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="nav-link">
+                        <i class="material-icons">cancel</i> {{ __('Cerrar Sesión') }}
+                    </a>
                 </li>
 
 

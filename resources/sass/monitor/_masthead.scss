@@ -106,3 +106,15 @@ header.masthead {
     }
   }
 }
+@media (max-width: 992px) {
+  .buscar{
+    ul{
+      width: 84%;
+    }
+  }
+}
+.buscar{
+  ul{
+    z-index:9999;
+  }
+}
