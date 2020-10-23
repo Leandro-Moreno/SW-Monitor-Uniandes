@@ -42,21 +42,4 @@ class Alert extends Model
     {
       return Carbon::parse($this->created_at)->isoFormat('YYYY-MM-DD');
     }
-    public function alertaActiva()
-    {
-      $hoy = today();
-      $fin_semana = today()->endOfWeek();
-      $fechaInicio = $this->fechaInicial;
-      $fechaFin = $this->fechaFin;
-      if($fechaInicio >= $hoy || $fechaInicio < $fin_semana){
-        return true;
-      }
-      else if($fechaFin >= $hoy || $fechaFin < $fin_semana){
-        return true;
-      }
-      else if( $fechaInicio < $hoy && is_null($fechaFin) ){
-        return true;
-      }
-      return false;
-    }
 }

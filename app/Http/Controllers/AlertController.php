@@ -21,10 +21,10 @@ class AlertController extends Controller
         $this->middleware('auth')->except(['index', 'show', 'alertasMes', 'casoCerrado', 'alertasSemana']);
     }
     public function alertasActivasEnRango($fecha_inicial, $fecha_final, $pagina){
-      $alertas = cache()->remember('alertas'.$fecha_inicial.$fecha_final.$pagina,60*5, function() use ($fecha_inicial, $fecha_final){
+      return cache()->remember('alertas'.$fecha_inicial.$fecha_final.$pagina,60*5, function() use ($fecha_inicial, $fecha_final){
         return Alert::whereBetween('fechaInicio', [$fecha_inicial, $fecha_final])
                     ->orWhereBetween('fechaFin', [$fecha_inicial, $fecha_final])
-                    ->orWhere(function($query) use($fecha_inicial, $fecha_final){
+                    ->orWhere(function($query) use($fecha_inicial){
                       $query->where('fechaInicio','<',$fecha_inicial)
                             ->whereNull('fechaFin');
                     })
@@ -32,7 +32,6 @@ class AlertController extends Controller
                     ->orderBy('created_at', 'ASC')
                     ->paginate(15);
       });
-      return $alertas;
     }
     /**
      * Display a listing of the resource.
@@ -48,7 +47,6 @@ class AlertController extends Controller
       return view('alertas.index', ['alertas' => $alertas,'antes' => $hoy, 'despues' => $fin_semana, 'alertaActiva' => "index"]);
     }
     /*
-    TODO:
     */
     public function alertasSemana()
     {
