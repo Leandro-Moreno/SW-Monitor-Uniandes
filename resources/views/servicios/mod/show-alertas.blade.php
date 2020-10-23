@@ -13,7 +13,7 @@
             <a href="{{route('alert.show', $alerta )}}">
             <div class="card-header card-header-warning">
               <h3 class="card-title">{{$alerta->asunto }} </h3>
-              <p class="card-category">Alerta #{{$alerta->id}}. Creada el {{$alerta->fechaCreacion()}}</p>
+              <p class="card-category">Desde {{$alerta->fechaDeInicio()}} hasta {{$alerta->fechaFinal()}}</p>
             </div>
             <div class="card-body ">
               {{Str::of($alerta->descripcion)->words(8, ' ...')}}
