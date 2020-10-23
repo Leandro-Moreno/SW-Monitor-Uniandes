@@ -20,6 +20,20 @@ class AlertController extends Controller
         $this->authorizeResource(Alert::class);
         $this->middleware('auth')->except(['index', 'show', 'alertasMes', 'casoCerrado', 'alertasSemana']);
     }
+    public function alertasActivasEnRango($fecha_inicial, $fecha_final, $pagina){
+      $alertas = cache()->remember('alertas'.$fecha_inicial.$fecha_final.$pagina,60*5, function() use ($fecha_inicial, $fecha_final){
+        return Alert::whereBetween('fechaInicio', [$fecha_inicial, $fecha_final])
+                    ->orWhereBetween('fechaFin', [$fecha_inicial, $fecha_final])
+                    ->orWhere(function($query) use($fecha_inicial, $fecha_final){
+                      $query->where('fechaInicio','<',$fecha_inicial)
+                            ->whereNull('fechaFin');
+                    })
+                    ->with('servicio')
+                    ->orderBy('created_at', 'ASC')
+                    ->paginate(15);
+      });
+      return $alertas;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,35 +44,18 @@ class AlertController extends Controller
       $currentPage = request()->get('page',1);
       $hoy = today();
       $fin_semana = today()->endOfWeek();
-      $alertas = cache()->remember('alertas'.$currentPage,1, function() use ($hoy, $fin_semana){
-        return Alert::whereBetween('fechaInicio', [$hoy, $fin_semana])
-                    ->orWhereBetween('fechaFin', [$hoy, $fin_semana])
-                    ->orWhere(function($query) use($hoy, $fin_semana){
-                      $query->where('fechaInicio','<',$hoy)
-                            ->whereNull('fechaFin');
-                    })
-                    ->with('servicio')
-                    ->orderBy('created_at', 'ASC')
-                    ->paginate(80);
-      });
+      $alertas = $this->alertasActivasEnRango($hoy, $fin_semana, $currentPage);
       return view('alertas.index', ['alertas' => $alertas,'antes' => $hoy, 'despues' => $fin_semana, 'alertaActiva' => "index"]);
     }
+    /*
+    TODO:
+    */
     public function alertasSemana()
     {
       $currentPage = request()->get('page',1);
       $dias_antes = now()->sub(7,'day');
       $mañana = now()->tomorrow();
-      $alertas = cache()->remember('alertas-semana'.$currentPage,60*5, function() use ($dias_antes, $mañana){
-        return Alert::whereBetween('fechaInicio', [$dias_antes, $mañana])
-                    ->orWhereBetween('fechaFin', [$dias_antes, $mañana])
-                    ->orWhere(function($query) use($dias_antes, $mañana){
-                      $query->where('fechaInicio','<',$dias_antes)
-                            ->whereNull('fechaFin');
-                    })
-                    ->with('servicio')
-                    ->orderBy('created_at', 'ASC')
-                    ->paginate(80);
-      });
+      $alertas = $this->alertasActivasEnRango($dias_antes, $mañana, $currentPage);
       return view('alertas.index', ['alertas' => $alertas,'antes' => $dias_antes, 'despues' => $mañana, 'alertaActiva' => "semana"]);
     }
     /*alertasUltimos30Dias*/
@@ -67,31 +64,15 @@ class AlertController extends Controller
       $currentPage = request()->get('page',1);
       $dias_antes = today()->sub(30,'day');
       $mañana = today();
-      $alertas = cache()->remember('alertas-semana'.$currentPage,60*5, function() use ($dias_antes, $mañana){
-        return Alert::whereBetween('fechaInicio', [$dias_antes, $mañana])
-                    ->orWhereBetween('fechaFin', [$dias_antes, $mañana])
-                    ->orWhere(function($query) use($dias_antes, $mañana){
-                      $query->where('fechaInicio','<',$dias_antes)
-                            ->whereNull('fechaFin');
-                    })
-                    ->with('servicio')
-                    ->orderBy('created_at', 'ASC')
-                    ->paginate(80);
-      });
+      $alertas = $this->alertasActivasEnRango($dias_antes, $mañana, $currentPage);
       return view('alertas.index', ['alertas' => $alertas,'antes' => $dias_antes, 'despues' => $mañana, 'alertaActiva' => "mes"]);
     }
     public function alertasMes2()
     {
       $currentPage = request()->get('page',1);
-      $alertas = cache()->remember('alertas-semana'.$currentPage,1, function(){
-        $inicio_mes = now()->startOfMonth();
-        $fin_mes = now()->endOfMonth();
-        return Alert::whereBetween('fechaInicio', [$inicio_mes, $fin_mes])
-                    ->orWhereBetween('fechaFin', [$inicio_mes, $fin_mes])
-                    ->with('servicio')
-                    ->orderBy('created_at', 'ASC')
-                    ->paginate(80);
-      });
+      $inicio_mes = now()->startOfMonth();
+      $fin_mes = now()->endOfMonth();
+      $alertas = $this->alertasActivasEnRango($inicio_mes, $fin_mes, $currentPage);
       return view('alertas.index', ['alertas' => $alertas]);
     }
     /**
