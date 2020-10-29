@@ -20,7 +20,7 @@ class Controller extends BaseController
           Storage::makeDirectory('/public/servicios', 0775, true); //creates directory
       }
       if(!Storage::exists('/public/servicios-300')) {
-          Storage::makeDirectory('/public/servicios-300', 0775, true); //creates directory
+          Storage::makeDirectory('/public/servicios-300', 0775, true); //creates directory 
       }
     }
     public function crearImagenReducida($request, $nombreImagen)
