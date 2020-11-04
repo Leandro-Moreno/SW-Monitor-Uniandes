@@ -71,8 +71,8 @@ COPY --chown=www-data:www-data . $APP_HOME/
 COPY --chown=www-data:www-data .env.example $APP_HOME/.env
 
 # install all PHP dependencies
-RUN if [ "$BUILD_ARGUMENT_ENV" = "dev" ] || [ "$BUILD_ARGUMENT_ENV" = "test" ]; then COMPOSER_MEMORY_LIMIT=-1 composer install --optimize-autoloader --no-interaction --no-progress; \
-    else COMPOSER_MEMORY_LIMIT=-1 composer install --optimize-autoloader --no-interaction --no-progress --no-dev; \
+RUN if [ "$BUILD_ARGUMENT_ENV" = "dev" ] || [ "$BUILD_ARGUMENT_ENV" = "test" ]; then COMPOSER_MEMORY_LIMIT=-1 composer install; \
+    else COMPOSER_MEMORY_LIMIT=-1 composer install; \
     fi
 
 USER root
