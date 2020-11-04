@@ -3,7 +3,7 @@ FROM php:7.4-fpm
 # set main params
 ARG BUILD_ARGUMENT_DEBUG_ENABLED=false
 ENV DEBUG_ENABLED=$BUILD_ARGUMENT_DEBUG_ENABLED
-ARG BUILD_ARGUMENT_ENV=dev
+ARG BUILD_ARGUMENT_ENV=production
 ENV ENV=$BUILD_ARGUMENT_ENV
 ENV APP_HOME /var/www/html
 
@@ -62,12 +62,6 @@ RUN chmod u+x /tmp/do_we_need_xdebug.sh && /tmp/do_we_need_xdebug.sh
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN chmod +x /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
-
-# add supervisor
-RUN mkdir -p /var/log/supervisor
-COPY --chown=root:root ./docker/general/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY --chown=root:root ./docker/general/cron /var/spool/cron/crontabs/root
-RUN chmod 0600 /var/spool/cron/crontabs/root
 
 # set working directory
 WORKDIR $APP_HOME
