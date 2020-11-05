@@ -133,16 +133,16 @@ class AlertController extends Controller
      * @param  \App\Model\Decisiones  $decisiones
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alert $alerta)
+    public function update(Request $request, Alert $alert)
     {
         $datos = $request->all();
         $user = Auth::user();
         $datos['responsableAccion'] = $user->id;
         $datos['fechaAccion'] = now()->toDateTimeString();
-        $alerta->fill($datos);
+        $alert->fill($datos);
         // dd($datos);
-        $alerta->save();
-        return redirect('caso')->with('status', 'Alerta '.$alerta->id.' actualizada con éxito.');
+        $alert->save();
+        return redirect('alert')->with('status', 'Alerta '.$alert->id.' actualizada con éxito.');
 
     }
 
