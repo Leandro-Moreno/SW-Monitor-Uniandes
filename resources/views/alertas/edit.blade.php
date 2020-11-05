@@ -98,12 +98,12 @@
                                 </div>
                               </div>
                               <div class="row col-sm-12 com-md-6">
-                                <label class="col-sm-2 col-form-label" for="input-fecha">{{ __('Fecha Inicial') }}</label>
+                                <label class="col-sm-2 col-form-label" for="input-fecha">{{ __('Fecha Final') }}</label>
                                 <div class="col-sm-10">
-                                  <div class="form-group{{ $errors->has('fechaInicio') ? ' has-danger' : '' }}">
-                                    <input class="form-control{{ $errors->has('fechaInicio') ? ' is-invalid' : '' }}" input type="date" name="fechaInicio" id="input-fechaInicio" placeholder="{{ __('fechaInicio') }}" value="{{ old('fechaInicio', $alerta->fechaFinal()) }}" />
-                                    @if ($errors->has('fechaInicio'))
-                                      <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('fechaInicio') }}</span>
+                                  <div class="form-group{{ $errors->has('fechaFin') ? ' has-danger' : '' }}">
+                                    <input class="form-control{{ $errors->has('fechaFin') ? ' is-invalid' : '' }}" input type="date" name="fechaFin" id="input-fechaFin" placeholder="{{ __('fechaFin') }}" value="{{ old('fechaFin', $alerta->fechaFinal()) }}" />
+                                    @if ($errors->has('fechaFin'))
+                                      <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('fechaFin') }}</span>
                                     @endif
                                   </div>
                                 </div>
