@@ -115,5 +115,3 @@ RUN if [ "$BUILD_ARGUMENT_ENV" = "dev" ] || [ "$BUILD_ARGUMENT_ENV" = "test" ]; 
     fi
 
 USER root
-
-exec "$@"
