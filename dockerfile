@@ -82,7 +82,7 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*
 
 # create document root
-RUN mkdir -p $APP_HOME/public
+
 
 # change owner
 RUN chown -R www-data:www-data $APP_HOME
@@ -96,6 +96,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN chmod +x /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
+# copy source files and config file
+COPY --chown=www-data:www-data . $APP_HOME/
+COPY --chown=www-data:www-data .env.example $APP_HOME/.env
+
 # set working directory
 WORKDIR $APP_HOME
 
@@ -104,9 +108,6 @@ RUN mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www/.composer
 
 USER www-data
 
-# copy source files and config file
-COPY --chown=www-data:www-data . $APP_HOME/
-COPY --chown=www-data:www-data .env.example $APP_HOME/.env
 
 # install all PHP dependencies
 RUN if [ "$BUILD_ARGUMENT_ENV" = "dev" ] || [ "$BUILD_ARGUMENT_ENV" = "test" ]; then COMPOSER_MEMORY_LIMIT=-1 composer install; \
@@ -114,3 +115,5 @@ RUN if [ "$BUILD_ARGUMENT_ENV" = "dev" ] || [ "$BUILD_ARGUMENT_ENV" = "test" ]; 
     fi
 
 USER root
+
+exec "$@"
