@@ -47,13 +47,13 @@
                                 <div class="col-md-4 col-xl-4">
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Fecha inicio') }}</label>
                                     <div class="col-md-12  col-xl-12">
-                                        {{$alerta->fechaInicio}}
+                                        {{$alerta->fechaDeInicio()}}
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-4">
                                     <label class="col-md-12 col-xl-12 col-form-label">{{ __('Fecha final') }}</label>
                                     <div class="col-md-12  col-xl-12">
-                                        {{isset($alerta->fechaFin)?$alerta->fechaFin:__('Sin fecha estimada.')}}
+                                        {{isset($alerta->fechaFin)?$alerta->fechaFinal():__('Sin fecha estimada.')}}
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-4">
